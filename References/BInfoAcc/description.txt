@@ -1,0 +1,40 @@
+Ever wish there were information displays for more things, such as luck? Block's Info Accessories has you covered with 9 new displays, each with corresponding items and configurable integration with the PDA, Cell Phone, and Shellphone!
+
+Introducing:
+Lucky Mirror - Displays luck, and also increases it a little when equipped! Obtained by shimmering a Magic Mirror (But not a Ice Mirror!)
+
+Attendance Log - Displays max and current minion count. Crafted from a Book, Gel, and Black Ink @ Table + Chair.
+
+Engineer's Registry - Displays max and current sentry count. Sold by the Goblin Tinkerer.
+
+Scrying Mirror - Tinker of the Lucky Mirror, Attendance Form, and Engineer's Register.
+
+Hit Marker - Displays 'combo', listing the amount of consecutive hits you've inflicted within 3 seconds of eachother, and the total damage and time duration of the combo. Good supplement to the DPS meter. Crafted from a Copper Watch, Lens, and Demonite/Crimtane Bars @ Anvil.
+
+Smart Heart - Displays life regen (Or loss, if taking debuff DoT). Obtained by shimmering a Band of Regeneration.
+
+Magimeter - Displays mana regen (Or loss, if using mana-consuming weapons/items). Crafted from a Mana Crystal, Glass, Gold/Platinum Bars, and a Diamond @ Work Bench.
+
+C.R.M. Counter - Tinker of the Hit Marker, Smart Heart, and Magimeter.
+
+Saftey Scanner - Displays spawn rate, in the form of average spawn count per seconds (Ex: 1/600 spawn rate => approx. 0.1 spawns per second), as well as spawn cap. Sold by the Skeleton Merchant during a Blood Moon or Solar Eclipse, or while in most underground biome variants; Ice/Snow, Jungle, Desert, Corruption, Crimson, and Hallow.
+
+Biome Crystal - Displays the biome(s) you are currently in. Supports many modded biomes from a large handful of mods! Obtained by shimmering a Forest Pylon.
+
+Wanted Poster - Displays aggro. Sold by the Arms Dealer.
+
+Threat Analyzer - Tinker of Safety Scanner, Biome Crystal, and Wanted Poster.
+
+Config:
+PDA/Cell Phone/Shellphone Integration - By default, the Scrying Mirror, C.R.M. Counter, and Threat Analyzer have been added to the PDA's recipe, and provide their displays to it, the Cell Phone, and Shellphone. However, this feature can be toggled, for those who don't want to have to gather even more info accessories for their cellular device. 
+Also has some cross-mod support, including; 
+- Thorium's Wishing Glass
+- Avalon's Shadow Phone
+- The Depth's respective Shellphone variant
+- Fargo's World Shaper Soul (and upgrades)
+- Maddie's Completeness Mod's Cell Phone+ (and upgrades)
+
+Easier Attainment - Don't want to jump through more hoops for more info? With this toggle you can make it so that the Merchant will sell all the new accessories (Excluding the tinkers) based on moon phase, making your life that much easier.
+
+Mods supported by Biome Crystal: 
+'Thorium Mod', 'Calamity Mod', 'Mod of Redemption', 'Exxo Avalon Origins', 'The Stars Above', 'Spirit Mod' (Classic & Reforged), 'Spooky Mod', 'Confection Rebaked', 'The Depths', 'Aequus', 'Verdant', 'Food, Furniture & Fun', 'Valhalla Mod', 'Remnants', and 'Rise of Ages'

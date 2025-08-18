@@ -1,0 +1,248 @@
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TranslateTest2
+{
+    public class WhipTagGNPC : GlobalNPC
+    {
+        public List<WhipTag> tags = new List<WhipTag>();
+
+        public override bool InstancePerEntity => true;
+
+        // パフォーマンス最適化用
+        private int _dustCooldown = 0;
+        private bool _hasDevotedTag = false;
+
+        public override bool PreAI(NPC npc)
+        {
+            if (npc?.active != true || tags == null) 
+                return true;
+
+            try
+            {
+                // タグの期限切れチェックとクリーンアップ
+                CleanupExpiredTags();
+
+                // Devotedタグの存在チェック（最適化）
+                UpdateDevotedTagStatus();
+
+                // Dustエフェクト生成（最適化版）
+                if (_hasDevotedTag)
+                {
+                    CreateDevotedDustEffect(npc);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error in WhipTagGNPC.PreAI: {ex.Message}");
+            }
+
+            return true;
+        }
+
+        // タグのクリーンアップ最適化
+        private void CleanupExpiredTags()
+        {
+            if (tags.Count == 0) return;
+
+            try
+            {
+                // 逆順でループして安全に削除
+                for (int i = tags.Count - 1; i >= 0; i--)
+                {
+                    var tag = tags[i];
+                    if (tag == null)
+                    {
+                        tags.RemoveAt(i);
+                        continue;
+                    }
+
+                    tag.TimeLeft--;
+                    if (tag.TimeLeft <= 0)
+                    {
+                        tags.RemoveAt(i);
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error cleaning tags: {ex.Message}");
+                // 最悪の場合、リスト全体をクリア
+                tags.Clear();
+            }
+        }
+
+        // Devotedタグ状態の更新
+        private void UpdateDevotedTagStatus()
+        {
+            _hasDevotedTag = tags.Any(tag => tag?.SpecialType == "Devoted");
+        }
+
+        // Dustエフェクト生成の最適化
+        private void CreateDevotedDustEffect(NPC npc)
+        {
+            // フレーム制限でパフォーマンス向上
+            if (++_dustCooldown < 5) return; // 5フレームに1回
+            _dustCooldown = 0;
+
+            try
+            {
+                const float angleStep = 10f; // 2f -> 10f で生成数を削減
+                const float radius = 24f;
+
+                for (float angle = 0f; angle < 360f; angle += angleStep)
+                {
+                    var radians = MathHelper.ToRadians(angle);
+                    var offset = Utils.ToRotationVector2(radians) * radius;
+                    var position = npc.Center + offset;
+
+                    var dust = Dust.NewDustDirect(position, 1, 1, DustID.Demonite, 
+                        0.0f, 0.0f, 0, new Color(), 0.6f); // スケールを削減
+
+                    if (dust != null)
+                    {
+                        dust.velocity = Vector2.Zero;
+                        dust.noGravity = true;
+                        dust.scale = 0.6f; // 0.8f -> 0.6f
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error creating devoted dust: {ex.Message}");
+            }
+        }
+
+        public override void ModifyHitByProjectile(
+            NPC npc,
+            Projectile projectile,
+            ref NPC.HitModifiers modifiers)
+        {
+            // 基本的な null チェックと早期リターン
+            if (npc?.active != true || 
+                projectile?.active != true || 
+                projectile.npcProj || 
+                projectile.trap || 
+                !projectile.IsMinionOrSentryRelated ||
+                tags?.Count == 0)
+                return;
+
+            try
+            {
+                ProcessTagDamageModifiers(projectile, ref modifiers);
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error in ModifyHitByProjectile: {ex.Message}");
+            }
+        }
+
+        // ダメージ修正処理の最適化
+        private void ProcessTagDamageModifiers(Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            bool hasDevotedTag = false;
+            float summonTagDamageMultiplier = ProjectileID.Sets.SummonTagDamageMultiplier[projectile.type];
+            int flatBonusDamage = 0;
+            float sourceDamageMultiplier = 1f;
+            float critChanceBonus = 0f;
+
+            // SPGlobalProjからのクリティカル値を安全に取得
+            try
+            {
+                var globalProj = projectile.GetGlobalProjectile<SPGlobalProj>();
+                critChanceBonus += globalProj?.MinionCrit ?? 0f;
+            }
+            catch
+            {
+                // globalProj取得失敗時は無視
+            }
+
+            // タグからのボーナス計算
+            foreach (var tag in tags)
+            {
+                if (tag == null) continue;
+
+                if (tag.SpecialType == "Devoted")
+                    hasDevotedTag = true;
+
+                flatBonusDamage += tag.TagDamage;
+                critChanceBonus += tag.CritAdd;
+                sourceDamageMultiplier += (tag.TagDamageMult - 1f) * summonTagDamageMultiplier;
+            }
+
+            // プレイヤーの保持アイテムからのDevoted効果
+            if (projectile.TryGetOwner(out Player player) && player?.active == true)
+            {
+                ProcessPlayerDevotedEffect(player, hasDevotedTag, ref sourceDamageMultiplier);
+            }
+
+            // 修正値を適用
+            ApplyDamageModifiers(ref modifiers, flatBonusDamage, sourceDamageMultiplier, 
+                               critChanceBonus, summonTagDamageMultiplier);
+        }
+
+        // プレイヤーのDevoted効果処理
+        private static void ProcessPlayerDevotedEffect(Player player, bool hasDevotedTag, ref float sourceDamageMultiplier)
+        {
+            try
+            {
+                var heldItem = player.HeldItem;
+                if (heldItem?.IsAir == false && 
+                    heldItem.shoot > ProjectileID.None && 
+                    ProjectileID.Sets.IsAWhip[heldItem.shoot])
+                {
+                    var globalItem = heldItem.global();
+                    if (globalItem?.wTag?.SpecialType == "Devoted")
+                    {
+                        if (hasDevotedTag)
+                            sourceDamageMultiplier += Prefixes.Devoted.Increase;
+                        else
+                            sourceDamageMultiplier = System.Math.Max(0.1f, sourceDamageMultiplier - Prefixes.Devoted.Decrease);
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error processing player devoted effect: {ex.Message}");
+            }
+        }
+
+        // ダメージ修正値の適用
+        private static void ApplyDamageModifiers(ref NPC.HitModifiers modifiers, int flatBonus, 
+                                               float sourceMultiplier, float critChance, float summonTagMultiplier)
+        {
+            try
+            {
+                // 値の範囲制限
+                flatBonus = System.Math.Max(0, System.Math.Min(flatBonus, 10000)); // 最大10000の平坦ダメージ
+                sourceMultiplier = System.Math.Max(0.1f, System.Math.Min(sourceMultiplier, 10f)); // 0.1x～10x の範囲
+                critChance = System.Math.Max(0f, System.Math.Min(critChance, 1f)); // 0%～100%の範囲
+
+                modifiers.FlatBonusDamage += flatBonus * summonTagMultiplier;
+                modifiers.SourceDamage *= sourceMultiplier;
+
+                if (Utils.NextFloat(Main.rand) < critChance)
+                {
+                    modifiers.SetCrit();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error applying damage modifiers: {ex.Message}");
+            }
+        }
+
+        // NPCがリセットされた時の処理
+        public override void SetDefaults(NPC npc)
+        {
+            tags?.Clear();
+            _dustCooldown = 0;
+            _hasDevotedTag = false;
+        }
+    }
+}

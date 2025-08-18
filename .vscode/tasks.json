@@ -1,0 +1,67 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build TranslateTest2 (dotnet build)",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"TranslateTest2/TranslateTest2.csproj",
+				"-v",
+				"m"
+			],
+			"problemMatcher": [
+				"$msbuild"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build TranslateTest2 (tModLoader)",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"tModLoader.dll",
+				"-server",
+				"-build",
+				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/",
+				"-eac",
+				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/bin/Debug/net8.0/TranslateTest2.dll"
+			],
+			"problemMatcher": [
+				"$msbuild"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build TranslateTest2 (dotnet build)",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"TranslateTest2/TranslateTest2.csproj",
+				"-v",
+				"m"
+			],
+			"problemMatcher": [
+				"$msbuild"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build TranslateTest2 (dotnet build)",
+			"type": "shell",
+			"command": "dotnet",
+			"args": [
+				"build",
+				"TranslateTest2/TranslateTest2.csproj",
+				"-v",
+				"m"
+			],
+			"problemMatcher": [
+				"$msbuild"
+			],
+			"group": "build"
+		}
+	]
+}

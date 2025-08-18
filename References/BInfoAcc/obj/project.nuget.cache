@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "XgC6pXgyXT4=",
+  "success": false,
+  "projectFilePath": "D:\\dorad\\Documents\\My Games\\Terraria\\tModLoader\\ModReader\\BInfoAcc\\BInfoAcc.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "'BInfoAcc' のプロジェクト情報を読み取ることができません: 無効なフレームワーク識別子 ''。",
+      "projectPath": "D:\\dorad\\Documents\\My Games\\Terraria\\tModLoader\\ModReader\\BInfoAcc\\BInfoAcc.csproj",
+      "filePath": "D:\\dorad\\Documents\\My Games\\Terraria\\tModLoader\\ModReader\\BInfoAcc\\BInfoAcc.csproj",
+      "targetGraphs": []
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+displayName = SummonerPrefix
+author = Polaris
+version = 0.7

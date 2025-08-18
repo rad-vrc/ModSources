@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\References\InventoryDrag\InventoryDrag.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4A6D028-902A-4AC0-A5DD-AC46BBE2AF91}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>InventoryDrag</AssemblyName>
+    <ApplicationVersion>0.0.0.0</ApplicationVersion>
+    <RootNamespace>InventoryDrag</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Runtime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InventoryDrag.cs" />
+    <Compile Include="InventoryItem.cs" />
+    <Compile Include="InventoryPlayer.cs" />
+    <Compile Include="Config\InventoryConfig.cs" />
+    <Compile Include="Config\LeftMouseOptions.cs" />
+    <Compile Include="Config\RightMouseOptions.cs" />
+    <Compile Include="Config\ModifierOptions.cs" />
+    <Compile Include="Config\ThrowDragging.cs" />
+    <Compile Include="Config\SplittableGrabBags.cs" />
+    <Compile Include="Compatability\AndroLib.cs" />
+    <Compile Include="Compatability\AndroLibReference.cs" />
+    <Compile Include="Compatability\AndroLibPlayer.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

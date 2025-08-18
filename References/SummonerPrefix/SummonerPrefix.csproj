@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: D:\dorad\Documents\My Games\Terraria\tModLoader\ModReader\SummonerPrefix\SummonerPrefix.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0CDD138F-B380-4AF8-8BC6-21FD5AB849F9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>SummonerPrefix</AssemblyName>
+    <ApplicationVersion>0.0.0.0</ApplicationVersion>
+    <RootNamespace>SummonerPrefix</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Runtime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PrefixGlobalItem.cs" />
+    <Compile Include="SPGlobalProj.cs" />
+    <Compile Include="SPModPlayer.cs" />
+    <Compile Include="SummonerPrefix.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="WhipTag.cs" />
+    <Compile Include="WhipTagGNPC.cs" />
+    <Compile Include="Projectiles\ElectricLaser.cs" />
+    <Compile Include="Prefixes\Abusive.cs" />
+    <Compile Include="Prefixes\Affable.cs" />
+    <Compile Include="Prefixes\Blessing.cs" />
+    <Compile Include="Prefixes\Brisk.cs" />
+    <Compile Include="Prefixes\Contract.cs" />
+    <Compile Include="Prefixes\Deviation.cs" />
+    <Compile Include="Prefixes\Devoted.cs" />
+    <Compile Include="Prefixes\Eager.cs" />
+    <Compile Include="Prefixes\Echo.cs" />
+    <Compile Include="Prefixes\Electrified.cs" />
+    <Compile Include="Prefixes\Extended.cs" />
+    <Compile Include="Prefixes\Fabled.cs" />
+    <Compile Include="Prefixes\Focused.cs" />
+    <Compile Include="Prefixes\Focused_Whip.cs" />
+    <Compile Include="Prefixes\Huge.cs" />
+    <Compile Include="Prefixes\Loyal.cs" />
+    <Compile Include="Prefixes\Mega.cs" />
+    <Compile Include="Prefixes\Oracle.cs" />
+    <Compile Include="Prefixes\Overload.cs" />
+    <Compile Include="Prefixes\Steady.cs" />
+    <Compile Include="Prefixes\Vengeful.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

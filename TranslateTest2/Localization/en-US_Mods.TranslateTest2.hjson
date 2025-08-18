@@ -1,0 +1,324 @@
+Configs: {
+	ClientConfig: {
+		DisplayName: Client Settings
+		Headers.DeepL: DeepL Settings
+
+		DeepLApiKey: {
+			Label: DeepL API Key
+			Tooltip: Enter your DeepL API auth_key. Stored client-side only.
+		}
+
+		TargetLang: {
+			Label: Target Language
+			Tooltip: DeepL target language code, e.g. JA, EN-US, EN-GB, ZH.
+		}
+
+		UseDeepL: {
+			Label: Use DeepL
+			Tooltip: Enable DeepL translation for tooltips and item names. Requires API key.
+		}
+
+		CacheDeepL: {
+			Label: Cache DeepL
+			Tooltip: Cache translated strings locally to avoid repeated DeepL requests.
+		}
+
+		ShowShiftIndicator: {
+			Label: Show Shift Indicator
+			Tooltip: Show a small "[Shift-Translate]" marker when translation is active.
+		}
+
+		EnableNameReconstruction: {
+			Label: Enable Name Reconstruction
+			Tooltip: Reconstruct item names like 'Legendary ... of ...' into natural Japanese order
+		}
+
+		SkipBracketContentInNames: {
+			Label: Skip [brackets] in names
+			Tooltip: Do not translate content inside square brackets in item names (e.g., [ModName]).
+		}
+
+		DeepLTimeoutMs: {
+			Label: DeepL Timeout (ms)
+			Tooltip: HTTP timeout per DeepL request (milliseconds).
+		}
+
+		DeepLBatchIntervalMs: {
+			Label: DeepL Batch Interval (ms)
+			Tooltip: Wait time to accumulate texts before sending a batch (milliseconds).
+		}
+
+		DeepLBatchMax: {
+			Label: DeepL Batch Size
+			Tooltip: Maximum number of texts to send per batch request.
+		}
+
+		DeepLEndpointPreference: {
+			Label: DeepL Endpoint Preference
+			Tooltip: Choose which endpoint to use: auto, free, or paid.
+		}
+
+		DeepLRetryCount: {
+			Label: DeepL Retry Count
+			Tooltip: Number of retry attempts when a request fails.
+		}
+
+		DeepLRetryInitialDelayMs: {
+			Label: DeepL Retry Initial Delay (ms)
+			Tooltip: Initial delay before retrying failed requests (milliseconds). Doubles each attempt.
+		}
+
+		ProxyUrl: {
+			Label: Proxy Url
+			Tooltip: Optional HTTP proxy URL (e.g. http://127.0.0.1:8080). Leave empty to disable.
+		}
+	}
+
+	BiomeDisplayClientConfig: {
+		DisplayName: Biome Display Settings
+		Headers.BiomeDisplay: Biome Display
+
+		simpleDisplay: {
+			Label: Simple Display
+			Tooltip:
+				'''
+				Removes extra symbols from certain cycling info displays.
+				Specifically removes the '+' suffix from displays that cycle multiple values
+				and removes the '~' (approximate) marker from the spawn rate / cap display.
+				Affects: Biome, Combo, Spawn Rate / Cap displays.
+				'''
+		}
+	}
+
+	InventoryConfig: {
+		DisplayName: Inventory Config
+
+		Headers: {
+			MainFeatures: Main Features Header
+			ExtraFeatures: Extra Features Header
+		}
+
+		LeftMouse: {
+			Label: Left Mouse
+			Tooltip: ""
+		}
+
+		RightMouse: {
+			Label: Right Mouse
+			Tooltip: ""
+		}
+
+		SplittableGrabBags: {
+			Label: Splittable Grab Bags
+			Tooltip: ""
+		}
+
+		ThrowDragging: {
+			Label: Throw Dragging
+			Tooltip: ""
+		}
+
+		DebugMessages: {
+			Label: Debug Messages
+			Tooltip: ""
+		}
+	}
+
+	LeftMouseOptions: {
+		Tooltip: ""
+
+		Enabled: {
+			Label: Enabled
+			Tooltip: ""
+		}
+
+		ModifierOptions: {
+			Label: Modifier Options
+			Tooltip: ""
+		}
+	}
+
+	ModifierOptions: {
+		Tooltip: ""
+
+		AllowCtrl: {
+			Label: Allow Ctrl
+			Tooltip: ""
+		}
+
+		AllowShift: {
+			Label: Allow Shift
+			Tooltip: ""
+		}
+
+		AllowAlt: {
+			Label: Allow Alt
+			Tooltip: ""
+		}
+
+		AllowThrow: {
+			Label: Allow Throw
+			Tooltip: ""
+		}
+
+		RequireModifier: {
+			Label: Require Modifier
+			Tooltip: ""
+		}
+	}
+
+	RightMouseOptions: {
+		Tooltip: ""
+
+		Enabled: {
+			Label: Enabled
+			Tooltip: ""
+		}
+
+		ModifierOptions: {
+			Label: Modifier Options
+			Tooltip: ""
+		}
+	}
+
+	SplittableGrabBags: {
+		Tooltip: ""
+
+		Enabled: {
+			Label: Enabled
+			Tooltip: ""
+		}
+
+		ShowTooltip: {
+			Label: Show Tooltip
+			Tooltip: ""
+		}
+	}
+
+	ThrowDragging: {
+		Tooltip: ""
+
+		PlaySound: {
+			Label: Play Sound
+			Tooltip: ""
+		}
+
+		ThrowDelay: {
+			Label: Throw Delay
+			Tooltip: ""
+		}
+	}
+}
+
+Prefixes: {
+	Abusive.DisplayName: Abusive
+	Affable.DisplayName: Affable
+	Blessing.DisplayName: Blesseing
+	Brisk.DisplayName: Brisk
+	Contract.DisplayName: Contract
+	Devoted.DisplayName: Devoted
+	Deviation.DisplayName: Deviation
+	Eager.DisplayName: Eager
+	Echo.DisplayName: Echo
+	Electrified.DisplayName: Electrified
+	Extended.DisplayName: Extended
+	Fabled.DisplayName: Fabled
+	Focused.DisplayName: Focused
+	Focused_Whip.DisplayName: Focused
+	Huge.DisplayName: Huge
+	Loyal.DisplayName: Loyal
+	Mega.DisplayName: Mega
+	Oracle.DisplayName: Oracle
+	Overload.DisplayName: Overload
+	Steady.DisplayName: Steady
+	Vengeful.DisplayName: Vengeful
+}
+
+"Keybinds.DeepL Status.DisplayName": DeepL Status
+PrefixVengefulDescr: Apply additional tag to the target, increasing the damage of minions by {A}% of item damage({B})
+PrefixExtendedDescr: +{V}% Whip Range
+PrefixAffableDescr: -{A}%({B}) Minion Slots using
+PrefixMegaDescr:
+	'''
+	+100% Minion Slot using
+	+100% Minion Size
+	+100% Minion Knockback
+	'''
+PrefixBriskDescr: +{}% Minion Attack Speed
+PrefixDeviationDescr: The projectile of the summoning object is even more inaccurate
+PrefixSteadyDescr: -{}% Minion Attack Speed
+PrefixHugeDescr: +{}% Minion Size
+PrefixEchoDescr: Minions has a chance to shoot double projectiles
+PrefixBlessingDescr: Minions will provide players nearby some bonus
+PrefixContractDescr:
+	'''
+	Minions heal you for {A}% max HP per hit
+	-{B} armor per minion
+	'''
+PrefixDevotedDescr:
+	'''
+	Tag hitted enemies
+	+{A}% Damage to enemies that has tag
+	otherwise -{B}% Damage
+	'''
+PrefixOverloadDescr: +100% Minion Attack Speed
+PrefixAbusiveDescr: +{}% Minion Crit Chance
+PrefixEagerDescr: +{}% Minion Attack Speed
+PrefixFocusedDescr: +{A}%({B}) Minion Slots using
+PrefixLoyalDescr:
+	'''
+	+{A}%({B}) Minion Slots using
+	+{C}% Minion Crit Chance
+	'''
+PrefixFabledDescr:
+	'''
+	-{A}%({B}) Minion Slots using
+	+{C}% Minion Crit Chance
+	+{D}% Minion Knockback
+	'''
+PrefixOracleDescr:
+	'''
+	Apply additional tag to the target, 
+	increasing the damage of minions by {A}% of item damage({B}),
+	gain {C}% minion crit chance
+	+{D}% Whip Range
+	'''
+Projectiles.ElectricLaser.DisplayName: Electric Laser
+PrefixElectrifiedDescr: Continuously generate lightning chains to connect you and minions, with lightning damage based on your maximum health
+PrefixFocused_WhipDescr: When helding, +{A}%Summon Damage, but -{B} Minion Slot
+
+Biomes: {
+	Neutral: None
+
+	Vanilla: {
+		Space: Space
+		Underworld: Underworld
+		Underground: Underground
+		Solar: Solar Pillar
+		Vortex: Vortex Pillar
+		Nebula: Nebula Pillar
+		Stardust: Stardust Pillar
+		Meteor: Meteor
+		Dungeon: Dungeon
+		Temple: Jungle Temple
+		Aether: Aether
+		Spider: Spider Cave
+		Corruption: Corruption
+		Crimson: Crimson
+		Shroom: Mushroom
+		Jungle: Jungle
+		Hallow: Hallow
+		Ocean: Ocean
+		Snow: Snow
+		Desert: Desert
+		Beehive: Beehive
+		Granite: Granite Cave
+		Marble: Marble Cave
+		Graveyard: Graveyard
+		Forest: Forest
+		Town: Town
+	}
+}
+
+InfoDisplays.BiomeInfoDisplay.DisplayName: Nearby Biomes
+GrabBagTooltip: Shift + Right Click to split

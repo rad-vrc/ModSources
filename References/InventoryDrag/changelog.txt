@@ -1,0 +1,5 @@
+﻿
+Inventory Drag v{ModVersion} has been published to {tMLBuildPurpose} tML v{tMLVersion}.
+Learn more at the [url={ModHomepage}]homepage[/url]
+
+- Added the ability to drop items while dragging

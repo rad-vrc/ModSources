@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="EmitMSBuildWarning" BeforeTargets="Build">
+    <Warning Text="パッケージに MSBuild targets ファイルと props ファイルが存在しているため、複数のフレームワークをターゲットとするプロジェクトにこのパッケージを完全にインストールすることはできません。MSBuild targets ファイルと props ファイルは無視されました。" />
+  </Target>
+</Project>

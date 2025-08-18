@@ -1,0 +1,319 @@
+CommonItemtooltip: {
+	ScannerCondition: During Blood Moon or Eclipse, or in an underground biome varaiant
+	MerchantSaleCondition: Enabled in config
+	MerchantAccConditionG: "{$CommonItemtooltip.MerchantSaleCondition} & Gibbous Moon"
+	MerchantAccConditionQ: "{$CommonItemtooltip.MerchantSaleCondition} & Quarter Moon"
+	MerchantAccConditionC: "{$CommonItemtooltip.MerchantSaleCondition} & Crescent Moon"
+	LuckDisplay: "{0} Luck"
+	MinionDisplay: "{0}/{1} Minion Slots occupied"
+	SentryDisplay: "{0}/{1} Sentry Slots occupied"
+	RegenDisplayFull: Full Life
+	RegenDisplayPos: +{0} life per second
+	RegenDisplayNeg: "{0} life per second"
+	SpawnRateDisplayS: "{0} spawn per second"
+	SpawnRateDisplayP: "{0} spawns per second"
+	SpawnCapDisplay: "{0}-enemy spawn limit"
+	SpawnRateDisplayError: ERROR: Extremely high/low spawn rate!
+	ComboDisplayNone: No combo
+	ComboDisplayTime: "{0} hits (Duration: {1})"
+	ComboDisplayDmg: "{0} hits (Total dmg: {1})"
+	ComboError: ERROR: Value overflow
+	AggroDisplay: "{0} Aggro"
+	ManaDisplayFull: Full Mana
+	ManaDisplayPos: +{0} mana per second
+	ManaDisplayNeg: "{0} mana per second"
+	SuffixThousand: " K"
+	SuffixMillion: " Mil"
+	SuffixBillion: " Bil"
+	SuffixSeconds: " secs"
+	SuffixMinutes: " mins"
+	SuffixHours: " hrs"
+	BrokenSpawnRate: Warning: Spawn rate/limit tracking is currently broken in multiplayer!
+}
+
+Biomes: {
+	Neutral: N/A
+
+	Vanilla: {
+		Space: Space
+		Underworld: Underworld
+		Underground: Underground
+		Solar: Solar Pillar
+		Vortex: Vortex Pillar
+		Nebula: Nebula Pillar
+		Stardust: Stardust Pillar
+		Meteor: Meteorite
+		Dungeon: Dungeon
+		Temple: Jungle Temple
+		Aether: Aether
+		Spider: Spider Nest
+		Corruption: Corruption
+		Crimson: Crimson
+		Shroom: Glowing Mushrooms
+		Jungle: Jungle
+		Hallow: Hallow
+		Ocean: Ocean
+		Snow: Snow
+		Desert: Desert
+		Beehive: Bee Hive
+		Granite: Granite Cave
+		Marble: Marble Cave
+		Graveyard: Graveyard
+		Forest: Forest
+		Town: Town
+	}
+
+	Thorium.Depths: Aquatic Depths
+
+	Calamity: {
+		Astral: Astral Infection
+		Crags: Brimstone Crags
+		SulphurousSea: Sulphurous Sea
+		SunkenSea: Sunken Sea
+		AbyssMain: The Abyss
+		Abyss1: Sulphuric Depths
+		Abyss2: Murky Waters
+		Abyss3: Thermal Vents
+		Abyss4: The Void
+	}
+
+	Redemption: {
+		Lab: Abandoned Labratory
+		Soulless: Soulless Caverns
+		Wasteland: Wasteland
+	}
+
+	Aequus.Crevice: Crab Crevice
+	Confection.Confection: Confection
+
+	FFF: {
+		Celestial: Celestial
+		Garden: Garden
+	}
+
+	Avalon: {
+		PhantomGardens: Phantom Gardens
+		Hellcastle: Hellcastle
+		Blastplains: Caesium Blastplains
+		Contagion: Contagion
+		AshenOvergrowth: Ashen Overgrowth
+		SkyFortress: Sky Fortress
+		DarkMatter: Dark Matter
+		Tropics: Savanna
+		TuhrtlOutpost: Tuhrtl Outpost
+		BasaltObelisk: Basalt Obelisk
+	}
+
+	Spirit: {
+		Reach: Briar
+		Spirit: Spirit
+		Asteroid: Asteroid Field
+		Savanna: Savanna
+	}
+
+	StarsAbove: {
+		Observatory: Observatory Hyperborea
+		Astarte: Astarte Driver
+		Bleached: Bleached World
+		Corvus: Corvus
+		Lyra: Lyra
+		Pyxis: Pyxis
+		Moon: Moon
+		StarSea: Sea of Stars
+	}
+
+	Depths.Depths: Depths
+
+	Spooky: {
+		Spooky: Spooky
+		Catacomb: Catacombs
+	}
+
+	Verdant.Verdant: Verdant
+	Valhalla.Tar: Tar Cavern
+
+	Remnants: {
+		Undergrowth: Undergrowth
+		MagicLab: Magical Lab
+		Tomb: Forgotten Tomb
+		AerialGarden: Aerial Garden
+		EchoingHalls: Echoing Halls
+	}
+
+	RiseOfAges.Backwoods: Backwoods
+}
+
+Items: {
+	EngiRegistry: {
+		DisplayName: Engineer's Registry
+		Tooltip:
+			'''
+			Displays the amount of Sentry Slots you have and how many are occupied
+			'Engi-nearing your (sentry) limit'
+			'''
+	}
+
+	AttendanceLog: {
+		DisplayName: Attendance Log
+		Tooltip: Displays the amount of Minion Slots you have and how many are occupied
+	}
+
+	FortuneMirror: {
+		DisplayName: Fortune Mirror
+		Tooltip: Displays luck
+	}
+
+	HitMarker: {
+		DisplayName: Hit Marker
+		Tooltip:
+			'''
+			Displays the hit count, duration, and total damage of combos
+			Combos consist of hits you've landed consecutivley within 3 seconds of eachother
+			'''
+	}
+
+	RSH: {
+		DisplayName: C.R.M. Counter
+		Tooltip: Displays combo, life regen, and mana economy
+	}
+
+	SafteyScanner: {
+		DisplayName: Safety Scanner
+		Tooltip: Displays the spawn rate of enemies
+	}
+
+	ScryingMirror: {
+		DisplayName: Scrying Mirror
+		Tooltip: Displays luck, minion slots, and sentry slots
+	}
+
+	SmartHeart: {
+		DisplayName: Smart Heart
+		Tooltip:
+			'''
+			Displays life regeneration and/or loss
+			'Make sure to get your steps in'
+			'''
+	}
+
+	BiomeCrystal: {
+		DisplayName: Biome Crystal
+		Tooltip: Displays the biome(s) you are located in
+	}
+
+	Magimeter: {
+		DisplayName: Magimeter
+		Tooltip: Displays mana regeneration, or usage when using mana-consuming items
+	}
+
+	WantedPoster: {
+		DisplayName: Wanted Poster
+		Tooltip:
+			'''
+			Displays aggro, which determines how likely enemies are to target you
+			'They didn't even bother with the "or alive" part...'
+			'''
+	}
+
+	ThreatAnalyzer: {
+		DisplayName: Threat Analyzer
+		Tooltip: Displays spawn rate, aggro, and biome(s)
+	}
+}
+
+InfoDisplays: {
+	# Sentry Count
+	InfoDisplay8.DisplayName: Sentries
+	# Minion Count
+	InfoDisplay7.DisplayName: Minions
+	# Luck
+	InfoDisplay0.DisplayName: Luck
+	# Spawn Rate/Limit
+	InfoDisplay3.DisplayName: Spawn Rate
+	# Life Regeneration
+	InfoDisplay1.DisplayName: Life Regen
+	# 'Combo'
+	InfoDisplay6.DisplayName: Combo
+	# Biomes
+	InfoDisplay4.DisplayName: Nearby Biome(s)
+	# Aggro
+	InfoDisplay5.DisplayName: Aggro
+	# Mana Economy
+	InfoDisplay2.DisplayName: Mana Economy
+}
+
+Configs: {
+	ConfigServer: {
+		DisplayName: Main Config
+
+		easySell: {
+			Label: Merchant sells new info accessories
+			Tooltip:
+				'''
+				When set to true, the Merchant will sell this mod's info accessories based on moon phase
+				Good for if you want an easy way to obtain the new info displays
+				'''
+		}
+
+		extendedRecipe: {
+			Label: Add new accessories to PDA recipe
+			Tooltip:
+				'''
+				Toggles if the PDA's recipe is overriden to require the Scrying Mirror, C.R.M. Counter, and Threat Analyzer from this mod
+				If you don't want to jump through more hoops for your celluar device, then try turning this off
+				'''
+		}
+
+		updatedPhones: {
+			Label: Enable new info displays on PDA, Cell Phone, and Shellphone
+			Tooltip:
+				'''
+				Determines if the PDA and its upgrades inherit the new info displays from this mod
+				Also supports the Wishing Glass item from the Thorium Mod
+				'''
+		}
+
+		refreshRate: {
+			Label: Info Refresh Rate
+			Tooltip:
+				'''
+				Certain info displays (Spawn Rate/Cap, and Biome) don't refresh their info every frame
+				This is to prevent flickering text, and to reduce the potential for lag
+				The delay between updates can be customized here; the value set is the amount of ticks between each update
+				For reference, 1 second = 60 seconds
+				'''
+		}
+
+		cycleRate: {
+			Label: Info Display Cycle Rate
+			Tooltip:
+				'''
+				Certain info displays (Spawn Rate/Cap, Combo, and Biome) have multiple lines of info they dispaly in a cycle
+				This behavior is similar to that of the vanilla Weather Radio whilst a sandstorm is active
+				This setting multiplies the speed of different info lines cycling
+				'''
+		}
+
+		prioModBiomes: {
+			Label: Biome Display Prioritizes Mod Biomes
+			Tooltip:
+				'''
+				Causes the biome display to display (supported) modded biomes before (most) vanilla biomes
+				All nearby biomes will still be cycled through; higher priority biomes are displayed earlier in the cycle
+				Biome dispaly supprots the below mods:
+				'Thorium Mod', 'Calamity Mod', 'Mod of Redemption', 'Exxo Avalon Origins' 'The Stars Above', 'Spirit Mod', 'Spooky Mod', 
+				'Confection Rebaked', 'The Depths', 'Aequus', 'Verdant', 'Food, Furniture & Fun', and 'Remnants'
+				'''
+		}
+
+		simpleDisplay: {
+			Label: Simplified Displays
+			Tooltip:
+				'''
+				Removes some extra symbols from certain displays, namely the "+" that appears on displays that alternate between multiple lines of info
+				Also gets rid of the "~" (Shorthand for "approximately") in front of the Spawn Rate/Limit display
+				Affects Biome, Combo, and Spawn Rate/Limit displays
+				'''
+		}
+	}
+}

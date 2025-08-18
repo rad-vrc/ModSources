@@ -1,0 +1,52 @@
+[h1]Block's Info Accessories[/h1]
+
+Ever wish there were information displays for more things, such as luck? Block's Info Accessories has you covered with 9 new displays, each with corresponding items and configurable integration with the PDA, Cell Phone, and Shellphone!
+
+[h2]Introducing:[/h2]
+[list]
+    [*][b]Fortune Mirror[/b] - Displays luck, and also increases it a little when equipped! Obtained by shimmering a Magic Mirror (But not a Ice Mirror!)
+    [*][b]Attendance Log[/b] - Displays max and current minion count. Crafted from a Book, Gel, and Black Ink @ Table + Chair.
+    [*][b]Engineer's Registry[/b] - Displays max and current sentry count. Sold by the Goblin Tinkerer.
+    [*][b]Scrying Mirror[/b] - Tinker of the Lucky Mirror, Attendance Form, and Engineer's Register.
+    [*][b]Hit Marker[/b] - Displays 'combo', listing the amount of consecutive hits you've inflicted within 3 seconds of eachother, and the total damage and time duration of the combo. Excellent supplement to the DPS meter. Crafted from a Copper Watch, Lens, and Demonite/Crimtane Bars @ Anvil.
+    [*][b]Smart Heart[/b] - Displays life regen (Or loss, if taking debuff DoT). Obtained by shimmering a Band of Regeneration.
+    [*][b]Magimeter[/b] - Displays mana regen (Or loss, if using mana-consuming weapons/items). Crafted from a Mana Crystal, Glass, Gold/Platinum Bars, and a Diamond @ Work Bench.
+    [*][b]C.R.M. Counter[/b] - Tinker of the Hit Marker, Smart Heart, and Magimeter.
+    [*][b]Safety Scanner[/b] - Displays spawn rate, in the form of average spawn count per seconds (Ex: 1/600 spawn rate => approx. 0.1 spawns per second). Sold by the Skeleton Merchant during a Blood Moon or Solar Eclipse, or while in most underground biome variants; Ice/Snow, Jungle, Desert, Corruption, Crimson, and Hallow.
+    [*][b]Biome Crystal[/b] - Displays the biome(s) you are currently in. Supports many modded biomes from a large handful of mods! Obtained by shimmering a Forest Pylon.
+    [*][b]Wanted Poster[/b] - Displays aggro. Sold by the Arms Dealer.
+    [*][b]Threat Analyzer[/b] - Tinker of Safety Scanner, Biome Crystal, and Wanted Poster.
+[/list]
+(Mods supported by Biome Crystal: 'Thorium Mod', 'Calamity Mod', 'Mod of Redemption', 'Exxo Avalon Origins', 'The Stars Above', 'Spirit Mod' (Classic & Reforged), 'Spooky Mod', 'Confection Rebaked', 'The Depths', 'Aequus', 'Verdant', 'Food, Furniture & Fun', 'Valhalla Mod', 'Remnants', and 'Rise of Ages')
+
+[h2]Config:[/h2]
+[b]PDA/Cell Phone/Shellphone Integration[/b] - By default, the Scrying Mirror, C.R.M. Counter, and Threat Analyzer have been added to the PDA's recipe, and provide their displays to it, the Cell Phone, and Shellphone. However, this feature can be toggled, for those who don't want to have to gather even more info accessories for their cellular device. 
+Also has some cross-mod support, including; 
+[list]
+    [*]Thorium's Wishing Glass
+    [*]Avalon's Shadow Phone
+    [*]The Depth's respective Shellphone variant
+    [*]Fargo's World Shaper Soul (and upgrades)
+    [*]Maddie's Completeness Mod's Cell Phone+ (and upgrades)
+[/list]
+
+[b]Easier Attainment[/b] - Don't want to jump through more hoops for more info? With this toggle you can make it so that the Merchant will sell all the new accessories (Excluding the tinkers) based on moon phase, making your life that much easier.
+
+
+[h3]Open Source[/h3]
+[list]
+    [*]This mod is open-source under the GNU GPLv3 license. In short, you’re allowed to view and utilize code from the source if you’d like, but if you want to publish any work you did with it, that project will have to use the same license (GNU GPLv3). The mod's LICENSE file contains the full details of terms and conditions, etc.
+	[*]You can access the source-code using tML's extract function (Found in-game on the mod's More Info page in your Mods List).
+[/list]
+
+[h3]Localization[/h3]
+This mod inherently supports the English language, though I am unable to provide any other languages since that's the only one I'm fluent in. However, localization contributions on GitHub are welcomed and appreciated. Below is a list of supported languages so far:
+[list]
+    [*]English (Base)
+	[*]Simplified Chinese (Contributed by [b]Urgiv[/b] & [b]Shrinkviolet77[/b])
+	[*]French (Contributed by [b]DiamondCed[/b])
+	[*]Russian (Contributed by [b]KobaWHO[/b])
+[/list]
+If you desire to contribute localization, please make a PR in the [url=https://github.com/BlockCrusader/tML-Mods]GitHub repository for my mods' .tmod files[/url].
+
+[b]Please first read the pinned discussion 'FAQ Thread: Compatibility, Known Issues/Bug Reports, Roadmap & More' if you have any questions![/b]

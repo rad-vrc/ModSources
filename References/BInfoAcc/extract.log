@@ -1,0 +1,26 @@
+Mod作成者がtModReaderからリソース(例: 画像)を非表示にすることを選択しました。
+ファイル:
+BInfoAcc.dll
+You can find this mod's .dll files under D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\ModAssemblies for easy mod collaboration!
+BInfoAcc.pdb
+[hidden] build.txtBInfoAcc.cs
+BInfoAcc.csproj
+[hidden] icon.pngCommon/Config.cs
+[hidden] Common/desktop.ini[hidden] Common/InfoDisplay0.png[hidden] Common/InfoDisplay1.png[hidden] description.txt[hidden] Common/InfoDisplay3.png[hidden] Common/InfoDisplay4.png[hidden] description_workshop.txt[hidden] Common/InfoDisplay5.png[hidden] Common/InfoDisplay2.png[hidden] Common/InfoDisplay8.png[hidden] Common/InfoDisplay6.png[hidden] Common/InfoDisplay7.pngContent/BiomeCrystal.cs
+Common/NPCShops.cs
+[hidden] icon_small.png[hidden] Content/desktop.iniContent/AttendanceLog.cs
+Content/EngiRegistry.cs
+Common/PhoneTweaks.cs
+Common/InfoDisplays.cs
+[hidden] Content/BiomeCrystal.png[hidden] Content/EngiRegistry.pngContent/FortuneMirror.cs
+[hidden] Content/AttendanceLog.png[hidden] Content/HitMarker.png[hidden] Content/FortuneMirror.png[hidden] Content/Magimeter.pngContent/RSH.cs
+Content/Magimeter.cs
+Content/HitMarker.cs
+[hidden] Content/RSH.pngContent/SafteyScanner.cs
+[hidden] Content/SafteyScanner.png[hidden] Content/SmartHeart.pngContent/ScryingMirror.cs
+Content/ThreatAnalyzer.cs
+[hidden] LICENSE.txt[hidden] Content/WantedPoster.png[hidden] Content/ScryingMirror.pngContent/SmartHeart.cs
+[hidden] Content/ThreatAnalyzer.png[hidden] Localization/zh-Hans_Mods.BInfoAcc.hjson[hidden] Properties/launchSettings.jsonContent/WantedPoster.cs
+Common/InfoPlayer.cs
+[hidden] Localization/fr-FR_Mods.BInfoAcc.hjsonCommon/ItemShimmers.cs
+[hidden] Localization/en-US_Mods.BInfoAcc.hjson[hidden] Localization/ru-RU_Mods.BInfoAcc.hjson[hidden] icon_workshop.png

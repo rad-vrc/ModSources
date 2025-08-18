@@ -1,0 +1,105 @@
+﻿File: Localization\en-US_Mods.TranslateTest2.hjson
+````````
+Configs: {
+	ClientConfig: {
+		DisplayName: Client Settings
+		Headers.DeepL: DeepL Settings
+
+		DeepLApiKey: {
+			Label: DeepL API Key
+			Tooltip: Enter your DeepL API auth_key. Stored client-side only.
+		}
+
+		TargetLang: {
+			Label: Target Language
+			Tooltip: DeepL target language code, e.g. JA, EN-US, EN-GB, ZH.
+		}
+
+		UseDeepL: {
+			Label: Use DeepL
+			Tooltip: Enable DeepL translation for tooltips and item names. Requires API key.
+		}
+
+		CacheDeepL: {
+			Label: Cache DeepL
+			Tooltip: Cache translated strings locally to avoid repeated DeepL requests.
+		}
+
+		ShowShiftIndicator: {
+			Label: Show Shift Indicator
+			Tooltip: Show a small "[Shift-Translate]" marker when translation is active.
+		}
+
+		EnableNameReconstruction: {
+			Label: Enable Name Reconstruction
+			Tooltip: Reconstruct item names like 'Legendary ... of ...' into natural Japanese order
+		}
+
+		SkipBracketContentInNames: {
+			Label: Skip [brackets] in names
+			Tooltip: Do not translate content inside square brackets in item names (e.g., [ModName]).
+		}
+
+		DeepLTimeoutMs: {
+			Label: DeepL Timeout (ms)
+			Tooltip: HTTP timeout per DeepL request (milliseconds).
+		}
+
+		DeepLBatchIntervalMs: {
+			Label: DeepL Batch Interval (ms)
+			Tooltip: Wait time to accumulate texts before sending a batch (milliseconds).
+		}
+
+		DeepLBatchMax: {
+			Label: DeepL Batch Size
+			Tooltip: Maximum number of texts to send per batch request.
+		}
+
+		DeepLEndpointPreference: {
+			Label: DeepL Endpoint Preference
+			Tooltip: Choose which endpoint to use: auto, free, or paid.
+		}
+
+		DeepLRetryCount: {
+			Label: DeepL Retry Count
+			Tooltip: Number of retry attempts when a request fails.
+		}
+
+		DeepLRetryInitialDelayMs: {
+			Label: DeepL Retry Initial Delay (ms)
+			Tooltip: Initial delay before retrying failed requests (milliseconds). Doubles each attempt.
+		}
+
+		ProxyUrl: {
+			Label: Proxy Url
+			Tooltip: Optional HTTP proxy URL (e.g. http://127.0.0.1:8080). Leave empty to disable.
+		}
+	}
+}
+
+Prefixes: {
+	Abusive.DisplayName: Abusive
+	Affable.DisplayName: Affable
+	Blessing.DisplayName: Blessed
+	Brisk.DisplayName: Brisk
+	Contract.DisplayName: Contract
+	Devoted.DisplayName: Devoted
+	Deviation.DisplayName: Deviant
+	Eager.DisplayName: Eager
+	Echo.DisplayName: Echo
+	Electrified.DisplayName: Electrified
+	Extended.DisplayName: Extended
+	Fabled.DisplayName: Fabled
+	Focused.DisplayName: Focused
+	Focused_Whip.DisplayName: Focused
+	Huge.DisplayName: Huge
+	Loyal.DisplayName: Loyal
+	Mega.DisplayName: Mega
+	Oracle.DisplayName: Oracle
+	Overload.DisplayName: Overload
+	Steady.DisplayName: Steady
+	Vengeful.DisplayName: Vengeful
+}
+
+Projectiles.ElectricLaser.DisplayName: Electric Laser
+"Keybinds.DeepL Status.DisplayName": DeepL Status

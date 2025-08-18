@@ -1,0 +1,7 @@
+sortAfter = ShimmerQoL
+author = BlockCrusader
+version = 1.2.2.17
+displayName = Block's Info Accessories
+homepage = https://forums.terraria.org/index.php?threads/blockcrusaders-mods.122946/
+hideCode = false
+includeSource = true

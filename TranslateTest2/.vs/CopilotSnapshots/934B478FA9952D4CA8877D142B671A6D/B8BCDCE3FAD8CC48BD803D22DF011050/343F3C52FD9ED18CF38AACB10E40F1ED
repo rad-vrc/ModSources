@@ -1,0 +1,418 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using TranslateTest2.Core;
+using TranslateTest2.Config;
+
+namespace TranslateTest2
+{
+	public class TranslateTest2 : Mod
+	{
+		public static TranslateTest2 Instance { get; private set; }
+		
+		public override void Load()
+		{
+			try
+			{
+				Instance = this;
+				
+				TooltipTranslator.Load(this);
+				var cfg = ModContent.GetInstance<ClientConfig>();
+				DeepLTranslator.ApplyConfig(cfg);
+
+				// Hook registration with additional safety checks and failure recovery
+				bool whipHookSuccess = false;
+				bool aiHookSuccess = false;
+
+				try
+				{
+					On_Projectile.GetWhipSettings += hook_get_whip_settings;
+					whipHookSuccess = true;
+					Logger?.Info("WhipSettings hook registered successfully");
+				}
+				catch (Exception ex)
+				{
+					Logger?.Error($"Failed to register WhipSettings hook: {ex.Message}");
+				}
+
+				try
+				{
+					On_Projectile.AI += hook_projectile_ai;
+					aiHookSuccess = true;
+					Logger?.Info("Projectile AI hook registered successfully");
+				}
+				catch (Exception ex)
+				{
+					Logger?.Error($"Failed to register Projectile AI hook: {ex.Message}");
+				}
+
+				// 診断情報を出力
+				Logger?.Info($"Hook registration status: WhipSettings={whipHookSuccess}, ProjectileAI={aiHookSuccess}");
+				
+				if (!whipHookSuccess && !aiHookSuccess)
+				{
+					Logger?.Warn("Critical: No hooks were registered successfully. Some features may not work.");
+				}
+				
+				Logger?.Info("TranslateTest2 loaded successfully");
+			}
+			catch (Exception ex)
+			{
+				Logger?.Error($"Critical error loading TranslateTest2: {ex}");
+				// クリティカルエラーでも完全に失敗させない
+				try
+				{
+					Instance = this; // 最低限のインスタンス設定は維持
+				}
+				catch { }
+			}
+		}
+
+		public override void Unload()
+		{
+			try
+			{
+				TooltipTranslator.Unload();
+				DeepLTranslator.Unload();
+				
+				// 安全なフック解除
+				try { On_Projectile.GetWhipSettings -= hook_get_whip_settings; } catch { }
+				try { On_Projectile.AI -= hook_projectile_ai; } catch { }
+				
+				Logger?.Info("TranslateTest2 unloaded successfully");
+			}
+			catch (Exception ex)
+			{
+				Logger?.Warn($"Error during unload: {ex.Message}");
+			}
+			finally
+			{
+				Instance = null;
+			}
+		}
+
+		// 最適化されたプロジェクタイルAIフック（追加安全策）
+		private void hook_projectile_ai(On_Projectile.orig_AI orig, Projectile self)
+		{
+			// 追加の安全チェック
+			if (orig == null || self == null)
+				return;
+
+			try
+			{
+				// 基本的な null チェックと状態確認
+				if (!self.active)
+				{
+					try
+					{
+						orig(self);
+					}
+					catch (Exception ex)
+					{
+						Logger?.Debug($"Error in orig AI for inactive projectile: {ex.Message}");
+					}
+					return;
+				}
+
+				// 召喚物とセントリーの特別処理
+				if (self.minion || self.sentry)
+				{
+					try
+					{
+						var globalProjectile = self.GetGlobalProjectile<SPGlobalProj>();
+						
+						// MinionUpdateSpeedの安全な処理
+						if (globalProjectile != null && 
+						    globalProjectile.MinionUpdateSpeed > 0f && 
+						    globalProjectile.MinionUpdateSpeed != 1f &&
+						    globalProjectile.MinionUpdateSpeed < 10f) // 上限値追加
+						{
+							globalProjectile.UpdateCounter += globalProjectile.MinionUpdateSpeed;
+							int iterations = 0;
+							const int maxIterations = 3; // さらに保守的な上限値
+
+							while (globalProjectile.UpdateCounter >= 1.0 && iterations < maxIterations)
+							{
+								iterations++;
+								globalProjectile.UpdateCounter -= 1.0f;
+								
+								// 各反復で追加の安全チェック
+								if (self == null || !self.active)
+									break;
+								
+								try
+								{
+									orig(self);
+								}
+								catch (Exception ex)
+								{
+									Logger?.Debug($"Error in orig AI iteration {iterations}: {ex.Message}");
+									break; // エラー時は反復停止
+								}
+							}
+						}
+						else
+						{
+							// 標準のAI処理
+							orig(self);
+						}
+					}
+					catch (Exception ex)
+					{
+						Logger?.Debug($"Error in minion/sentry AI processing: {ex.Message}");
+						// フォールバック: 標準AI呼び出し
+						try
+						{
+							orig(self);
+						}
+						catch { /* 最終安全策 */ }
+					}
+				}
+				else
+				{
+					// 非召喚物の標準AI処理
+					orig(self);
+				}
+			}
+			catch (Exception ex)
+			{
+				Logger?.Warn($"Critical error in hook_projectile_ai: {ex.GetType().Name}: {ex.Message}");
+				// 最後の手段として、何もしないで終了
+			}
+		}
+
+		// 最適化されたウィップ設定フック（追加安全策）
+		private void hook_get_whip_settings(
+			On_Projectile.orig_GetWhipSettings orig,
+			Projectile proj,
+			out float timeToFlyOut,
+			out int segments,
+			out float rangeMultiplier)
+		{
+			// デフォルト値で初期化
+			timeToFlyOut = 0f;
+			segments = 0;
+			rangeMultiplier = 1f;
+
+			// 追加の安全チェック
+			if (orig == null || proj == null)
+				return;
+
+			try
+			{
+				// 元の処理を安全に呼び出し
+				orig(proj, out timeToFlyOut, out segments, out rangeMultiplier);
+				
+				// プロジェクタイルの基本チェック
+				if (!proj.active || !proj.friendly)
+					return;
+
+				// プレイヤーオーナーの安全なチェック
+				if (IsValidPlayerIndex(proj.owner))
+				{
+					var player = GetSafePlayer(proj.owner);
+					if (player?.active == true && player.HeldItem?.IsAir == false)
+					{
+						try
+						{
+							var globalItem = player.HeldItem.global();
+							if (globalItem != null && 
+							    Math.Abs(globalItem.WhipRangeMult - 1f) > 0.001f && // より厳密な比較
+							    globalItem.WhipRangeMult > 0.1f && // 最小値チェック
+							    globalItem.WhipRangeMult < 10f)    // 最大値チェック
+							{
+								rangeMultiplier *= globalItem.WhipRangeMult;
+								
+								// 結果の妥当性チェック
+								rangeMultiplier = Math.Max(0.1f, Math.Min(rangeMultiplier, 10f));
+							}
+						}
+						catch (Exception ex)
+						{
+							Logger?.Debug($"Error accessing global item in whip settings: {ex.Message}");
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Logger?.Warn($"Error in hook_get_whip_settings: {ex.GetType().Name}: {ex.Message}");
+				// エラー時は安全なデフォルト値を保持
+				timeToFlyOut = Math.Max(0f, timeToFlyOut);
+				segments = Math.Max(0, segments);
+				rangeMultiplier = Math.Max(0.1f, Math.Min(rangeMultiplier, 10f));
+			}
+		}
+
+		// プレイヤーインデックスの安全な検証（強化版）
+		private static bool IsValidPlayerIndex(int playerIndex)
+		{
+			try
+			{
+				return playerIndex >= 0 && 
+					   playerIndex < Main.maxPlayers && 
+					   playerIndex != 255 &&
+					   Main.player != null &&
+					   playerIndex < Main.player.Length &&
+					   Main.player[playerIndex] != null;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+
+		// プレイヤーの安全な取得（例外処理強化版）
+		private static Player GetSafePlayer(int playerIndex)
+		{
+			try
+			{
+				if (!IsValidPlayerIndex(playerIndex))
+					return null;
+
+				// 二重チェックで安全性を確保
+				var players = Main.player;
+				if (players == null || playerIndex >= players.Length)
+					return null;
+
+				var player = players[playerIndex];
+				return player?.active == true ? player : null;
+			}
+			catch (IndexOutOfRangeException)
+			{
+				TranslateTest2.Instance?.Logger?.Debug($"Player index out of range: {playerIndex}");
+				return null;
+			}
+			catch (System.Exception ex)
+			{
+				TranslateTest2.Instance?.Logger?.Debug($"Error getting player {playerIndex}: {ex.Message}");
+				return null;
+			}
+		}
+
+		// モジュール状態の診断用
+		public override void PostSetupContent()
+		{
+			try
+			{
+				Logger?.Info($"PostSetupContent: Translator loaded={TooltipTranslator.IsLoaded}, DeepL enabled={DeepLTranslator.IsEnabled}");
+				
+				// Prefix登録状況の診断とCategory検証
+				var prefixTypes = new[]
+				{
+					"Abusive", "Affable", "Blessing", "Brisk", "Contract", "Deviation", "Devoted",
+					"Eager", "Echo", "Electrified", "Extended", "Fabled", "Focused", "Focused_Whip",
+					"Huge", "Loyal", "Mega", "Oracle", "Overload", "Steady", "Vengeful"
+				};
+				
+				int registeredCount = 0;
+				int meleeCount = 0;
+				int magicCount = 0;
+				
+				foreach (var prefixName in prefixTypes)
+				{
+					try
+					{
+						var prefixType = ModContent.Find<ModPrefix>($"TranslateTest2/{prefixName}");
+						if (prefixType != null)
+						{
+							registeredCount++;
+							string category = prefixType.Category.ToString();
+							if (prefixType.Category == PrefixCategory.Melee) meleeCount++;
+							else if (prefixType.Category == PrefixCategory.Magic) magicCount++;
+							
+							Logger?.Debug($"Prefix registered: {prefixName} (ID: {prefixType.Type}, Category: {category})");
+						}
+						else
+						{
+							Logger?.Warn($"Prefix NOT registered: {prefixName}");
+						}
+					}
+					catch (Exception ex)
+					{
+						Logger?.Error($"Error checking prefix {prefixName}: {ex.Message}");
+					}
+				}
+				
+				Logger?.Info($"Registered Prefixes: {registeredCount}/{prefixTypes.Length} (Melee: {meleeCount}, Magic: {magicCount})");
+				
+				// Prefix適用テスト結果の要約
+				Logger?.Info("Prefix Category Assignment:");
+				Logger?.Info("- Whip Prefixes (Melee): Focused_Whip, Devoted, Extended, Vengeful, Abusive, Oracle");
+				Logger?.Info("- Summon Prefixes (Magic): Focused, Affable, Blessing, Brisk, Contract, Deviation, Eager, Echo, Electrified, Fabled, Huge, Loyal, Mega, Overload, Steady");
+				
+				// ローカリゼーション対応Prefixのツールチップ診断
+				Logger?.Info("Localized Prefix Tooltips:");
+				DiagnosePrefixTooltips();
+			}
+			catch (Exception ex)
+			{
+				Logger?.Warn($"PostSetupContent error: {ex.Message}");
+			}
+		}
+
+		private void DiagnosePrefixTooltips()
+		{
+			try
+			{
+				Logger?.Info("=== Localization Diagnosis ===");
+				
+				// AdditionalTooltip対応Prefixの診断
+				var testTooltips = new[]
+				{
+					("Brisk", "PrefixBriskDescr", "+{A}% minion movement speed"),
+					("Affable", "PrefixAffableDescr", "-{A}% minion slot usage (-{B} slots)"),
+					("Focused", "PrefixFocusedDescr", "+{A}% damage, +{B}% slot usage (+{C} slots)"),
+					("Blessing", "PrefixBlessingDescr", "While in range: +{A} defense, +{B} life regen, +{C}% damage"),
+					("Extended", "PrefixExtendedDescr", "+{A}% whip range")
+				};
+
+				foreach (var (prefixName, tooltipKey, expectedDefault) in testTooltips)
+				{
+					var fullKey = $"Mods.TranslateTest2.{tooltipKey}";
+					var actualValue = Language.GetTextValue(fullKey);
+					bool hasCustomTooltip = !string.IsNullOrEmpty(actualValue) && actualValue != fullKey;
+					
+					if (hasCustomTooltip)
+					{
+						Logger?.Info($"  ✓ {prefixName}: \"{actualValue}\" (localized)");
+						
+						// プレースホルダーの存在確認
+						if (actualValue.Contains("{A}"))
+							Logger?.Debug($"    - Placeholder {{{A}}} found");
+						if (actualValue.Contains("{B}"))
+							Logger?.Debug($"    - Placeholder {{{B}}} found");
+						if (actualValue.Contains("{C}"))
+							Logger?.Debug($"    - Placeholder {{{C}}} found");
+					}
+					else
+					{
+						Logger?.Warn($"  ✗ {prefixName}: No localization found (key: {fullKey})");
+						Logger?.Debug($"    - Expected: \"{expectedDefault}\"");
+						Logger?.Debug($"    - Actual: \"{actualValue}\"");
+					}
+				}
+				
+				// 現在の言語設定確認
+				Logger?.Info($"Current Language: {Language.ActiveCulture?.Name ?? "Unknown"}");
+				
+				// ファイルの存在確認
+				var localizationFiles = new[]
+				{
+					"Localization/en-US_Mods.TranslateTest2.hjson",
+					"Localization/ja-JP_Mods.TranslateTest2.hjson"
+				};
+				
+				foreach (var file in localizationFiles)
+				{
+					try
+					{
+						using var stream = TranslateTest2.Instance.GetFileStream(file);
+						bool fileExists = stream != null;
+						Logger?.Info($"  File {file}: {(fileExists ? "EXISTS" : "NOT FOUND")}")
