@@ -44,8 +44,7 @@ namespace TranslateTest2.Projectiles
                     frame = 0;
             }
             
-            Player owner = Main.player[Projectile.owner];
-            if (owner == null || !owner.active)
+            if (!Projectile.TryGetOwner(out Player owner) || owner == null || !owner.active)
             {
                 Projectile.Kill();
                 return;

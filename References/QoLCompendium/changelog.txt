@@ -1,3 +1,0 @@
-v2.2.16
-1. Fixed Permanent Ripple (SOTS) not working in Permanent Everything
-2. Fixed Calamity Candles not applying correctly when using infinite buffs

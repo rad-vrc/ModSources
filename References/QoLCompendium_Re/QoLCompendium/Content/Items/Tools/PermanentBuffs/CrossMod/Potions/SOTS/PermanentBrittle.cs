@@ -1,0 +1,63 @@
+﻿using System;
+using QoLCompendium.Core;
+using QoLCompendium.Core.PermanentBuffSystems;
+using QoLCompendium.Core.PermanentBuffSystems.Effects.CrossMod.Potions.SOTS;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace QoLCompendium.Content.Items.Tools.PermanentBuffs.CrossMod.Potions.SOTS
+{
+	// Token: 0x020000CC RID: 204
+	[JITWhenModsEnabled(new string[]
+	{
+		"SOTS"
+	})]
+	[ExtendsFromMod(new string[]
+	{
+		"SOTS"
+	})]
+	public class PermanentBrittle : IPermanentModdedBuffItem
+	{
+		// Token: 0x170000D2 RID: 210
+		// (get) Token: 0x060003BE RID: 958 RVA: 0x0000C97A File Offset: 0x0000AB7A
+		public override string Texture
+		{
+			get
+			{
+				return Common.ModBuffAsset(ModConditions.secretsOfTheShadowsMod, Common.GetModBuff(ModConditions.secretsOfTheShadowsMod, "Brittle"));
+			}
+		}
+
+		// Token: 0x060003BF RID: 959 RVA: 0x00008B59 File Offset: 0x00006D59
+		public override void SetDefaults()
+		{
+			Common.SetDefaultsToPermanentBuff(base.Item);
+		}
+
+		// Token: 0x060003C0 RID: 960 RVA: 0x0000C998 File Offset: 0x0000AB98
+		public override void UpdateInventory(Player player)
+		{
+			PermanentBuffPlayer pBuffPlayer;
+			if (player.TryGetModPlayer<PermanentBuffPlayer>(out pBuffPlayer))
+			{
+				this.ApplyBuff(pBuffPlayer);
+			}
+		}
+
+		// Token: 0x060003C1 RID: 961 RVA: 0x0000C9B8 File Offset: 0x0000ABB8
+		public override void AddRecipes()
+		{
+			Recipe itemRecipe = ModConditions.GetItemRecipe(() => QoLCompendium.itemConfig.PermanentBuffs, base.Type, 1, "Mods.QoLCompendium.ItemToggledConditions.ItemEnabled");
+			itemRecipe.AddIngredient(Common.GetModItem(ModConditions.secretsOfTheShadowsMod, "BrittlePotion"), 30);
+			itemRecipe.AddTile(96);
+			itemRecipe.Register();
+		}
+
+		// Token: 0x060003C2 RID: 962 RVA: 0x0000CA1C File Offset: 0x0000AC1C
+		internal override void ApplyBuff(PermanentBuffPlayer player)
+		{
+			player.buffActive = true;
+			player.modPotionEffects.Add(new BrittleEffect());
+		}
+	}
+}

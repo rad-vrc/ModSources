@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using QoLCompendium.Core;
+using QoLCompendium.Core.Changes.TooltipChanges;
+using Terraria;
+using Terraria.Audio;
+using Terraria.Enums;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace QoLCompendium.Content.Items.Tools.Staves
+{
+	// Token: 0x0200019D RID: 413
+	public class StaffOfOvergrowth : ModItem
+	{
+		// Token: 0x060008B3 RID: 2227 RVA: 0x0001876F File Offset: 0x0001696F
+		public override bool IsLoadingEnabled(Mod mod)
+		{
+			return !QoLCompendium.itemConfig.DisableModdedItems || QoLCompendium.itemConfig.RegrowthStaves;
+		}
+
+		// Token: 0x060008B4 RID: 2228 RVA: 0x000086D7 File Offset: 0x000068D7
+		public override void SetStaticDefaults()
+		{
+			base.Item.ResearchUnlockCount = 1;
+		}
+
+		// Token: 0x060008B5 RID: 2229 RVA: 0x0001A00C File Offset: 0x0001820C
+		public override void SetDefaults()
+		{
+			base.Item.useStyle = 1;
+			base.Item.useTurn = true;
+			base.Item.useAnimation = 25;
+			base.Item.useTime = 13;
+			base.Item.autoReuse = true;
+			base.Item.width = 24;
+			base.Item.height = 28;
+			base.Item.damage = 7;
+			base.Item.createTile = 60;
+			base.Item.UseSound = new SoundStyle?(SoundID.Item1);
+			base.Item.knockBack = 3f;
+			base.Item.SetShopValues(ItemRarityColor.Orange3, Item.sellPrice(0, 0, 50, 0));
+			base.Item.DamageType = DamageClass.Melee;
+		}
+
+		// Token: 0x060008B6 RID: 2230 RVA: 0x0001A0D8 File Offset: 0x000182D8
+		public override void ModifyTooltips(List<TooltipLine> tooltips)
+		{
+			TooltipLine placeable = tooltips.Find((TooltipLine l) => l.Name == "Placeable");
+			TooltipLine text = new TooltipLine(base.Mod, "StaffOfOvergrowthEffect", Language.GetTextValue("Mods.QoLCompendium.CommonItemTooltips.StaffOfOvergrowthPlaceable"));
+			tooltips.Insert(tooltips.IndexOf(placeable), text);
+			tooltips.RemoveAll((TooltipLine x) => x.Name == "Placeable" && x.Mod == "Terraria");
+			TooltipChanges.ItemDisabledTooltip(base.Item, tooltips, QoLCompendium.itemConfig.RegrowthStaves);
+		}
+
+		// Token: 0x060008B7 RID: 2231 RVA: 0x0001A170 File Offset: 0x00018370
+		public override void AddRecipes()
+		{
+			Recipe itemRecipe = ModConditions.GetItemRecipe(() => QoLCompendium.itemConfig.RegrowthStaves, base.Type, 1, "Mods.QoLCompendium.ItemToggledConditions.ItemEnabled");
+			itemRecipe.AddIngredient(620, 12);
+			itemRecipe.AddIngredient(176, 3);
+			itemRecipe.AddIngredient(195, 1);
+			itemRecipe.AddTile(16);
+			itemRecipe.Register();
+		}
+	}
+}
