@@ -94,8 +94,15 @@ namespace TranslateTest2
 				On_ItemSlot.LeftClick_ItemArray_int_int += Hook_ItemSlot_LeftClick;
 				On_Main.DrawInventory += Hook_Main_DrawInventory;
 				// MonoModHooks.Add with (origDelegate, args...) signature to mirror original mod implementation exactly
-				MonoModHooks.Add(ItemLoader_CanRightClick, (orig_ItemLoader_CanRightClick orig, Item item) => On_ItemLoader_CanRightClick_Item(orig, item));
-				MonoModHooks.Add(PlayerLoader_ShiftClickSlot, (orig_PlayerLoader_ShiftClickSlot orig, Player pl, Item[] inv, int ctx, int sl) => On_PlayerLoader_ShiftClickSlot(orig, pl, inv, ctx, sl));
+				if (ItemLoader_CanRightClick != null)
+					MonoModHooks.Add(ItemLoader_CanRightClick, (orig_ItemLoader_CanRightClick orig, Item item) => On_ItemLoader_CanRightClick_Item(orig, item));
+				else
+					Logger?.Warn("Reflection failed: ItemLoader.CanRightClick not found; skipping hook");
+
+				if (PlayerLoader_ShiftClickSlot != null)
+					MonoModHooks.Add(PlayerLoader_ShiftClickSlot, (orig_PlayerLoader_ShiftClickSlot orig, Player pl, Item[] inv, int ctx, int sl) => On_PlayerLoader_ShiftClickSlot(orig, pl, inv, ctx, sl));
+				else
+					Logger?.Warn("Reflection failed: PlayerLoader.ShiftClickSlot not found; skipping hook");
 				AndroLib.Load(this);
 			}
 			catch (System.Exception ex)
@@ -174,8 +181,8 @@ namespace TranslateTest2
 		{
 			orig(proj, out timeToFlyOut, out segments, out rangeMultiplier);
 			if (!proj.friendly || proj.owner == 255) return;
-			Player player = Main.player[proj.owner];
-			if (player?.HeldItem?.IsAir == false)
+			var player = GetSafePlayer(proj.owner);
+			if (player != null && player.HeldItem != null && !player.HeldItem.IsAir)
 				rangeMultiplier *= player.HeldItem.global().WhipRangeMult;
 		}
 
@@ -417,10 +424,17 @@ namespace TranslateTest2
 		}
 		private void Hook_Main_DrawInventory(On_Main.orig_DrawInventory orig, Main self)
 		{
-			var mp = Main.LocalPlayer.GetModPlayer<InventoryPlayer>();
-			mp.hovering = false;
-			orig(self);
-			mp.noSlot = !mp.hovering;
+			var lp = Main.LocalPlayer;
+			if (lp != null && lp.TryGetModPlayer<InventoryPlayer>(out var mp))
+			{
+				mp.hovering = false;
+				orig(self);
+				mp.noSlot = !mp.hovering;
+			}
+			else
+			{
+				orig(self);
+			}
 		}
 		public static void DebugInChat(string text)
 		{
