@@ -15,7 +15,7 @@ namespace TranslateTest2.Prefixes
 
         public override float RollChance(Item item) => 1f;
 
-        public override bool CanRoll(Item item) => item.shoot > 0 && ProjectileID.Sets.IsAWhip[item.shoot];
+    public override bool CanRoll(Item item) => item.shoot != ProjectileID.None && ProjectileID.Sets.IsAWhip[item.shoot];
 
         public override void SetStats(
             ref float damageMult,

@@ -1,0 +1,595 @@
+v2.2.15
+1. Rewrote herb auto-replanting, now works with the following mods:
+ - The Depths
+ - Redemption
+ - Shadows of Abaddon
+ - Spirit Classic
+ - Thorium
+2. Multitude of internal changes
+3. Auto-Reuse Upgrades now works with the following mods:
+ - Calamity
+ - Exxo Avalon Origins
+ - Ragnarok
+ - Secrets of the Shadows
+ - Thorium
+4. Fixed master items being dropped twice in Revengeance, Death, or Eternity modes when using expert relic drops
+5. Removed the "Endless Buffs Only Work From Potion Crate" config option
+6. Rewrote a lot of the Config options to be more clear on what they do
+7. Added a config to break all cracked dungeon bricks when one is broken
+8. Added back Hellstone works with Spelunker Potion
+9. Added a config to allow Silt and Slush to appear with Dangersense active
+10. Added a config to disable thin ice from appearing with Dangersense active
+11. Updated Calamity Entropy support
+12. Added combined crafting stations for Calamity and Thorium
+13. Added a config to allow hiding of buffs provided by infinite potions/stations
+14. Renamed Permanent Everything to Permanent Vanilla
+15. Reworked Permanent Everything, now it's a combination of all permanent buff items
+16. Added Permanent Secrets of the Shadows buff items
+17. Added Permanent Calamity Entropy buff items
+
+v2.2.14
+1. Added permanent buffs for Spirit Candies (not added to the UI yet!!)
+2. Reorganized permanent buff items to not be jumbled
+
+v2.2.13
+1. Fixed Tesla Aura from Calamity duplicating itself when active
+
+v2.2.12
+1. Added permanent buff items for Spirit Classic & Consolaria
+2. Fixed Calamity update issues
+3. Added the ability to shimmer the Corruption Pylon into the Crimson Pylon and vice-versa
+4. Updated shops for:
+ - Calamity Entropy
+5. Fixed biome visiting not tracking through world reload
+6. Added new Permanent Buff UI to toggle buffs (Default Keybind: 'L')
+7. Removed Permanent Buff Config
+
+v2.2.11
+1. Fixed time issues
+2. Fixed Permanent Thorium Coatings localization
+
+v2.2.10
+1. Added Mining Emblem
+2. Added Construction Emblem
+3. Added Creation Club Member's Pass
+4. Added Utilities in Banks support for Martin's Order
+5. Added Permanent Upgrade Tooltip support for Martin's Order
+6. Made Fargo's Mods summons stackable even when they are non-consumable
+7. Added conversion recipes for mech boss souls, accessible after all 3 are beaten
+8. Fixed Traveler's Mannequin in multiplayer
+9. Fixed Skeleton Rucksack in multiplayer
+10. Fixed Restock Notice in multiplayer
+11. Added crate recipes for Calamity and Thorium
+12. Added herb replanting support for Thorium
+13. Added Sonar Device
+14. Added Angler Radar
+15. Added Angler's Dream
+16. Added a permanent buff system like LuiAFK's mod has
+17. Added permanent buffs for the following mods:
+ - Calamity
+ - Catalyst
+ - Clamity Addon
+ - Clicker Class
+ - Martin's Order
+ - Thorium
+ - Thorium Boss Rework
+18. Added a config to unload mod items instead of disabling their recipe
+19. Many resprites
+20. Added herb replanting support for Redemption, Spirit Classic, and The Depths
+21. Added a fix for AFKPets that prevented miracle fruit from growing
+22. Removed Portable Stations config
+23. Internal optimizations/cleanup
+24. Added boss summon items for the following bosses:
+ - Skeletron
+ - Wall of Flesh
+ - Plantera
+ - Duke Fishron
+ - Empress of Light
+ - Lunatic Cultist
+25. Added cross mod boss summon items for the following bosses:
+ - Forgotten One (Thorium)
+ - Giant Clam (Calamity)
+ - Leviathan and Anahita (Calamity)
+ - Old Duke (Calamity)
+26. Added a right click ability to mobile storages to despawn active storages
+
+v2.2.9
+1. Added a config to disable the Inferno Aura visual
+ - Works with Calamity's Tesla Auras
+2. Added a config to increase the amount of combat texts that can be displayed
+3. Updated shops for:
+ - Depths (Hell Alternative)
+ - Exxo Avalon Origins
+ - Martin's Order
+ - Spooky Mod
+ - Thorium
+ - Universe of Swords
+4. Added a config to apply a glint effect to items with good prefixes
+5. Added a config to apply a glint effect to active buff items
+6. Re-added mosses to Black Market Dealer's shop, as I missed re-adding them when v2.2.5 broke
+7. Added a config to allow crafting Golden Delight with Golden Carp
+8. Added mod support when the Royal Gel is in banks
+9. Added support for the following mods:
+ - Calamity Entropy: NPC Sales
+ - Capture Discs Class: NPC Sales, Station Buffs
+10. Added gem stone blocks to vanilla ores & bars shop
+11. Fixed the Celestial Pillars despawning when using instant respawn
+12. Added a fix to Mr Plague's Races when used with Auto Reforge to disable inaccessible prefixes when Race Stats are turned off
+ - These prefixes are normally only available to the Goblin race, they are still accessible when race stats are enabled
+13. Moved extra accessory slot configs back to server-side
+14. Moved map teleporting config back to server-side
+15. Added a config to fully disable mod recipes
+
+v2.2.8
+1. Gave the Entity Manipulator new button sprites to better indicate what each button does
+2. Added a config to remove the logo from some yoyo's tooltips
+3. Endless Ammo items are now crafted at a Solidifier
+4. Added more clarity to which config needs to be enabled for a recipe to work
+5. Added a tooltip to tell if an item is disabled in the config
+6. Changed the Mod Support document into a spreadsheet, for easier editing and readability
+7. Improved Used Permanent Upgrade Tooltip tracking, it should now not persist between characters and worlds
+8. Added an indicator to most auto-structures to display where they are created
+9. Further improved most UI
+10. Added item shimmer conversions for sponges and bottomless buckets (Doesn't affect the Bottomless Shimmer Bucket)
+11. Added Bottomless Liquid Bucket
+12. Added a config to allow the Encumbering Stone to pickup coins
+13. Removed The Final List
+14. Added The Final List's effects to the Ultimate Checklist
+15. Added Golden Powder
+16. Fixed All In One Access being inconsistent to open
+
+v2.2.7
+1. Rewrote mod description
+2. Converted the Extra Lures config to a number allowing customizable lure counts
+3. Changed the max value of the increased place speed config to 1
+4. Further increased the safety of the Spirit Mod infinite buff patch
+5. Added Minibridge
+6. Added a right click function to the All In One Access to allow opening and closing the Void Vault
+7. Added a config for lunar enemies dropping fragments, this is now seperated from the "More Lunar Fragments" config
+8. Resprites
+9. Made the Potion Crate tooltip reflect the Endless Buff Amount config
+10. Added Expert relic drop support for the following mods:
+ - Edorbis
+ - Martin's Order
+ - Qwerty's Mod
+ - Spooky Mod
+ - Stars Above
+ - Storm's Additions
+ - Uhtric
+11. The dash keybind should now work with most mod's dashes
+ - Calamity dashes require double tapping this mod's key, as their sytem uses custom cooldowns
+ - If using other mods along with Calamity just bind Calamity's dash key to the same key as this mod
+ - If using Fargo's Mutant and/or Souls make sure to have their disable double dash config off
+12. Fixed an issue with Credits Disabling conflicting with Vanilla+ QoL
+13. Removed the Disable Dashing config since it conflicts with the new dash keybind system
+14. All In One Access now uses a UI instead of projectiles
+15. Added a config to allow Mobile Storages to follow the player
+16. Added a config for a boot accessory slot
+17. Added a config for a shield accessory slot
+18. Added a config for an expert exclusive accessory slot
+19. Moved accessory slot configs to the client-side config section
+20. Localized Info Display text
+21. Changed more mod UI to be more polished
+
+v2.2.6
+1. Added a config to allow fountains to cause biomes
+2. Added a config to allow fountains to cause biomes from the inventory or banks
+3. Added fountain support for the following mods:
+ - Calamity
+4. Added new item names for the Destination Globe, Entity Manipulator, Phase Interrupter, and Summoning Remote to better indicate their current mode
+5. Demon and Crimson Altar crafting station tiles from this mod now use the vanilla sprite, so they work with texture packs when placed
+6. Added the Lunar Event to the summoning remote
+7. Localized the Summoning Remote's event spawn messages
+8. Updated mod shops for:
+ - Edorbis
+9. Localized most UI text
+10. Added Skeleton Rucksack
+11. Fixed Rod of Harmony sale condition with Calamity enabled
+12. Added Bottomless Chum Bucket
+13. Added client side chat messages when attempting to click on a locked boss when using the Summoning Remote that indicate requirements
+14. Added Challenger's Coin
+15. Veinmining configs no longer require a reload
+16. Added conversion recipes for vanilla ores
+17. Added a config to allow relic drops in expert
+18. Added Expert relic drop support for the following mods:
+ - Aequus
+ - Calamity (Drops disabled in Rev+)
+ - Consolaria
+ - Fargo's Souls (Drops disabled in Eternity)
+ - Homeward Journey
+ - Redemption
+ - Secrets of the Shadows
+ - Spirit
+ - Thorium
+ - Vitality
+19. Added Warp Mirror
+20. Added a config for banner recipes
+21. Added a config for adding a tooltip to display if an item's effects are active
+22. Fixed an issue with Infinite Buffs and Spirit Mod causing tiles to break when walked through, this could fix other unknown mod issues too
+
+v2.2.5
+1. Fixed some mod accessories not working from banks (Aequus/Thorium)
+2. Minor optimization to non-consumable boss summons
+3. Added a config to change reforge prices
+4. Fixed Shadow Candle and War Table not working with Infinite Buffs
+5. Added a config for Endless Station stack amount
+6. Added Legendary Catcher
+7. Fixed Starlight River's Glassweaver miniboss sale condition not working
+8. Updated sales for the following mods:
+ - Depths (Hell Alternative)
+ - Dragon Ball Terraria Legacy
+ - Exxo Avalon Origins
+ - Gerd's Lab
+ - Mod of Redemption
+ - Starlight River
+ - Verdant
+9. Added support for the following mods:
+ - Calamity: Permanent Upgrade Tooltip
+ - Draedon Expansion: NPC Sales
+ - Everjade: Non-consumable Boss & Event summons & NPC Sales
+ - Exxo Avalon Origins: Permanent Upgrade Tooltip
+ - Fargo's Souls: Permanent Upgrade Tooltip
+ - Fargo's Souls DLC: Non-consumable Boss & Event summons
+ - Redemption: Permanent Upgrade Tooltip
+ - Shadows of Abaddon [Public Beta]: Endless Station Buffs, Non-consumable Boss & Event summons & NPC Sales
+ - Stram's Classes: NPC Sales
+ - Thorium: Permanent Upgrade Tooltip
+ - Zylon: Non-consumable Boss & Event summons & NPC Sales
+10. Split the Modded Materials shop into two shops:
+ - Modded Materials (Mods: A-M)
+ - Modded Materials (Mods: N-Z)
+(The shop was so huge the mod couldn't build anymore LOL)
+11. Added a config to allow Purification Powder to work on walls
+12. Updated the shimmerable tooltip to show item, npc, or coin luck
+13. Tooltip related configs no longer require a reload
+14. NPCs Can Live In Evil Biomes config no longer requires a reload
+15. Disable NPC Happiness config no longer requires a reload
+16. No Pylon Restrictions config no longer requires a reload
+17. Lava Slime No Lava config no longer requires a reload
+18. Fast Herb Growth config no longer requires a reload
+19. Fast Tree Growth config no longer requires a reload
+20. Trees Drop More config no longer requires a reload
+21. No Meteors config no longer requires a reload
+22. Resprited all Pylon items and tiles
+23. Added Wormhole Mirror
+24. Removed Teleport Town NPCs Home config (Keybind still works)
+25. Renamed World Globe to Destination Globe and resprited
+26. Resprited Aether Altar and clarified how it's obtained
+27. Added Moss Staff
+28. Added Glowing Moss Staff
+29. Resprited Omnistaff, Staff of Cysting (+Overgrown), Staff of Hallowing, Staff of Hemorrhaging (+Overgrown), and Staff of Shrooming
+30. Resprited Superbomber and gave it a fuse timer instead of exploding on collision
+31. Updated the Used Permanent Upgrade Tooltip to show stackable upgrades use count
+32. Clarified a bunch of config entry names and descriptions
+33. Added Eightworm
+34. Fixed multiple instances of recipes not enabling when their config was toggled on in-game
+35. Changed used sounds for multiple items
+36. More resprites
+37. Retiered Chlorophyte Magnet, renamed to Soul Magnet and resprited
+38. Added a config to allow Hellstone to work with the Spelunker Potion
+39. Aether Altar and Lunar Crafting Monolith now count as a shimmer source for crafting
+40. Added the Nickel Anvil from Exxo Avalon Origins to the "Any Anvil" recipe group
+41. Added the Naquadah Anvil from Exxo Avalon Origins to the "Any Mythril Anvil" recipe group
+42. Added the Troxinium Forge from Exxo Avalon Origins to the "Any Adamantite Forge" recipe group
+43. Added the Evil Altars from Exxo Avalon Origins, Fargo's Mutant, LuiAFK, and Magic Storage to the "Any Altar" recipe group
+44. Added a config for boss bag recipes
+45. Added a config for crate recipes
+46. Resprited all Crafting Monoliths
+47. Renamed "Advanced Crafting Monolith" to "Specialized Crafting Monolith"
+48. Fixed the game being unplayable when using the Aequus Mod
+49. Fixed Wrath of the Gods' Divine Wings item recieving extra wing stat tooltips
+50. Cleaned up the Wing Time info display code a little
+
+v2.2.5 RERELEASE CHANGES:
+1. Fixed multiplayer not loading
+2. More resprites
+3. Many recipe changes
+4. Added Skull Watch
+
+v2.2.4
+1. Fixed localization of Max Stack Increase config
+2. Fixed localization of Stackable Quest Items config
+3. Fixed Max Stack Increase config being limited to 100 instead of 99999
+4. Raised the limit of Endless Stack configs to 99999
+5. Added multiple new configs for each type of endless item (Item, Weapon, Ammo, Bait)
+6. Fixed Potion Crate not applying buffs
+7. Fixed Red Potion not applying buffs
+8. Fixed Garden Gnome not increasing luck
+9. Fixed Banner Box not giving banner buffs and finally made it use the correct kill count for each enemy instead of base 50 for everything
+10. Added Golden Lockpick
+
+v2.2.3
+1. Fixed Thorium treasure bags not being sold due to name change
+2. Added new Wayfair Content Pack content to shops
+3. Fixed Aether Pylon having the incorrect hover icon
+4. Changed Blood Moon and Solar Eclipse checks to be true once the event ends, not when it starts
+5. Added new Vitality Mod content to shops
+6. Added new Gerd's Lab Mod content to shops
+7. Fixed Coralite Mod NPC sales not working at all
+8. Fixed Modded Fish Shop getting disabled when Modded Herb Shop was disabled
+9. Added support for Excelsior Mod
+10. Added vanilla treasure bags re-added by Thorium to Shops
+11. Added new Thorium boss summons to non-consumable list
+12. Potion crate now works in tandem with the Endless Buffs Amount config option
+13. Added support for Sloome Calamity Addon Mod
+14. Added a config option to stop meteors from falling
+15. Added new Secrets Of The Shadows content to shops
+16. Added support for Ophioid Boss Mod
+17. Added fragment drops to pillar enemies when more pillar fragment drops is enabled
+18. Added support for Calamity Overhaul Mod
+19. Resprited Staff Of Ashing
+20. Resprited Staff Of Cysting
+21. Resprited Staff Of Hemorrhaging
+22. Resprited Staff Of Overgrown Cysting
+23. Resprited Staff Of Overgrown Hemorrhaging
+24. Resprited Staff Of Overgrowth
+25. Removed mining speed for drills config option
+26. Added a config option to disable double tap dashing
+27. Added a keybind for dashing
+28. Added a config option to add a used item tooltip to permanent upgrades
+29. Added new Calamity Mod content to shops
+30. Fixed Wall of Flesh spawning inside the player when using the summoning remote
+31. Added new Blocks Info Accessories content to Information in Banks list
+32. Added a config to disable credits roll
+33. Added a config for no door breaking
+34. Added a config for the Slice Of Cake buff to be infinite like other station buffs
+35. Fixed Tesla Potion from Calamity Mod not working with infinite buffs
+
+v2.2.2
+1. Made Calamity wings not receive stats tooltips from this mod
+2. Added a config for Old One's Army minibosses dropping extra Defender Medals
+3. Added a config for changing vein miner max tile breaking limit
+4. Added the Solar Eclipse to the Summoning Remote, since it was somehow missed
+5. Added text prompts to events being spawned from the Summoning Remote
+6. Resprited Eclipse Pedestal
+7. Resprited Sun Pedestal
+8. Added Pause Pedestal
+9. Added new Buffaria Mod content to shops
+10. Added "Information In Banks" support for Aequus Mod
+11. Added "Information In Banks" support for Calamity Mod
+12. Added "Information In Banks" support for Spirit Mod
+13. Added "Information In Banks" support for Thorium Mod
+ - More mods will be supported in the future
+14. Added new Clicker Class Mod content to shops
+15. Added a keybind to quick recall home
+16. Added new Depths Mod content to shops
+17. Added a lot of mod's healing potions to flasks & stations shop
+18. New Icon and Small Icon
+19. Item toggles no longer require a reload
+20. Added support for Project Zero Mod
+21. Added support for Coralite Mod
+22. Added support for Block's Arsenal Mod
+23. Added support for Block's Artificer Mod
+24. Added support for Block's Core Boss Mod
+25. Added support for Block's Info Accessories Mod
+ - "Information In Banks" support
+26. Added support for Block's Thrower Mod
+27. Added bar and world evil item conversion recipes
+
+v2.2.1
+1. Added support for new Vitality Mod content
+2. Added support for new Stars Above Mod content
+3. Added a config for wing stats tooltips
+4. Added a config for hook stats tooltips
+5. Added the ability to shimmer Mod of Redemption's Special Keycard into the normal Keycard
+
+v2.2.0
+1. Added Omnistaff
+2. Added Lakemaker
+3. Added Superbomber
+4. Added a config for auto fishing
+5. Added new Clamity Addon content to shops
+6. Added new Homeward Journey content to shops
+7. Added Corruption Pylon
+8. Added Crimson Pylon
+9. Added Dungeon Pylon
+10. Added Hell Pylon
+11. Added Sky Pylon
+12. Added Temple Pylon
+13. Added Aether Pylon
+14. Added new Spooky Mod content to shops
+15. Added Aether Altar
+16. Removed Dungeon Mirror
+17. Removed Temple Mirror
+18. Reverted Banner Box to its original state
+19. Added a config for portable crafting stations
+20. Added a config for auto researching favorited items
+21. Added Little Egg
+22. Fixed Regrowth Staves research values
+23. Added a config for unlocking bestiary entries  with 1 kill
+24. Added The Final List
+25. Added Ultimate Checklist
+26. Restructured the entire mod
+27. Added Staff Of Overgrown Cysting
+28. Added Staff Of Overgrown Hemorrhaging
+29. Added a config for adding a tooltip to items that work in banks
+30. Added support for Martain's Order Mod
+31. Added a config for NPCs to always sell pylons
+32. Added Asphalt Autohighway
+33. Added vanilla mounts and hooks shop to Black Market Dealer's shop selection
+34. Added vanilla ammo shop to Black Market Dealer's shop selection
+35. Added a config for removing pylon restrictions
+36. Fixed Extra Fishing Lures config not working with new vanilla fishing bobber accessories
+37. Added a config for increasing Lunar Pillar fragment drops
+38. Moved Starter Bag item list to the Item Config page
+39. Resprited Weightless Safe and renamed to "Flying Safe"
+40. Resprited Defender's Catalyst and renamed to "Etherian Construct"
+41. Added Sun Pedestal
+42. Reworked Moon Pedestal
+43. Resprited all Pedestal items
+44. Added Phase Interrupter
+45. Added a config for disabling natural boss spawns
+46. Added two config options for enabling/disabling the new shops
+47. Added two config multipliers for the new shop's prices
+48. Fixed Ethereal Collector's fish shop not being affected by the fish price multiplier
+49. Fixed Ethereal Collector's shops in multiplayer
+50. Added non-consumable boss summon support for Mod of Redemption
+51. Added new Mod of Redemption content to shops
+52. Fixed Remnants mod materials not being sold
+53. Made Money Trough recipe dependant on Mobile Storage item config
+54. Added a recipe for the Universal Pylon that depends on the Pylons item config
+55. Added Restock Notice
+56. Added Traveler's Mannequin
+57. Slightly modified Entity Manipulator's recipe
+58. Slightly modified Cursed Mirror's recipe
+59. Slightly modified Mirror Of Return's recipe
+60. Slightly modified Teleportation Mirror's recipe
+61. Renamed Hell Magnet to "Hellstone Magnet"
+62. Renamed Hallowed Magnet to "Chlorophyte Magnet"
+63. Renamed Spooky Magnet to "Spectre Magnet"
+64. Resprited all magnets
+65. Changed all magnet recipes
+66. Recolored Teleportation Mirror
+67. Recolored World Globe
+68. Renamed Forwarper to "Mini Sundial" and changed recipe, function, and sprite
+69. Added Lamp
+70. Added Owl Nest
+71. Added support for Awful Garbage Mod
+72. Added endless versions of all vanilla arrows
+73. Added endless versions of all vanilla bullets
+74. Added endless versions of all vanilla darts
+75. Added endless versions of all vanilla flares
+76. Added endless versions of all vanilla other ammos
+77. Added endless versions of all vanilla rockets
+78. Added endless versions of all vanilla solutions
+79. Added a config for vein mining
+80. Added a config for vein mining speed
+81. Added a config and keybinds for whitelisting tiles for vein mining
+82. Fixed some Town Slimes not despawning if already spawned when the config is turned on
+83. Added non-consumable boss summon support for Aequus Mod
+84. Added support for Medial Rift
+85. Added support for Exxo Avalon Origins
+
+v2.1.24
+1. Added new Gerd's Lab content to shops
+2. Added Staff of Regrowth to Info Shop
+3. Added a config to disable biome visit requirements for shops
+4. Added Staff Of Ashing
+5. Added Staff Of Cysting
+6. Added Staff Of Hallowing
+7. Added Staff Of Hemorrhaging
+8. Added Staff Of Overgrowth
+9. Added Staff Of Shrooming
+
+v2.1.23
+1. Added a config for stopping falling sand from damaging players
+2. Added Draedon Power Cells to materials shop
+3. Lots of resprites
+
+v2.1.22
+1. Added a new config page to store tooltip changes
+2. Added a config to indicate if an item is shimmerable via tooltip
+3. Changed endless amount configs to be a number input and raised maximum to 9999
+4. Added multiple items to Black Market Dealer's shop
+5. Made Wing Timer less common
+6. Added a config to change Fallen Star spawn rate
+
+v2.1.21
+1. Added a config to allow boss item swapping using shimmer
+2. Added support for Calamity Community Remix
+3. Fixed a couple things regarding new Supernova Mod update
+4. Fixed a couple things regarding new Spirit Mod update
+5. Added Super Dummy
+
+v2.1.20
+1. Added support for Lunar Veil
+2. Added a bunch of new crafting station combinations
+3. Added a craftable demon altar/crimson altar
+4. Added a config to allow NPCs to live in evil biomes
+5. Added a config to unlock all hairstyles
+
+v2.1.19
+1. Updated description
+2. Increased item stack size limit for the custom Starter Bag to 9999
+3. Added Skybridger
+4. Implemented Pannoniae's shop expander from Vanilla+ QoL into this mod because shop expander is broken
+5. Removed door breaking config since it breaks with other mods
+
+v2.1.18
+1. Separated thrown weapons into their own endless config
+2. Added a config option for allowing infinite buffs only from the Potion Crate
+3. Added a config option to further increase item stacks to 99999
+4. Added a config option for instant angler quest refresh
+5. Added a config option for increased fruit and gem drops from trees
+6. Added a config option to affect axes, hammers, and drills with mining speed bonuses
+7. Added a config option to remove shimmer sinking
+8. Added a config option to keep buffs after death
+9. Added a config option to keep debuffs after death
+
+v2.1.17
+1. Fixed Starter Bag error
+2. Added Ethereal Collector Fish Shop
+
+v2.1.16
+1. Added support for new fargo's updates
+
+v2.1.15
+1. Fixed Census localization error
+2. Localized mod conditions
+3. Fixed a couple shop localization issues in the config
+
+v2.1.14
+1. Resprited a couple items
+2. Reorganized some items from a couple mods in shops
+3. Reworked Banner Box
+4. Added Potion Crate
+5. Added Hellbridger
+6. Added Summoning Remote
+7. Removed all boss & event summons
+8. Fixed 2 info displays not having the correct display name
+9. Added a fish shop to Black Market Dealer
+
+v2.1.13
+1. Added shop price multipliers for this mod's npcs (Accessed from Shop Config)
+2. Changed all shops to be cheaper and unified Dealer's and Collectors prices
+3. Added boss price scaling for treasure bags (Follows vanilla progression, accessed from Shop Config)
+
+v2.1.12
+1. Disabled biome checks for shops in multiplayer
+
+v2.1.11
+1. Changed a couple config options into sliders
+2. Added a keybind to teleport town NPCs home
+3. Added a config to remove favorite tooltips
+4. Added a config to disable gravestones
+5. Removed the new PDA recipe added by this mod and moved it to it's own item
+5a. Mosaic Mirror now displays modded information instead of the Cell Phone
+6. Finally fixed building accessories decreasing wall/tile speed when placed in banks
+7. Updated description to reflect a bunch of missing additions
+
+v2.1.10
+1. Fixed team joining bug
+
+v2.1.9
+1. Fixed consumable items not consuming in stacks of 2 or greater
+2. Added a bunch of new summon items for event bosses
+
+v2.1.8
+1. Fixed some internal issues
+2. Added new config options
+3. Added new mirror items
+4. Updated shop for new Buffaria update
+
+v2.1.7
+1. Fixed TerraGuardians UI issue
+2. Added support for 2 new mods
+3. Fixed fast herbs and regrowth replant not working
+
+v2.1.6
+1. Added a new item
+2. Fixed Wing Timer being unobtainable
+
+v2.1.5
+1. Fixed Infernum Bereft Vassal conditions so you no longer need to pick up the bag
+2. More mod support
+3. Various internal changes
+4. Added more shop items
+5. Now REQUIRES Shop Expander!
+
+v2.1.4
+1. Minor internal changes
+2. Minor shop changes for mods
+
+v2.1.3
+1. Updated to latest stable
+2. Added a couple new items

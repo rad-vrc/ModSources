@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -14,7 +15,7 @@ namespace TranslateTest2.Prefixes
 
         public override float RollChance(Item item) => 0.6f;
 
-        public override bool CanRoll(Item item) => item.shoot > 0 && item.isMinionSummonItem();
+    public override bool CanRoll(Item item) => item.shoot != ProjectileID.None && item.isMinionSummonItem();
 
         public override void SetStats(
             ref float damageMult,

@@ -1,0 +1,127 @@
+# BInfoAcc 名前空間のバイオーム名（TranslateTest2が提供）
+# Keys: Mods.BInfoAcc.Biomes.*
+Biomes: {
+	Neutral: なし
+
+	Vanilla: {
+		Space: 宇宙
+		Underworld: 地下世界
+		Underground: 地下
+		Solar: ソーラーピラー
+		Vortex: ボルテックスピラー
+		Nebula: ネビュラピラー
+		Stardust: スターダストピラー
+		Meteor: 隕石
+		Dungeon: ダンジョン
+		Temple: ジャングル寺院
+		Aether: エーテル
+		Spider: クモの巣
+		Corruption: 不浄の地
+		Crimson: 真紅の地
+		Shroom: キノコ群生地
+		Jungle: ジャングル
+		Hallow: 聖域
+		Ocean: 海
+		Snow: 雪原
+		Desert: 砂漠
+		Beehive: ハチの巣
+		Granite: 御影石の洞窟
+		Marble: 大理石の洞窟
+		Graveyard: 墓地
+		Forest: 森林
+		Town: 町
+	}
+
+	Thorium: {
+		Depths: アクアティックデプス
+	}
+
+	Calamity: {
+		AbyssLayer1: 硫黄海
+		AbyssLayer2: 深淵の深み
+		AbyssLayer3: 深淵の深み第2層
+		AbyssLayer4: 虚無
+		AshenStalagmiteSubworld: 灰の鍾乳石
+		AstralInfection: アストラル感染
+		Brimstone: ブリムストーン・クラッグ
+		SulphurousSea: 硫黄海
+		SunkenSea: 沈んだ海
+	}
+
+	Redemption: {
+		LabBiome: 廃棄された研究室
+		SlayerShipBiome: スレイヤーの船
+		SoullessBiome: 魂なき洞窟
+		WastelandCorruptBiome: 荒廃地（不浄）
+		WastelandCrimsonBiome: 荒廃地（真紅）
+		WastelandPurityBiome: 荒廃地
+	}
+
+	Aequus: {
+		Crevice: クラブクリーヴィス
+	}
+
+	Confection: {
+		SugarBiome: 甘味洞窟
+	}
+
+	FFF: {
+		BloomingGarden: 花咲く庭園
+		BlueMushroomBiome: 青キノコ洞窟
+		CandyCane: キャンディ・ケーンフィールド
+		CanopyBiome: 樹冠
+		DeepFarmBiome: 深い農場
+		DustBiome: 砂塵洞窟
+		FadeBiome: 色褪せたバイオーム
+		FlowerFieldBiome: 花畑
+		FrozenBiome: 極寒の広がり
+		LushCaveBiome: 緑豊かな洞窟
+		PurpleBiome: 紫のバイオーム
+		ShallowCaveBiome: 浅い洞窟
+		TechBiome: テクバイオーム
+	}
+
+	Avalon: {
+		Contagion: 疫病
+		Desert: 砂漠（アヴァロン）
+		Tropics: 熱帯
+	}
+
+	Spirit: {
+		SpiritBiome: スピリット
+	}
+
+	StarsAbove: {
+		SeaOfStars: 星の海
+	}
+
+	Depths: {
+		DepthsBiome: 深層
+	}
+
+	Spooky: {
+		SpiderCave: クモの洞窟
+		SpookyBiome: 不気味な森
+		SpookyHell: 腐った地下世界
+	}
+
+	Verdant: {
+		VerdantBiome: 新緑
+	}
+
+	Valhalla: {
+		GlacialDepths: 氷河の深み
+	}
+
+	Remnants: {
+		RemnantsBiome: 残骸
+	}
+
+	RiseOfAges: {
+		BiomeCaves: 洞窟住居
+		BiomeCavesFloodedWater: 洞窟住居（浸水）
+		BiomeCavesFloodedLava: 洞窟住居（溶岩満たし）
+		BiomeDarkRealm: 暗黒界
+		BiomeIndustrialEra: 産業時代
+	}
+}

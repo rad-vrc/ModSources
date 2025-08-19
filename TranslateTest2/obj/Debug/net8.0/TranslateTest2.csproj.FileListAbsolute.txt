@@ -229,3 +229,4 @@ D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\TranslateTest2\obj\De
 D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\TranslateTest2\obj\Debug\net8.0\refint\TranslateTest2.dll
 D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\TranslateTest2\obj\Debug\net8.0\TranslateTest2.pdb
 D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\TranslateTest2\obj\Debug\net8.0\ref\TranslateTest2.dll
+D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\TranslateTest2\obj\Debug\net8.0\TranslateTest2.sourcelink.json

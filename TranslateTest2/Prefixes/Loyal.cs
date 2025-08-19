@@ -17,7 +17,7 @@ namespace TranslateTest2.Prefixes
 
         public override float RollChance(Item item) => 1f;
 
-        public override bool CanRoll(Item item) => item.shoot > 0 && item.isMinionSummonItem(false);
+    public override bool CanRoll(Item item) => item.shoot != ProjectileID.None && item.isMinionSummonItem(false);
 
         public override void SetStats(
             ref float damageMult,

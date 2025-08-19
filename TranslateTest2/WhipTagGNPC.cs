@@ -61,7 +61,7 @@ namespace TranslateTest2
             if (projectile.TryGetOwner(out Player player))
             {
                 var item = player.HeldItem;
-                if (item.shoot > 0 && ProjectileID.Sets.IsAWhip[item.shoot] && item.global().wTag.SpecialType == "Devoted")
+                if (item.shoot != ProjectileID.None && ProjectileID.Sets.IsAWhip[item.shoot] && item.global().wTag.SpecialType == "Devoted")
                 {
                     if (hasDevoted) sourceDamageMult += Prefixes.Devoted.Increase; else sourceDamageMult -= Prefixes.Devoted.Decrease;
                 }

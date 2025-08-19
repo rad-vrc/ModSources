@@ -6,7 +6,7 @@ using Terraria.Localization;
 namespace TranslateTest2.Core
 {
     // Biome 情報表示用の最小限 ModPlayer 実装
-    public class InfoPlayer : ModPlayer
+    public partial class InfoPlayer : ModPlayer
     {
         public bool biomeDisplay;
         public List<string> biomeNames;
@@ -41,7 +41,12 @@ namespace TranslateTest2.Core
             // 1秒毎に再計算
             if (biomeDisplay && (biomeNames == null || Main.GameUpdateCount % 60 == 0))
             {
-                biomeNames = GetCurrentBiomes();
+                // Use the new MOD biome detection system from InfoPlayer.ModBiomes.cs
+                biomeNames = GetBiomes(Player, prioModBiomes: true);
+                
+                // Fallback to basic vanilla detection if no biomes found
+                if (biomeNames.Count == 0)
+                    biomeNames = GetCurrentBiomes();
             }
         }
 
@@ -51,44 +56,44 @@ namespace TranslateTest2.Core
             Player p = Player;
 
             if (p.townNPCs > 2f && !p.ZoneShadowCandle)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Town"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Town"));
             if (p.ZoneUnderworldHeight)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Underworld"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Underworld"));
             else if (p.ZoneSkyHeight)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Space"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Space"));
             else if (p.ZoneRockLayerHeight || p.ZoneDirtLayerHeight)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Underground"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Underground"));
             if (p.ZoneBeach)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Ocean"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Ocean"));
             if (p.ZoneSnow)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Snow"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Snow"));
             if (p.ZoneDesert || p.ZoneUndergroundDesert)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Desert"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Desert"));
             if (p.ZoneJungle)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Jungle"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Jungle"));
             if (p.ZoneHallow)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Hallow"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Hallow"));
             if (p.ZoneCorrupt)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Corruption"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Corruption"));
             if (p.ZoneCrimson)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Crimson"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Crimson"));
             if (p.ZoneGlowshroom)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Shroom"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Shroom"));
             if (p.ZoneDungeon)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Dungeon"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Dungeon"));
             if (p.ZoneMeteor)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Meteor"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Meteor"));
             if (p.ZoneGranite)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Granite"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Granite"));
             if (p.ZoneMarble)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Marble"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Marble"));
             if (p.ZoneLihzhardTemple)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Temple"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Temple"));
             if (p.ZoneGraveyard)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Graveyard"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Graveyard"));
 
             if (list.Count == 0)
-                list.Add(Language.GetTextValue("Mods.TranslateTest2.Biomes.Vanilla.Forest"));
+                list.Add(Language.GetTextValue("Mods.BInfoAcc.Biomes.Vanilla.Forest"));
 
             var seen = new HashSet<string>();
             var dedup = new List<string>();

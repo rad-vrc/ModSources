@@ -1,0 +1,104 @@
+# Biome names for BInfoAcc namespace provided by TranslateTest2
+# Keys: Mods.BInfoAcc.Biomes.*
+Biomes: {
+	Neutral: None
+
+	Vanilla: {
+		Space: Space
+		Underworld: Underworld
+		Underground: Underground
+		Solar: Solar Pillar
+		Vortex: Vortex Pillar
+		Nebula: Nebula Pillar
+		Stardust: Stardust Pillar
+		Meteor: Meteorite
+		Dungeon: Dungeon
+		Temple: Jungle Temple
+		Aether: Aether
+		Spider: Spider Nest
+		Corruption: Corruption
+		Crimson: Crimson
+		Shroom: Glowing Mushrooms
+		Jungle: Jungle
+		Hallow: Hallow
+		Ocean: Ocean
+		Snow: Snow
+		Desert: Desert
+		Beehive: Bee Hive
+		Granite: Granite Cave
+		Marble: Marble Cave
+		Graveyard: Graveyard
+		Forest: Forest
+		Town: Town
+	}
+
+	Thorium.Depths: Aquatic Depths
+
+	Calamity: {
+		AbyssLayer1: Sulphurous Sea
+		AbyssLayer2: Abyssal Depths
+		AbyssLayer3: Abyssal Depths Layer 2
+		AbyssLayer4: The Void
+		AshenStalagmiteSubworld: Ashen Stalagmite
+		AstralInfection: Astral Infection
+		Brimstone: Brimstone Crags
+		SulphurousSea: Sulphurous Sea
+		SunkenSea: Sunken Sea
+	}
+
+	Redemption: {
+		LabBiome: Abandoned Lab
+		SlayerShipBiome: Slayer's Ship
+		SoullessBiome: Soulless Caverns
+		WastelandCorruptBiome: Wasteland (Corrupt)
+		WastelandCrimsonBiome: Wasteland (Crimson)
+		WastelandPurityBiome: Wasteland
+	}
+
+	Aequus.Crevice: Crab Crevice
+	Confection.SugarBiome: Sweetened Caverns
+
+	FFF: {
+		BloomingGarden: Blooming Garden
+		BlueMushroomBiome: Blue Mushroom Caverns
+		CandyCane: Candy Cane Fields
+		CanopyBiome: Tree Canopy
+		DeepFarmBiome: Deep Farm
+		DustBiome: Dust Caverns
+		FadeBiome: Faded Biome
+		FlowerFieldBiome: Flower Fields
+		FrozenBiome: Frigid Expanses
+		LushCaveBiome: Lush Caverns
+		PurpleBiome: Purple Biome
+		ShallowCaveBiome: Shallow Caverns
+		TechBiome: Tech Biome
+	}
+
+	Avalon: {
+		Contagion: Contagion
+		Desert: Desert (Avalon)
+		Tropics: Tropics
+	}
+
+	Spirit.SpiritBiome: Spirit
+	StarsAbove.SeaOfStars: Sea of Stars
+	Depths.DepthsBiome: The Depths
+
+	Spooky: {
+		SpiderCave: Spider Cave
+		SpookyBiome: Spooky Forest
+		SpookyHell: Rotten Underworld
+	}
+
+	Verdant.VerdantBiome: Verdant
+	Valhalla.GlacialDepths: Glacial Depths
+	Remnants.RemnantsBiome: Remnants
+
+	RiseOfAges: {
+		BiomeCaves: Cave Dwelling
+		BiomeCavesFloodedWater: Cave Dwelling (Flooded)
+		BiomeCavesFloodedLava: Cave Dwelling (Lava-filled)
+		BiomeDarkRealm: Dark Realm
+		BiomeIndustrialEra: Industrial Era
+	}
+}
