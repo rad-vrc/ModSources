@@ -396,7 +396,8 @@ namespace TranslateTest2
 		}
 		private static void Hook_ItemSlot_MouseHover(On_ItemSlot.orig_MouseHover_ItemArray_int_int orig, Item[] inv, int context, int slot)
 		{
-			if (Main.LocalPlayer.TryGetModPlayer<InventoryPlayer>(out var ip)) Main.LocalPlayer.GetModPlayer<InventoryPlayer>().OverrideHover(inv, context, slot);
+			if (Main.LocalPlayer.TryGetModPlayer<InventoryPlayer>(out var ip))
+				ip.OverrideHover(inv, context, slot);
 			orig(inv, context, slot);
 		}
 		private static void Hook_ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
