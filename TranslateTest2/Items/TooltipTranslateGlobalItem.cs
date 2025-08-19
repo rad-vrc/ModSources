@@ -148,7 +148,7 @@ namespace TranslateTest2.Items
             }
 
             // 呼び出し元がリストを変更してもキャッシュが汚染されないようにコピー
-            return list;
+            return new List<(string text, bool protect)>(list);
         }
 
         // 最適化された辞書翻訳
