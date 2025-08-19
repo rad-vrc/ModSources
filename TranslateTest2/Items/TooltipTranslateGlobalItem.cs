@@ -53,9 +53,9 @@ namespace TranslateTest2.Items
             if (string.IsNullOrEmpty(input))
                 return new List<(string, bool)> { (input ?? string.Empty, false) };
 
-            // キャッシュチェック
+            // キャッシュチェック - 返却時にコピーして外部変更から保護
             if (SegmentCache.TryGetValue(input, out var cached))
-                return cached;
+                return new List<(string text, bool protect)>(cached);
 
             var list = new List<(string, bool)>();
             int i = 0;
@@ -144,9 +144,10 @@ namespace TranslateTest2.Items
             // キャッシュに保存（サイズ制限付き）
             if (SegmentCache.Count < MAX_CACHE_SIZE)
             {
-                SegmentCache[input] = list;
+                SegmentCache[input] = new List<(string text, bool protect)>(list);
             }
 
+            // 呼び出し元がリストを変更してもキャッシュが汚染されないようにコピー
             return list;
         }
 
