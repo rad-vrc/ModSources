@@ -1,0 +1,25 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: QoLCompendium.Core.PermanentBuffSystems.Effects.CrossMod.Upgraded.Calamity.CalamityFarmingEffect
+// Assembly: QoLCompendium, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 03199677-CF03-4A96-8142-252B5FBEAF41
+// Assembly location: D:\dorad\Documents\My Games\Terraria\tModLoader\ModSources\References\QoLCompendium\QoLCompendium.dll
+
+using QoLCompendium.Core.PermanentBuffSystems.Effects.CrossMod.Arena.Calamity;
+using QoLCompendium.Core.PermanentBuffSystems.Effects.CrossMod.Potions.Calamity;
+
+#nullable disable
+namespace QoLCompendium.Core.PermanentBuffSystems.Effects.CrossMod.Upgraded.Calamity;
+
+public class CalamityFarmingEffect : IPermanentModdedBuff
+{
+  internal override void ApplyEffect(PermanentBuffPlayer player)
+  {
+    if (!ModConditions.calamityLoaded)
+      return;
+    new ZenEffect().ApplyEffect(player);
+    new TranquilityCandleEffect().ApplyEffect(player);
+    new ZergEffect().ApplyEffect(player);
+    new ChaosCandleEffect().ApplyEffect(player);
+    new CeaselessHungerEffect().ApplyEffect(player);
+  }
+}
