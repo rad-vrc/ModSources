@@ -1,6 +1,6 @@
 Configs: {
 	ClientConfig: {
-		DisplayName: クライアント設定
+		DisplayName: 翻訳設定
 		Headers.DeepL: DeepL設定
 
 		DeepLApiKey: {
@@ -89,6 +89,41 @@ Configs: {
 				'''
 		}
 }
+
+	AiPhoneConfig: {
+		DisplayName: AIフォン
+		Headers: {
+			Master: マスター
+			VanillaInfo: バニラ情報（シェルフォン）
+			QoLCompendium: QoLCompendium（MosaicMirror相当）
+		}
+
+		EnableInfo: { Label: "情報全体を有効化", Tooltip: "AIフォンが提供する情報アクセ効果をすべて有効化" }
+		Watch: { Label: "時計（時刻）" }
+		Depth: { Label: "深度計" }
+		Compass: { Label: "方位磁石" }
+		FishFinder: { Label: "魚探知" }
+		Weather: { Label: "天気予報" }
+		Calendar: { Label: "カレンダー" }
+		OreFinder: { Label: "金属探知機" }
+		DreamCatcher: { Label: "ドリームキャッチャー" }
+		DangerSense: { Label: "危険感知" }
+		DetectCreature: { Label: "生物探知" }
+		FindTreasure: { Label: "財宝探知" }
+		Mosaic_All: { Label: "Mosaic情報フラグをすべて有効化" }
+		Mosaic_BattalionLog: { Label: "大隊記録" }
+		Mosaic_HarmInducer: { Label: "ハームインデューサー" }
+		Mosaic_HeadCounter: { Label: "ヘッドカウンター" }
+		Mosaic_Kettlebell: { Label: "ケトルベル" }
+		Mosaic_LuckyDie: { Label: "ラッキーダイス" }
+		Mosaic_MetallicClover: { Label: "金属のクローバー" }
+		Mosaic_PlateCracker: { Label: "プレートクラッカー" }
+		Mosaic_Regenerator: { Label: "リジェネレーター" }
+		Mosaic_ReinforcedPanel: { Label: "強化パネル" }
+		Mosaic_Replenisher: { Label: "リプレニッシャー" }
+		Mosaic_TrackingDevice: { Label: "追跡デバイス" }
+		Mosaic_WingTimer: { Label: "翼タイマー" }
+	}
 
 	# ===== InventoryDrag 設定ブロック（Configキー配下に統合） =====
 	InventoryConfig: {
@@ -284,8 +319,11 @@ Prefixes: {
 
 Keybinds: {
 	"DeepL Status": {
-		DisplayName: DeepLステータス
+		DisplayName: "DeepLステータス"
 	}
+  AiPhone_ToggleMenu: { DisplayName: "AIフォン: メニュー切替" }
+  AiPhone_NextMode: { DisplayName: "AIフォン: 次のモード" }
+  AiPhone_PrevMode: { DisplayName: "AIフォン: 前のモード" }
 }
 
 PrefixVengefulDescr: ターゲットに追加タグを付与し、ミニオンダメージがアイテムダメージの{A}%増加（{B}）
@@ -493,4 +531,22 @@ InfoDisplays: {
 	BiomeInfoDisplay.DisplayName: 近くのバイオーム
 }
 
-GrabBagTooltip: Shift + 右クリックで分割
+GrabBagTooltip: "Shift + 右クリックで分割"
+
+Items: {
+	AiPhone: {
+		DisplayName: AIフォン
+		Tooltip: "すべての情報とすべてのMOD情報を表示する\nインベントリ内で直接<right>することで行き先を切り替える\n「今ならAIもついてくる！」"
+		ModeFormat: "AIフォン（{0}）"
+		NoDeathPosition: "最後の死亡位置が記録されていません"
+		Modes: {
+			Dummy: "ダミー"
+			Spawn: "初期スポーン地点"
+			Bed: "現在のスポーン地点"
+			Ocean: "海"
+			Hell: "地下世界"
+			Death: "最後の死亡地点"
+			Random: "ランダム"
+		}
+	}
+}

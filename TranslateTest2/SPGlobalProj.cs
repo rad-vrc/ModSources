@@ -41,7 +41,10 @@ namespace TranslateTest2
             BinaryReader binaryReader)
         {
             blessing = binaryReader.ReadBoolean();
-            MinionUpdateSpeed = binaryReader.ReadSingle();
+            var speed = binaryReader.ReadSingle();
+            // Sanity clamp to avoid runaway AI iterations
+            if (!float.IsFinite(speed) || speed <= 0f) speed = 1f;
+            MinionUpdateSpeed = Math.Clamp(speed, 0.1f, 8f);
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
@@ -50,7 +53,9 @@ namespace TranslateTest2
             {
                 projectile.minionSlots *= itemUse.Item.global().MinionSlotMult;
                 MultedMinionSlot = projectile.minionSlots;
-                MinionUpdateSpeed = itemUse.Item.global().MinionSpeedMult;
+                var speed = itemUse.Item.global().MinionSpeedMult;
+                if (!float.IsFinite(speed) || speed <= 0f) speed = 1f;
+                MinionUpdateSpeed = Math.Clamp(speed, 0.1f, 8f);
                 projectile.scale *= itemUse.Item.global().MinionScaleMult;
                 projectile.knockBack *= itemUse.Item.global().MinionKnockbackMult;
                 LifeSteal = itemUse.Item.global().MinionLifeSteal;
@@ -59,6 +64,7 @@ namespace TranslateTest2
                 echo = itemUse.Item.prefix == ModContent.PrefixType<Prefixes.Echo>();
                 blessing = itemUse.Item.prefix == ModContent.PrefixType<Prefixes.Blessing>();
                 contract = itemUse.Item.prefix == ModContent.PrefixType<Prefixes.Contract>();
+                UpdateCounter = 0f;
                 projectile.netUpdate = true;
                 electrified = itemUse.Item.global().electrified;
             }

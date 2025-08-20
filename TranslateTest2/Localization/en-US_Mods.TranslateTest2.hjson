@@ -208,6 +208,122 @@ Configs: {
 			Tooltip: ""
 		}
 	}
+
+	AiPhoneConfig: {
+		DisplayName: Ai Phone Config
+
+		Headers: {
+			Master: Master Header
+			VanillaInfo: Vanilla Info Header
+			QoLCompendium: Qo L Compendium Header
+		}
+
+		EnableInfo: {
+			Label: Enable Info
+			Tooltip: ""
+		}
+
+		Watch: {
+			Label: Watch
+			Tooltip: ""
+		}
+
+		Depth: {
+			Label: Depth
+			Tooltip: ""
+		}
+
+		Compass: {
+			Label: Compass
+			Tooltip: ""
+		}
+
+		FishFinder: {
+			Label: Fish Finder
+			Tooltip: ""
+		}
+
+		Weather: {
+			Label: Weather
+			Tooltip: ""
+		}
+
+		Calendar: {
+			Label: Calendar
+			Tooltip: ""
+		}
+
+		OreFinder: {
+			Label: Ore Finder
+			Tooltip: ""
+		}
+
+		DreamCatcher: {
+			Label: Dream Catcher
+			Tooltip: ""
+		}
+
+		DangerSense: {
+			Label: Danger Sense
+			Tooltip: ""
+		}
+
+		DetectCreature: {
+			Label: Detect Creature
+			Tooltip: ""
+		}
+
+		FindTreasure: {
+			Label: Find Treasure
+			Tooltip: ""
+		}
+
+		Mosaic_All: {
+			Label: Mosaic_ All
+			Tooltip: ""
+		}
+
+	Mosaic_BattalionLog: { Label: "Mosaic: Battalion Log", Tooltip: "" }
+	Mosaic_HarmInducer: { Label: "Mosaic: Harm Inducer", Tooltip: "" }
+	Mosaic_HeadCounter: { Label: "Mosaic: Head Counter", Tooltip: "" }
+	Mosaic_Kettlebell: { Label: "Mosaic: Kettlebell", Tooltip: "" }
+	Mosaic_LuckyDie: { Label: "Mosaic: Lucky Die", Tooltip: "" }
+	Mosaic_MetallicClover: { Label: "Mosaic: Metallic Clover", Tooltip: "" }
+	Mosaic_PlateCracker: { Label: "Mosaic: Plate Cracker", Tooltip: "" }
+	Mosaic_Regenerator: { Label: "Mosaic: Regenerator", Tooltip: "" }
+	Mosaic_ReinforcedPanel: { Label: "Mosaic: Reinforced Panel", Tooltip: "" }
+	Mosaic_Replenisher: { Label: "Mosaic: Replenisher", Tooltip: "" }
+	Mosaic_TrackingDevice: { Label: "Mosaic: Tracking Device", Tooltip: "" }
+	Mosaic_WingTimer: { Label: "Mosaic: Wing Timer", Tooltip: "" }
+	}
+}
+
+AiPhoneConfig: {
+	DisplayName: AI Phone
+
+	Headers: {
+		Master: Master Switch
+		VanillaInfo: Vanilla Info (Shellphone)
+		QoLCompendium: QoLCompendium (MosaicMirror-like)
+	}
+
+	EnableInfo: {
+		Label: Enable All Info
+		Tooltip: Toggle all info-acc effects provided by AI Phone
+	}
+
+	Watch.Label: Watch (Time)
+	Depth.Label: Depth Meter
+	Compass.Label: Compass
+	FishFinder.Label: Fish Finder
+	Weather.Label: Weather Radio
+	Calendar.Label: Calendar
+	OreFinder.Label: Metal Detector
+	DreamCatcher.Label: Dream Catcher
+	DangerSense.Label: Danger Sense
+	DetectCreature.Label: Creature Detector
+	FindTreasure.Label: Treasure Finder
+	Mosaic_All.Label: Enable all Mosaic info flags
 }
 
 Prefixes: {
@@ -234,7 +350,17 @@ Prefixes: {
 	Vengeful.DisplayName: Vengeful
 }
 
-"Keybinds.DeepL Status.DisplayName": DeepL Status
+Keybinds: {
+	"DeepL Status.DisplayName": DeepL Status
+	AiPhone_ToggleMenu.DisplayName: AI Phone: Toggle Menu
+	AiPhone_NextMode.DisplayName: AI Phone: Next Mode
+	AiPhone_PrevMode.DisplayName: AI Phone: Prev Mode
+	"AI Phone: Toggle Menu.DisplayName": A I  Phone:  Toggle  Menu
+	"AI Phone: Next Mode.DisplayName": A I  Phone:  Next  Mode
+	"AI Phone: Prev Mode.DisplayName": A I  Phone:  Prev  Mode
+	"AI Phone: Hold Radial Wheel.DisplayName": A I  Phone:  Hold  Radial  Wheel
+}
+
 PrefixVengefulDescr: Apply additional tag to the target, increasing the damage of minions by {A}% of item damage({B})
 PrefixExtendedDescr: +{V}% Whip Range
 PrefixAffableDescr: -{A}%({B}) Minion Slots using
@@ -392,3 +518,22 @@ Biomes: {
 
 InfoDisplays.BiomeInfoDisplay.DisplayName: Nearby Biomes
 GrabBagTooltip: Shift + Right Click to split
+
+Items: {
+	AiPhone: {
+		DisplayName: aiPhone
+		Tooltip: ""
+		ModeFormat: AI Phone ({0})
+		NoDeathPosition: No recent death position.
+
+		Modes: {
+			Dummy: Dummy
+			Spawn: Spawn
+			Bed: Bed
+			Ocean: Ocean
+			Hell: Underworld
+			Death: Last Death
+			Random: Random
+		}
+	}
+}

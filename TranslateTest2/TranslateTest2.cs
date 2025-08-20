@@ -22,6 +22,8 @@ namespace TranslateTest2
 	public class TranslateTest2 : Mod
 	{
 		public static TranslateTest2 Instance { get; private set; }
+		// Failsafe: cap how many extra AI steps a minion projectile may take per tick
+		private const int MaxAIIterationsPerTick = 8;
 		public static MethodInfo ItemLoader_CanRightClick = typeof(ItemLoader).GetMethod("CanRightClick", BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Static);
 		public static MethodInfo PlayerLoader_ShiftClickSlot = typeof(PlayerLoader).GetMethod("ShiftClickSlot", BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Static);
 		// InventoryDrag original delegate signatures for MonoModHooks
@@ -155,8 +157,15 @@ namespace TranslateTest2
 			if (self.minion || self.sentry)
 			{
 				var gp = self.GetGlobalProjectile<SPGlobalProj>();
-				gp.UpdateCounter += gp.MinionUpdateSpeed;
-				while (gp.UpdateCounter >= 1f)
+				// Clamp speed and counter to avoid runaway iterations
+				float step = gp.MinionUpdateSpeed;
+				if (!float.IsFinite(step) || step <= 0f) step = 1f;
+				if (step > MaxAIIterationsPerTick) step = MaxAIIterationsPerTick;
+				gp.MinionUpdateSpeed = step;
+				gp.UpdateCounter = Math.Min(gp.UpdateCounter + step, MaxAIIterationsPerTick * 4f);
+
+				int iter = 0;
+				while (gp.UpdateCounter >= 1f && iter++ < MaxAIIterationsPerTick)
 				{
 					gp.UpdateCounter -= 1f;
 					orig(self);
