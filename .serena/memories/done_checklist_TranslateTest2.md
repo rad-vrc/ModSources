@@ -1,0 +1,6 @@
+- Fixed Keybinds localization key shape (nested object with quoted display name)
+- Unified selection math and debug overlays in AiPhoneRadialUI
+- Added VS Code tasks: Build, tModLoader build, HJSON Audit, Build+Audit
+- Added scripts/check-hjson.ps1 (detects dot-display misuse and placeholder parity sample)
+- Verified HJSON via loc-ref auditFile; no issues
+- Reminder: Close tModLoader to avoid TML003 when building

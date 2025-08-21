@@ -550,3 +550,19 @@ Items: {
 		}
 	}
 }
+
+UI: {
+	AiPhoneRadial: {
+		Hint: {
+			ReleaseToCast: 離すと実行
+			ReleaseToSelect: 離すと決定
+			RelativeOps: "[相対] Q/E: 回転, ホイール: 回転"
+		}
+	}
+}
+
+Keybinds: {
+	"AI Phone: Hold Radial Wheel": {
+		DisplayName: AIフォン: ラジアルを長押しで開く
+	}
+}

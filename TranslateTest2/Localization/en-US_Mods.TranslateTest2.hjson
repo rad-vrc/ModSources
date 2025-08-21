@@ -283,18 +283,65 @@ Configs: {
 			Tooltip: ""
 		}
 
-	Mosaic_BattalionLog: { Label: "Mosaic: Battalion Log", Tooltip: "" }
-	Mosaic_HarmInducer: { Label: "Mosaic: Harm Inducer", Tooltip: "" }
-	Mosaic_HeadCounter: { Label: "Mosaic: Head Counter", Tooltip: "" }
-	Mosaic_Kettlebell: { Label: "Mosaic: Kettlebell", Tooltip: "" }
-	Mosaic_LuckyDie: { Label: "Mosaic: Lucky Die", Tooltip: "" }
-	Mosaic_MetallicClover: { Label: "Mosaic: Metallic Clover", Tooltip: "" }
-	Mosaic_PlateCracker: { Label: "Mosaic: Plate Cracker", Tooltip: "" }
-	Mosaic_Regenerator: { Label: "Mosaic: Regenerator", Tooltip: "" }
-	Mosaic_ReinforcedPanel: { Label: "Mosaic: Reinforced Panel", Tooltip: "" }
-	Mosaic_Replenisher: { Label: "Mosaic: Replenisher", Tooltip: "" }
-	Mosaic_TrackingDevice: { Label: "Mosaic: Tracking Device", Tooltip: "" }
-	Mosaic_WingTimer: { Label: "Mosaic: Wing Timer", Tooltip: "" }
+		Mosaic_BattalionLog: {
+			Label: Mosaic: Battalion Log
+			Tooltip: ""
+		}
+
+		Mosaic_HarmInducer: {
+			Label: Mosaic: Harm Inducer
+			Tooltip: ""
+		}
+
+		Mosaic_HeadCounter: {
+			Label: Mosaic: Head Counter
+			Tooltip: ""
+		}
+
+		Mosaic_Kettlebell: {
+			Label: Mosaic: Kettlebell
+			Tooltip: ""
+		}
+
+		Mosaic_LuckyDie: {
+			Label: Mosaic: Lucky Die
+			Tooltip: ""
+		}
+
+		Mosaic_MetallicClover: {
+			Label: Mosaic: Metallic Clover
+			Tooltip: ""
+		}
+
+		Mosaic_PlateCracker: {
+			Label: Mosaic: Plate Cracker
+			Tooltip: ""
+		}
+
+		Mosaic_Regenerator: {
+			Label: Mosaic: Regenerator
+			Tooltip: ""
+		}
+
+		Mosaic_ReinforcedPanel: {
+			Label: Mosaic: Reinforced Panel
+			Tooltip: ""
+		}
+
+		Mosaic_Replenisher: {
+			Label: Mosaic: Replenisher
+			Tooltip: ""
+		}
+
+		Mosaic_TrackingDevice: {
+			Label: Mosaic: Tracking Device
+			Tooltip: ""
+		}
+
+		Mosaic_WingTimer: {
+			Label: Mosaic: Wing Timer
+			Tooltip: ""
+		}
 	}
 }
 
@@ -350,17 +397,7 @@ Prefixes: {
 	Vengeful.DisplayName: Vengeful
 }
 
-Keybinds: {
-	"DeepL Status.DisplayName": DeepL Status
-	AiPhone_ToggleMenu.DisplayName: AI Phone: Toggle Menu
-	AiPhone_NextMode.DisplayName: AI Phone: Next Mode
-	AiPhone_PrevMode.DisplayName: AI Phone: Prev Mode
-	"AI Phone: Toggle Menu.DisplayName": A I  Phone:  Toggle  Menu
-	"AI Phone: Next Mode.DisplayName": A I  Phone:  Next  Mode
-	"AI Phone: Prev Mode.DisplayName": A I  Phone:  Prev  Mode
-	"AI Phone: Hold Radial Wheel.DisplayName": A I  Phone:  Hold  Radial  Wheel
-}
-
+"Keybinds.AI Phone: Hold Radial Wheel.DisplayName": AI Phone: Hold Radial Wheel
 PrefixVengefulDescr: Apply additional tag to the target, increasing the damage of minions by {A}% of item damage({B})
 PrefixExtendedDescr: +{V}% Whip Range
 PrefixAffableDescr: -{A}%({B}) Minion Slots using
@@ -534,6 +571,16 @@ Items: {
 			Hell: Underworld
 			Death: Last Death
 			Random: Random
+		}
+	}
+}
+
+UI: {
+	AiPhoneRadial: {
+		Hint: {
+			ReleaseToCast: Release to cast
+			ReleaseToSelect: Release to select
+			RelativeOps: "[REL] Q/E: rotate, Wheel: rotate"
 		}
 	}
 }

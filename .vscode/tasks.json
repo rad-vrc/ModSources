@@ -1,4 +1,5 @@
 {
+	"$schema": "https://json.schemastore.org/tasks.json",
 	"version": "2.0.0",
 	"tasks": [
 		{
@@ -11,10 +12,8 @@
 				"-v",
 				"m"
 			],
-			"problemMatcher": [
-				"$msbuild"
-			],
-			"group": "build"
+			"group": "build",
+			"problemMatcher": ["$msbuild"]
 		},
 		{
 			"label": "Build TranslateTest2 (tModLoader)",
@@ -28,40 +27,34 @@
 				"-eac",
 				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/bin/Debug/net8.0/TranslateTest2.dll"
 			],
-			"problemMatcher": [
-				"$msbuild"
-			],
-			"group": "build"
+			"group": "build",
+			"problemMatcher": ["$msbuild"]
 		},
 		{
-			"label": "Build TranslateTest2 (dotnet build)",
+			"label": "HJSON Audit (quick)",
 			"type": "shell",
-			"command": "dotnet",
+			"command": "powershell",
 			"args": [
-				"build",
-				"TranslateTest2/TranslateTest2.csproj",
-				"-v",
-				"m"
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"${workspaceFolder}/scripts/check-hjson.ps1"
 			],
-			"problemMatcher": [
-				"$msbuild"
-			],
-			"group": "build"
-		},
-		{
-			"label": "Build TranslateTest2 (dotnet build)",
-			"type": "shell",
-			"command": "dotnet",
-			"args": [
-				"build",
-				"TranslateTest2/TranslateTest2.csproj",
-				"-v",
-				"m"
-			],
-			"problemMatcher": [
-				"$msbuild"
-			],
-			"group": "build"
+			"problemMatcher": []
+			},
+			{
+				"label": "Build + HJSON Audit",
+				"type": "shell",
+				"command": "echo",
+				"args": ["Build + Audit complete"],
+				"dependsOn": [
+					"Build TranslateTest2 (dotnet build)",
+					"HJSON Audit (quick)"
+				],
+				"dependsOrder": "sequence",
+				"group": { "kind": "build", "isDefault": true },
+				"problemMatcher": []
 		}
 	]
 }

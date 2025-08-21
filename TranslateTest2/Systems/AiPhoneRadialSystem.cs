@@ -28,6 +28,7 @@ namespace TranslateTest2.Systems
                 _ui = new UserInterface();
                 _state = new AiPhoneRadialUI();
             }
+            // Use human-readable display name; tML will localize via Keybinds."<display>".DisplayName
             HoldWheelKey = KeybindLoader.RegisterKeybind(Mod, "AI Phone: Hold Radial Wheel", "V");
         }
 
@@ -87,13 +88,13 @@ namespace TranslateTest2.Systems
             if (mouseTextIndex == -1) return;
 
             layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                "TranslateTest2: AiPhone Radial (UI)",
+                "TranslateTest2: AiPhone Radial (UI Scale)",
                 () =>
                 {
                     _ui?.Draw(Main.spriteBatch, new GameTime());
                     return true;
                 },
-                InterfaceScaleType.UI)); // UI座標で描画
+                InterfaceScaleType.UI)); // 元の設定に復旧
         }
 
         // 所持チェック / 取得
