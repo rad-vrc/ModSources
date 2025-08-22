@@ -340,11 +340,11 @@ namespace TranslateTest2.Core
             if (TextLangHelper.NeedsTranslation(core))
             {
                 // 接頭辞/接尾辞ともに、まずDeepLキャッシュを試み、未命中なら非同期要求のみ投げて原文維持
-                if (DeepLTranslator.IsEnabled)
+                if (TranslationService.IsEnabled)
                 {
-                    if (DeepLTranslator.TryGetCached(core, out var cached))
+                    if (TranslationService.TryGetCached(core, out var cached))
                         return lead + cached + trail;
-                    DeepLTranslator.RequestIfMissing(core);
+                    TranslationService.RequestIfMissing(core);
                 }
                 return lead + core + trail;
             }

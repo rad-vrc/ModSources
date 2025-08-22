@@ -72,6 +72,11 @@ Configs: {
 			Label: Proxy Url
 			Tooltip: Optional HTTP proxy URL (e.g. http://127.0.0.1:8080). Leave empty to disable.
 		}
+
+		TranslationMode: {
+			Label: Translation Mode
+			Tooltip: ""
+		}
 	}
 
 	BiomeDisplayClientConfig: {
@@ -342,6 +347,14 @@ Configs: {
 			Label: Mosaic: Wing Timer
 			Tooltip: ""
 		}
+	}
+
+	TranslatorMode: {
+		Tooltip: ""
+		Auto.Label: Auto
+		DeepL.Label: Deep L
+		Dict.Label: Dict
+		Off.Label: Off
 	}
 }
 

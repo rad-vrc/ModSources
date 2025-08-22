@@ -29,11 +29,12 @@ namespace TranslateTest2.Core
             _sortedEntries.Clear();
 
             // Mod内ファイルの探索候補
+            // 単一ソース化方針: Content を最優先
             string[] candidates = new[]
             {
+                "Content/tooltip_dict.txt",
                 "Assets/tooltip_dict.txt",
                 "tooltip_dict.txt",
-                "Content/tooltip_dict.txt",
             };
 
             foreach (var path in candidates)
@@ -47,6 +48,16 @@ namespace TranslateTest2.Core
                         ParseIntoMap(sr);
                         RebuildIndex();
                         try { global::TranslateTest2.TranslateTest2.Instance?.Logger?.Info($"Tooltip dictionary loaded from {path} with {_map.Count} entries"); } catch { }
+                        // 重複検出の警告（可能なら）
+                        try
+                        {
+                            foreach (var other in candidates)
+                            {
+                                if (other == path) continue;
+                                try { using var sx = mod.GetFileStream(other); if (sx != null) global::TranslateTest2.TranslateTest2.Instance?.Logger?.Warn($"Duplicate tooltip_dict found: {other} (using {path})"); } catch { }
+                            }
+                        }
+                        catch { }
                         return;
                     }
                 }

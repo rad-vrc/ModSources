@@ -1,3 +1,5 @@
+// Disabled: migrated to Common/Config
+#if false
 using Terraria;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Input;
@@ -36,3 +38,4 @@ namespace InventoryDrag.Config
         public override int GetHashCode() => System.HashCode.Combine(AllowCtrl, AllowShift, AllowAlt, AllowThrow, RequireModifier);
     }
 }
+#endif

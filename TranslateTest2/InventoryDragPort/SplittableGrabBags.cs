@@ -1,3 +1,5 @@
+// Disabled: migrated to Common/Config
+#if false
 namespace InventoryDrag.Config
 {
     public class SplittableGrabBags
@@ -8,3 +10,4 @@ namespace InventoryDrag.Config
         public override int GetHashCode() => System.HashCode.Combine(Enabled, ShowTooltip);
     }
 }
+#endif

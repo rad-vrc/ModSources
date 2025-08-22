@@ -10,7 +10,7 @@
 
 	<!-- References -->
 	<ItemGroup>
-		
+		<Compile Remove="InventoryDragPort\**\*.cs" />
 	</ItemGroup>
 
 </Project>

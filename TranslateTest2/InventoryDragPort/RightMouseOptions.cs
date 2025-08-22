@@ -1,3 +1,5 @@
+// Disabled: migrated to Common/Config
+#if false
 using System.Collections.Generic;
 
 namespace InventoryDrag.Config
@@ -17,3 +19,4 @@ namespace InventoryDrag.Config
         public override int GetHashCode() => System.HashCode.Combine(Enabled, ModifierOptions);
     }
 }
+#endif

@@ -3,6 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TranslateTest2.Common.GlobalNPCs; // WhipTagGNPC
+using TranslateTest2.Common.GlobalItems; // PrefixGlobalItem
+using TranslateTest2.Content.Buffs; // WhipTag
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

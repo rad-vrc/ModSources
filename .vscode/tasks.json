@@ -20,15 +20,35 @@
 			"type": "shell",
 			"command": "dotnet",
 			"args": [
-				"tModLoader.dll",
+				"D:/SteamLibrary/steamapps/common/tModLoader/tModLoader.dll",
 				"-server",
 				"-build",
 				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/",
 				"-eac",
 				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/bin/Debug/net8.0/TranslateTest2.dll"
 			],
+			"options": {
+				"cwd": "D:/SteamLibrary/steamapps/common/tModLoader"
+			},
 			"group": "build",
-			"problemMatcher": ["$msbuild"]
+			"problemMatcher": []
+		},
+		{
+			"label": "Build TranslateTest2 (tModLoader exe)",
+			"type": "shell",
+			"command": "D:/SteamLibrary/steamapps/common/tModLoader/tModLoader.exe",
+			"args": [
+				"-server",
+				"-build",
+				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/",
+				"-eac",
+				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/bin/Debug/net8.0/TranslateTest2.dll"
+			],
+			"options": {
+				"cwd": "D:/SteamLibrary/steamapps/common/tModLoader"
+			},
+			"group": "build",
+			"problemMatcher": []
 		},
 		{
 			"label": "HJSON Audit (quick)",
@@ -42,19 +62,19 @@
 				"${workspaceFolder}/scripts/check-hjson.ps1"
 			],
 			"problemMatcher": []
-			},
-			{
-				"label": "Build + HJSON Audit",
-				"type": "shell",
-				"command": "echo",
-				"args": ["Build + Audit complete"],
-				"dependsOn": [
-					"Build TranslateTest2 (dotnet build)",
-					"HJSON Audit (quick)"
-				],
-				"dependsOrder": "sequence",
-				"group": { "kind": "build", "isDefault": true },
-				"problemMatcher": []
+		},
+		{
+			"label": "Build + HJSON Audit",
+			"type": "shell",
+			"command": "echo",
+			"args": ["Build + Audit complete"],
+			"dependsOn": [
+				"Build TranslateTest2 (dotnet build)",
+				"HJSON Audit (quick)"
+			],
+			"dependsOrder": "sequence",
+			"group": { "kind": "build", "isDefault": true },
+			"problemMatcher": []
 		}
 	]
 }

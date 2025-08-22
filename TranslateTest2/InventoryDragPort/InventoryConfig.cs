@@ -1,3 +1,5 @@
+// Disabled: duplicate ModConfig migrated to TranslateTest2.Common.Config
+#if false
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
@@ -14,3 +16,4 @@ namespace InventoryDrag.Config
         public override ConfigScope Mode => ConfigScope.ClientSide;
     }
 }
+#endif

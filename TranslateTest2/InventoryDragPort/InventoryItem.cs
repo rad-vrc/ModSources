@@ -1,3 +1,5 @@
+// Disabled: migrated to Common/GlobalItems
+#if false
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -20,3 +22,4 @@ namespace InventoryDrag
         }
     }
 }
+#endif

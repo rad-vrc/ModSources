@@ -1,3 +1,5 @@
+// Disabled: migrated to Common/Config
+#if false
 namespace InventoryDrag.Config
 {
     public class ThrowDragging
@@ -9,3 +11,4 @@ namespace InventoryDrag.Config
         public override int GetHashCode() => System.HashCode.Combine(PlaySound, ThrowDelay);
     }
 }
+#endif

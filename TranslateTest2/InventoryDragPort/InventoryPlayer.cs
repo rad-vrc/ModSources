@@ -1,3 +1,5 @@
+// Disabled: migrated to Common/Players
+#if false
 using InventoryDrag.Config;
 using InventoryDrag.Compatability;
 using Microsoft.Xna.Framework;
@@ -102,3 +104,4 @@ namespace InventoryDrag
         public override void ResetEffects() { }
     }
 }
+#endif

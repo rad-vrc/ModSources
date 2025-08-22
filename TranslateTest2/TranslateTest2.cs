@@ -1,6 +1,6 @@
-using InventoryDrag;
-using InventoryDrag.Config;
-using InventoryDrag.Compatability;
+using TranslateTest2.Common.Players;
+using TranslateTest2.Common.Config;
+using TranslateTest2.Common.Compatability;
 using System.Reflection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using MonoMod.RuntimeDetour; // for MonoModHooks
 using MonoMod.RuntimeDetour.HookGen; // ensure hookgen symbols
 using TranslateTest2.Core;
 using TranslateTest2.Config;
+using TranslateTest2.Common.GlobalProjectiles; // SPGlobalProj
 
 namespace TranslateTest2
 {
@@ -38,7 +39,7 @@ namespace TranslateTest2
 				
 				TooltipTranslator.Load(this);
 				var cfg = ModContent.GetInstance<ClientConfig>();
-				DeepLTranslator.ApplyConfig(cfg);
+				TranslationService.Configure(cfg);
 
 				// Hook registration with additional safety checks and failure recovery
 				bool whipHookSuccess = false;
@@ -118,8 +119,8 @@ namespace TranslateTest2
 		{
 			try
 			{
-				TooltipTranslator.Unload();
-				DeepLTranslator.Unload();
+					TooltipTranslator.Unload();
+					TranslationService.Unload();
 				
 				// 安全なフック解除
 				try { On_Projectile.GetWhipSettings -= hook_get_whip_settings; } catch { }
@@ -246,7 +247,7 @@ namespace TranslateTest2
 		{
 			try
 			{
-				Logger?.Info($"PostSetupContent: Translator loaded={TooltipTranslator.IsLoaded}, DeepL enabled={DeepLTranslator.IsEnabled}");
+					Logger?.Info($"PostSetupContent: Translator loaded={TooltipTranslator.IsLoaded}, DeepL enabled={TranslationService.IsEnabled}");
 				
 				// Prefix登録状況の診断とCategory検証
 				var prefixTypes = new[]
