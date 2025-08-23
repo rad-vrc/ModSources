@@ -1,26 +1,25 @@
-// Systems/AiPhoneRadialSystem.cs
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using TranslateTest2.Content.Items.Tools; // AiPhone / WarpMode
-using TranslateTest2.Common.UI;          // AiPhoneRadialUI
+using TranslateTest2.Content.Items.Tools;
+using TranslateTest2.Common.UI;
 
 namespace TranslateTest2.Common.Systems
 {
     /// <summary>
-    /// V長押しでラジアルUIを表示（UI中央固定）。離したら選択＆（既定）即発動。
+    /// Vキー長押しでラジアルUIを表示する簡潔なシステム
     /// </summary>
     public class AiPhoneRadialSystem : ModSystem
     {
-        public static ModKeybind HoldWheelKey;   // 既定: V（長押し）
-        private bool _isOpen;
-
+        public static ModKeybind HoldWheelKey;
+        
         private UserInterface _ui;
         internal AiPhoneRadialUI _state;
         private GameTime _lastUpdateUiGameTime;
+        private bool _isOpen;
 
         public override void Load()
         {
@@ -28,9 +27,9 @@ namespace TranslateTest2.Common.Systems
             {
                 _ui = new UserInterface();
                 _state = new AiPhoneRadialUI();
-                _state.Activate(); // ガイド準拠: 初期化/OnActivate を適切なタイミングで実行
+                _state.Activate();
             }
-            // Use human-readable display name; tML will localize via Keybinds."<display>".DisplayName
+            
             HoldWheelKey = KeybindLoader.RegisterKeybind(Mod, "AI Phone: Hold Radial Wheel", "V");
         }
 
@@ -45,43 +44,60 @@ namespace TranslateTest2.Common.Systems
         {
             if (Main.dedServ) return;
 
-            // 押し始め：所持していれば表示開始
-            if (HoldWheelKey != null && HoldWheelKey.JustPressed && HasAiPhone(Main.LocalPlayer))
+            // キー押し始め - UI表示
+            if (HoldWheelKey?.JustPressed == true && HasAiPhone(Main.LocalPlayer))
             {
-                _isOpen = true;
-                _state?.ResetAnimOnOpen();
-                _ui?.SetState(_state);
-                SoundEngine.PlaySound(SoundID.MenuOpen);
+                OpenRadialMenu();
             }
 
-            // 離した瞬間：コミット＆閉じる
-            if (HoldWheelKey != null && _isOpen && !HoldWheelKey.Current)
+            // キー離した - 選択確定
+            if (_isOpen && HoldWheelKey?.Current != true)
             {
-                int hovered = _state?.HoveredIndex ?? -1;
-                if (hovered != -1 && HasAiPhone(Main.LocalPlayer))
-                {
-                    var item = FindAiPhone(Main.LocalPlayer);
-                    if (item?.ModItem is AiPhone ai)
-                    {
-                        var chosen = _state.Options[hovered];
-                        ai.Mode = chosen;
-                        ai.Item.SetNameOverride($"AI Phone ({ai.Mode})");
-                        if (AiPhoneRadialUI.QUICK_CAST_ON_RELEASE)
-                            AiPhone.PerformMode(Main.LocalPlayer, ai.Mode);
-                        SoundEngine.PlaySound(SoundID.MenuTick);
-                    }
-                }
-                _isOpen = false;
-                _ui?.SetState(null);
-                SoundEngine.PlaySound(SoundID.MenuClose);
+                CloseAndExecuteSelection();
+            }
+        }
+
+        private void OpenRadialMenu()
+        {
+            _isOpen = true;
+            _state?.ResetAnimOnOpen();
+            _ui?.SetState(_state);
+            SoundEngine.PlaySound(SoundID.MenuOpen);
+        }
+
+        private void CloseAndExecuteSelection()
+        {
+            int selectedIndex = _state?.HoveredIndex ?? -1;
+            
+            if (selectedIndex != -1 && HasAiPhone(Main.LocalPlayer))
+            {
+                ExecuteSelection(selectedIndex);
+            }
+
+            _isOpen = false;
+            _ui?.SetState(null);
+            SoundEngine.PlaySound(SoundID.MenuClose);
+        }
+
+        private void ExecuteSelection(int index)
+        {
+            var item = FindAiPhone(Main.LocalPlayer);
+            if (item?.ModItem is AiPhone aiPhone)
+            {
+                var selectedMode = _state.Options[index];
+                aiPhone.Mode = selectedMode;
+                aiPhone.Item.SetNameOverride($"AI Phone ({aiPhone.Mode})");
+                
+                // 即座にワープ実行
+                AiPhone.PerformMode(Main.LocalPlayer, aiPhone.Mode);
+                SoundEngine.PlaySound(SoundID.MenuTick);
             }
         }
 
         public override void UpdateUI(GameTime gameTime)
         {
             _lastUpdateUiGameTime = gameTime;
-            if (_ui?.CurrentState != null)
-                _ui.Update(gameTime);
+            _ui?.CurrentState?.Update(gameTime);
         }
 
         public override void ModifyInterfaceLayers(System.Collections.Generic.List<GameInterfaceLayer> layers)
@@ -92,7 +108,7 @@ namespace TranslateTest2.Common.Systems
             if (mouseTextIndex == -1) return;
 
             layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                "TranslateTest2: AiPhone Radial (UI Scale)",
+                "TranslateTest2: AiPhone Radial",
                 () =>
                 {
                     if (_lastUpdateUiGameTime != null && _ui?.CurrentState != null)
@@ -104,13 +120,17 @@ namespace TranslateTest2.Common.Systems
                 InterfaceScaleType.UI));
         }
 
-        // 所持チェック / 取得
-        private static bool HasAiPhone(Player p) => FindAiPhone(p) != null;
-        private static Item FindAiPhone(Player p)
+        // ユーティリティメソッド
+        private static bool HasAiPhone(Player player) => FindAiPhone(player) != null;
+        
+        private static Item FindAiPhone(Player player)
         {
-            int type = ModContent.ItemType<AiPhone>();
-            for (int i = 0; i < p.inventory.Length; i++)
-                if (p.inventory[i].type == type) return p.inventory[i];
+            int aiPhoneType = ModContent.ItemType<AiPhone>();
+            for (int i = 0; i < player.inventory.Length; i++)
+            {
+                if (player.inventory[i].type == aiPhoneType)
+                    return player.inventory[i];
+            }
             return null;
         }
     }
