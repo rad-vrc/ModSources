@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TranslateTest2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fb71412e2a6e09aeb76ecd40935fa69547a8e8e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+198d5e21485fbabf01aee64756f6822c4496b29f")]
 [assembly: System.Reflection.AssemblyProductAttribute("TranslateTest2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TranslateTest2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

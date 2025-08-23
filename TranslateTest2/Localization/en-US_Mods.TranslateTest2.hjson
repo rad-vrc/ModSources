@@ -221,6 +221,7 @@ Configs: {
 			Master: Master Header
 			VanillaInfo: Vanilla Info Header
 			QoLCompendium: Qo L Compendium Header
+			Rendering: Rendering Header
 		}
 
 		EnableInfo: {
@@ -345,6 +346,11 @@ Configs: {
 
 		Mosaic_WingTimer: {
 			Label: Mosaic: Wing Timer
+			Tooltip: ""
+		}
+
+		UnhideInfo: {
+			Label: Unhide Info
 			Tooltip: ""
 		}
 	}

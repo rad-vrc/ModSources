@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using TranslateTest2.Content.Items.Tools; // AiPhone, AiPhoneInfo
 
 namespace TranslateTest2.Core
 {
@@ -38,6 +39,16 @@ namespace TranslateTest2.Core
 
         public override void PostUpdate()
         {
+            // After vanilla ResetInfoAccessories, (re)apply info effects when AiPhone is present
+            try
+            {
+                if (HasAiPhone(Player))
+                {
+                    AiPhoneInfo.Apply(Player);
+                }
+            }
+            catch { /* never crash */ }
+
             // 1秒毎に再計算
             if (biomeDisplay && (biomeNames == null || Main.GameUpdateCount % 60 == 0))
             {
@@ -48,6 +59,23 @@ namespace TranslateTest2.Core
                 if (biomeNames.Count == 0)
                     biomeNames = GetCurrentBiomes();
             }
+        }
+
+        private static bool HasAiPhone(Player p)
+        {
+            try
+            {
+                int type = ModContent.ItemType<AiPhone>();
+                // Inventory (0..58); include trash slot as needed
+                for (int i = 0; i < p.inventory.Length; i++)
+                {
+                    var item = p.inventory[i];
+                    if (item != null && item.type == type && item.stack > 0)
+                        return true;
+                }
+            }
+            catch { }
+            return false;
         }
 
         private List<string> GetCurrentBiomes()

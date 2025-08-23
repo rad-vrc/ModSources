@@ -11,6 +11,9 @@ namespace TranslateTest2.Configs
     [Header("Master")] // identifier OK
         [DefaultValue(true)] public bool EnableInfo { get; set; } = true;
 
+        [Header("Rendering")]
+        [DefaultValue(true)] public bool UnhideInfo { get; set; } = true;
+
     [Header("VanillaInfo")] // identifiers must not contain spaces; auto-localized at Mods.TranslateTest2.Configs.AiPhoneConfig.Headers.VanillaInfo
         [DefaultValue(true)] public bool Watch { get; set; } = true;
         [DefaultValue(true)] public bool Depth { get; set; } = true;

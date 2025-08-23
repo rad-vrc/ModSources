@@ -10,6 +10,8 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameContent; // TextureAssets
 using Terraria.Localization;
+using TranslateTest2.Core;
+using TranslateTest2.Content.Items.Tools;
 
 namespace TranslateTest2.Content.Items.Tools
 {
@@ -88,6 +90,16 @@ namespace TranslateTest2.Content.Items.Tools
             Item.SetNameOverride(FormatModeName(Mode));
         }
 
+        // 情報アクセサリフック：両親アイテム（Shellphone + MosaicMirror）の情報表示機能を完全継承
+        public override void UpdateInfoAccessory(Player player)
+        {
+            // Shellphone系の情報表示継承（BiomeInfoAccessoryGlobalItemと同じ処理）
+            player.GetModPlayer<InfoPlayer>().biomeDisplay = true;
+            
+            // MosaicMirror系の情報表示継承（AiPhoneInfo経由で実装済み）
+            AiPhoneInfo.Apply(player);
+        }
+
 
         // スプライト差し替え（7枚）
         public override string Texture => "TranslateTest2/Content/Items/Tools/AiPhone_Dummy";
@@ -104,7 +116,8 @@ namespace TranslateTest2.Content.Items.Tools
         public override bool PreDrawInWorld(SpriteBatch sb, Color light, Color alpha, ref float rot, ref float scale, int whoAmI)
         {
             var tex = ModContent.Request<Texture2D>(TexPath($"AiPhone_{Mode}")).Value;
-            sb.Draw(tex, Item.Center - Main.screenPosition, null, light, 0f, tex.Size()/2, 1f, SpriteEffects.None, 0f);
+            var origin = new Vector2(tex.Width, tex.Height) * 0.5f;
+            sb.Draw(tex, Item.Center - Main.screenPosition, null, light, 0f, origin, 1f, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -196,11 +209,11 @@ namespace TranslateTest2.Content.Items.Tools
                     ItemID.Shellphone, ItemID.ShellphoneSpawn,
                     ItemID.ShellphoneOcean, ItemID.ShellphoneHell);
                 // 重複登録を避ける
-                if (!RecipeGroup.recipeGroupIDs.ContainsKey("YourMod:AnyShellphone"))
-                    RecipeGroup.RegisterGroup("YourMod:AnyShellphone", group);
+                if (!RecipeGroup.recipeGroupIDs.ContainsKey("TranslateTest2:AnyShellphone"))
+                    RecipeGroup.RegisterGroup("TranslateTest2:AnyShellphone", group);
 
                 CreateRecipe()
-                    .AddRecipeGroup("YourMod:AnyShellphone", 1)
+                    .AddRecipeGroup("TranslateTest2:AnyShellphone", 1)
                     .AddIngredient(mosaic.Type, 1)
                     .AddTile(TileID.TinkerersWorkbench)
                     .Register();

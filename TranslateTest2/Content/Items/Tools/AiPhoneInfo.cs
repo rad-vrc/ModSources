@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
+using CoreNS = global::TranslateTest2.Core; // avoid type/namespace ambiguity with Mod class name
 using ConfigNS = global::TranslateTest2.Configs;
 
 namespace TranslateTest2.Content.Items.Tools
@@ -29,6 +30,20 @@ namespace TranslateTest2.Content.Items.Tools
         {
             var c = ModContent.GetInstance<ConfigNS.AiPhoneConfig>();
             if (!c.EnableInfo) return;
+
+            // Ensure our InfoDisplay opt-in flag is set so BiomeInfoDisplay can activate
+            try { p.GetModPlayer<CoreNS.InfoPlayer>().biomeDisplay = true; } catch { }
+
+            // Optionally force-unhide info icons so they actually render
+            if (c.UnhideInfo)
+            {
+                try
+                {
+                    for (int i = 0; i < p.hideInfo.Length; i++)
+                        p.hideInfo[i] = false;
+                }
+                catch { }
+            }
 
             // ---- Shellphone系（バニラ情報）----
             if (c.Watch && p.accWatch < 3) p.accWatch = 3;

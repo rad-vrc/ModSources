@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -38,6 +39,10 @@ namespace TranslateTest2.Common.UI
 
         public override void OnInitialize()
         {
+            // ルートをフルスクリーンに
+            Width.Set(0f, 1f);
+            Height.Set(0f, 1f);
+
             // メインパネル（透明背景、中央配置）
             _menuPanel = new RadialMenuPanel();
             _menuPanel.Width.Set(220f, 0f);  // RADIUS * 2 + 余白
@@ -53,6 +58,17 @@ namespace TranslateTest2.Common.UI
                 _optionButtons[i] = new RadialOptionButton(Options[i], i, this);
                 _menuPanel.Append(_optionButtons[i]);
             }
+
+            // 初期レイアウトを確定
+            Recalculate();
+            _menuPanel.Recalculate();
+        }
+
+        public override void OnActivate()
+        {
+            // UIが有効化されたタイミングでレイアウトとアニメを初期化
+            ResetAnimOnOpen();
+            Recalculate();
         }
 
         public override void Update(GameTime gameTime)
@@ -68,7 +84,8 @@ namespace TranslateTest2.Common.UI
 
         private void UpdateButtonPositions()
         {
-            Vector2 center = _menuPanel.GetDimensions().Size() * 0.5f;
+            var dims = _menuPanel.GetDimensions();
+            Vector2 center = new Vector2(dims.Width * 0.5f, dims.Height * 0.5f);
             float currentRadius = RADIUS * EaseOut(_openAnimation);
 
             for (int i = 0; i < _optionButtons.Length; i++)
@@ -78,6 +95,8 @@ namespace TranslateTest2.Common.UI
                 
                 _optionButtons[i].Left.Set(center.X + offset.X - 20f, 0f); // 20f = アイコン半分
                 _optionButtons[i].Top.Set(center.Y + offset.Y - 20f, 0f);
+                // 位置変更を即時レイアウトに反映
+                _optionButtons[i].Recalculate();
             }
         }
 
@@ -102,17 +121,21 @@ namespace TranslateTest2.Common.UI
         {
             base.DrawSelf(spriteBatch);
 
+            // 念のため、描画前にも配置を更新（Update未呼びの保険）
+            UpdateButtonPositions();
+
             // ヒント表示
             DrawHint(spriteBatch);
         }
 
         private void DrawHint(SpriteBatch spriteBatch)
         {
-            string hint = "Release to cast";
-            Vector2 center = _menuPanel.GetDimensions().Center();
+            string hint = Terraria.Localization.Language.GetTextValue("Mods.TranslateTest2.UI.AiPhoneRadial.Hint.ReleaseToCast");
+            var dims = _menuPanel.GetDimensions();
+            Vector2 center = new Vector2(dims.X + dims.Width * 0.5f, dims.Y + dims.Height * 0.5f);
             Vector2 hintSize = FontAssets.MouseText.Value.MeasureString(hint);
             Vector2 hintPos = center - new Vector2(hintSize.X * 0.5f, -110f);
-            
+
             Utils.DrawBorderString(spriteBatch, hint, hintPos, Color.LightGray, 0.9f);
         }
 
@@ -168,8 +191,8 @@ namespace TranslateTest2.Common.UI
             // テクスチャ読み込み
             string path = $"TranslateTest2/Content/Items/Tools/AiPhone_{_mode}";
             _texture = ModContent.HasAsset(path) 
-                ? ModContent.Request<Texture2D>(path).Value
-                : ModContent.Request<Texture2D>("TranslateTest2/Content/Items/Tools/AiPhone_Dummy").Value;
+                ? ModContent.Request<Texture2D>(path, AssetRequestMode.ImmediateLoad).Value
+                : ModContent.Request<Texture2D>("TranslateTest2/Content/Items/Tools/AiPhone_Dummy", AssetRequestMode.ImmediateLoad).Value;
         }
 
         public override void MouseOver(UIMouseEvent evt)
@@ -190,8 +213,9 @@ namespace TranslateTest2.Common.UI
         {
             base.DrawSelf(spriteBatch);
 
-            Vector2 center = GetDimensions().Center();
-            Vector2 origin = _texture.Size() * 0.5f;
+            var dims = GetDimensions();
+            Vector2 center = new Vector2(dims.X + dims.Width * 0.5f, dims.Y + dims.Height * 0.5f);
+            Vector2 origin = new Vector2(_texture.Width, _texture.Height) * 0.5f;
             
             float scale = AiPhoneRadialUI.ICON_SCALE;
             Color color = Color.White;

@@ -59,7 +59,8 @@ namespace TranslateTest2.Content.Projectiles
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             int frameHeight = texture.Height / 4;
             Rectangle sourceRectangle = new Rectangle(0, frame * frameHeight, texture.Width, frameHeight);
-            Vector2 origin = sourceRectangle.Size() / 2f;
+            // Avoid relying on Rectangle.Size() extension to improve compatibility across tML versions
+            Vector2 origin = new Vector2(sourceRectangle.Width, sourceRectangle.Height) * 0.5f;
             
             Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, sourceRectangle, 
                 Color.White * (1f - Projectile.alpha / 255f), Projectile.rotation, origin, 

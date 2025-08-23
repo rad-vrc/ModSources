@@ -61,6 +61,7 @@ namespace TranslateTest2.Common.Systems
         {
             _isOpen = true;
             _state?.ResetAnimOnOpen();
+            _state?.Recalculate(); // レイアウトと初期位置を即時反映
             _ui?.SetState(_state);
             SoundEngine.PlaySound(SoundID.MenuOpen);
         }
@@ -97,12 +98,12 @@ namespace TranslateTest2.Common.Systems
         public override void UpdateUI(GameTime gameTime)
         {
             _lastUpdateUiGameTime = gameTime;
-            _ui?.CurrentState?.Update(gameTime);
+            _ui?.Update(gameTime); // 標準パターン：内部状態も更新される
         }
 
         public override void ModifyInterfaceLayers(System.Collections.Generic.List<GameInterfaceLayer> layers)
         {
-            if (!_isOpen) return;
+            if (_ui?.CurrentState == null) return;
 
             int mouseTextIndex = layers.FindIndex(l => l.Name.Equals("Vanilla: Mouse Text"));
             if (mouseTextIndex == -1) return;
@@ -111,7 +112,7 @@ namespace TranslateTest2.Common.Systems
                 "TranslateTest2: AiPhone Radial",
                 () =>
                 {
-                    if (_lastUpdateUiGameTime != null && _ui?.CurrentState != null)
+                    if (_lastUpdateUiGameTime != null)
                     {
                         _ui.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                     }
