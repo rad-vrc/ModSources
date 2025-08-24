@@ -1,5 +1,5 @@
 using TranslateTest2.Common.Config;
-using TranslateTest2.Common.Compatability;
+using TranslateTest2.Common.Compatibility;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;

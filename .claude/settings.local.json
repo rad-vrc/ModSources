@@ -20,7 +20,11 @@
       "mcp__tml-mcp__validateCall",
       "mcp__tml-mcp__getMembers",
       "mcp__serena__insert_after_symbol",
-      "mcp__desktop-commander__start_process"
+      "mcp__desktop-commander__start_process",
+      "mcp__serena__check_onboarding_performed",
+      "mcp__serena__list_dir",
+      "mcp__serena__replace_symbol_body",
+      "Bash(dotnet build)"
     ],
     "deny": [],
     "ask": []

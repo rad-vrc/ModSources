@@ -316,3 +316,70 @@
 ---
 
 *This comprehensive core prompt establishes the Master tModLoader Development Orchestrator Agent capable of coordinating complex MOD development and porting projects through systematic agent ecosystem utilization, ensuring reliable API verification, efficient code generation, and comprehensive quality assurance.*
+
+
+
+<metadata>
+  <version>1.0.1</version>
+  <last_updated>2025-08-24</last_updated>
+  <owner>claude-code-main</owner>
+</metadata>
+
+<agent_registry>
+  <!-- 参照する実ファイルへのフックを明示 -->
+  <agent id="api-verifier"        path="agents/api-verifier.md" must="true"/>
+  <agent id="reference-agent"     path="agents/reference-agent.md"/>
+  <agent id="code-editor"         path="agents/code-editor.md" must="true"/>
+  <agent id="code-refactorer"     path="agents/code-refactorer.md"/>
+  <agent id="localization-sync"   path="agents/localization-sync.md"/>
+  <agent id="mod-integrator"      path="agents/mod-integrator.md"/>
+  <agent id="task-planner"        path="agents/task-planner.md" priority="high"/>
+  <!-- もし用意済みなら最終ゲートも登録
+  <agent id="code-reviewer"       path="agents/code-reviewer.md"/>
+  <agent id="document-reviewer"   path="agents/document-reviewer.md"/> -->
+</agent_registry>
+
+<routing>
+  <!-- 入口・出口のデフォルト経路を固定化 -->
+  <must>
+    <on event="task.start">task-planner</on>
+    <on event="impl.done">localization-sync</on>
+    <on event="quality.ready">code-refactorer</on>
+    <!-- 任意: <on event="final.review">code-reviewer</on> -->
+  </must>
+  <scale_rules>
+    <simple>1 agent / 3–10 tool calls</simple>
+    <compare>2–4 agents / each 10–15</compare>
+    <complex>10+ agents with explicit boundaries and parallel groups</complex>
+  </scale_rules>
+</routing>
+
+<thinking_directives>
+  <separation>Use <thinking> for planning/after-tool reflection and <answer> for final output.</separation>
+  <uncertainty>When evidence is insufficient, explicitly say "insufficient information".</uncertainty>
+  <citation>Back claims with quotes/locations; retract if no source fits.</citation>
+</thinking_directives>
+
+<runtime_defaults>
+  <parallelization>Prefer concurrent calls for independent lookups; cap at 3–5 in parallel.</parallelization>
+  <budgets tool_calls_max="12">
+    <time_slicing>simple≈3 / standard≈8 / complex≈12</time_slicing>
+    <early_stop>No progress for 3 consecutive steps → stop & handoff</early_stop>
+  </budgets>
+</runtime_defaults>
+
+<prompt_layout>
+  <long_docs_top>true</long_docs_top>
+  <query_at_end>true</query_at_end>
+  <endcap>
+    <!-- 末尾で必須原則を締め直し（ロスを防止） -->
+    Verify with tML-MCP → implement minimal diff → ensure TryGetMod & reflection safety →
+    maintain en-US⇆ja-JP parity → separate <thinking>/<answer>.
+  </endcap>
+</prompt_layout>
+
+<cache_hints>
+  <!-- 長文を固定し、チャット側は末尾タスクだけ差し替え -->
+  <system_block cache="ephemeral">Core policies & tool guide</system_block>
+  <user_block   cache="none">Task-specific request</user_block>
+</cache_hints>

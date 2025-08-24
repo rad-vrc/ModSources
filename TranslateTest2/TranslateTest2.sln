@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslateTest", "TranslateTest.csproj", "{FCD9DF0C-3099-4914-BA2B-5A2BB517E10D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TranslateTest2", "TranslateTest2.csproj", "{FCD9DF0C-3099-4914-BA2B-5A2BB517E10D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

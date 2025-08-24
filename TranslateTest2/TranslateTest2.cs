@@ -1,6 +1,6 @@
 using TranslateTest2.Common.Players;
 using TranslateTest2.Common.Config;
-using TranslateTest2.Common.Compatability;
+using TranslateTest2.Common.Compatibility;
 using System.Reflection;
 using System;
 using System.Collections.Generic;
@@ -106,6 +106,8 @@ namespace TranslateTest2
 					MonoModHooks.Add(PlayerLoader_ShiftClickSlot, (orig_PlayerLoader_ShiftClickSlot orig, Player pl, Item[] inv, int ctx, int sl) => On_PlayerLoader_ShiftClickSlot(orig, pl, inv, ctx, sl));
 				else
 					Logger?.Warn("Reflection failed: PlayerLoader.ShiftClickSlot not found; skipping hook");
+				
+				// AndroLib compatibility integration
 				AndroLib.Load(this);
 			}
 			catch (System.Exception ex)
@@ -119,36 +121,38 @@ namespace TranslateTest2
 		{
 			try
 			{
-					TooltipTranslator.Unload();
-					TranslationService.Unload();
-				
-				// 安全なフック解除
-				try { On_Projectile.GetWhipSettings -= hook_get_whip_settings; } catch { }
-				try { On_Projectile.AI -= hook_projectile_ai; } catch { }
-				
-				// InventoryDrag integration unload begin
-				try
-				{
-					On_ItemSlot.MouseHover_ItemArray_int_int -= Hook_ItemSlot_MouseHover;
-					On_ItemSlot.RightClick_ItemArray_int_int -= Hook_ItemSlot_RightClick;
-					On_ItemSlot.Handle_refItem_int -= Hook_ItemSlot_Handle;
-					On_ItemSlot.LeftClick_ItemArray_int_int -= Hook_ItemSlot_LeftClick;
-					On_Main.DrawInventory -= Hook_Main_DrawInventory;
-					AndroLib.Unload(this);
-				}
-				catch { }
-				// InventoryDrag integration unload end
-				
-				Logger?.Info("TranslateTest2 unloaded successfully");
-			}
-			catch (Exception ex)
+				TooltipTranslator.Unload();
+				TranslationService.Unload();
+			
+			// 安全なフック解除
+			try { On_Projectile.GetWhipSettings -= hook_get_whip_settings; } catch { }
+			try { On_Projectile.AI -= hook_projectile_ai; } catch { }
+			
+			// InventoryDrag integration unload begin
+			try
 			{
-				Logger?.Warn($"Error during unload: {ex.Message}");
+				On_ItemSlot.MouseHover_ItemArray_int_int -= Hook_ItemSlot_MouseHover;
+				On_ItemSlot.RightClick_ItemArray_int_int -= Hook_ItemSlot_RightClick;
+				On_ItemSlot.Handle_refItem_int -= Hook_ItemSlot_Handle;
+				On_ItemSlot.LeftClick_ItemArray_int_int -= Hook_ItemSlot_LeftClick;
+				On_Main.DrawInventory -= Hook_Main_DrawInventory;
+				
+				// AndroLib compatibility integration cleanup
+				AndroLib.Unload(this);
 			}
-			finally
-			{
-				Instance = null;
-			}
+			catch { }
+			// InventoryDrag integration unload end
+			
+			Logger?.Info("TranslateTest2 unloaded successfully");
+		}
+		catch (Exception ex)
+		{
+			Logger?.Warn($"Error during unload: {ex.Message}");
+		}
+		finally
+		{
+			Instance = null;
+		}
 		}
 
 		private static readonly MethodInfo HandleMovementMI = typeof(Projectile).GetMethod("HandleMovement", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
