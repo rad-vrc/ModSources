@@ -13,7 +13,9 @@
 				"m"
 			],
 			"group": "build",
-			"problemMatcher": ["$msbuild"]
+			"problemMatcher": [
+				"$msbuild"
+			]
 		},
 		{
 			"label": "Build TranslateTest2 (tModLoader)",
@@ -67,14 +69,39 @@
 			"label": "Build + HJSON Audit",
 			"type": "shell",
 			"command": "echo",
-			"args": ["Build + Audit complete"],
+			"args": [
+				"Build + Audit complete"
+			],
 			"dependsOn": [
 				"Build TranslateTest2 (dotnet build)",
 				"HJSON Audit (quick)"
 			],
 			"dependsOrder": "sequence",
-			"group": { "kind": "build", "isDefault": true },
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
 			"problemMatcher": []
+		},
+		{
+			"label": "Build + HJSON Audit",
+			"type": "shell",
+			"command": "echo",
+			"args": [
+				"Build + Audit complete"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Build + HJSON Audit (combo)",
+			"type": "shell",
+			"command": "echo",
+			"args": [
+				"Build + Audit complete"
+			],
+			"group": "build"
 		}
 	]
 }
