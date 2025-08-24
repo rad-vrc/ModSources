@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace TranslateTest2.Prefixes
+{
+    public class Eager : ModPrefix
+    {
+        public static float UseTimeReduction = 0.3f;
+
+        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
+
+        public override float RollChance(Item item) => 0.7f;
+
+        public override bool CanRoll(Item item) => item.shoot > ProjectileID.None && item.isMinionSummonItem();
+
+        public override void SetStats(
+            ref float damageMult,
+            ref float knockbackMult,
+            ref float useTimeMult,
+            ref float scaleMult,
+            ref float shootSpeedMult,
+            ref float manaMult,
+            ref int critBonus)
+        {
+            useTimeMult = 1f - UseTimeReduction;
+        }
+
+        public override void ModifyValue(ref float valueMult) => valueMult *= 1.5f;
+
+        public override void Apply(Item item)
+        {
+        }
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            yield return new TooltipLine(Mod, "PrefixEagerDescription", 
+                $"-{(UseTimeReduction * 100):0}% 使用時間")
+            {
+                IsModifier = true,
+                IsModifierBad = false
+            };
+        }
+    }
+}

@@ -1,0 +1,170 @@
+﻿Configs: {
+	ClientConfig: {
+		DisplayName: クライアント設定
+		Headers.DeepL: DeepL設定
+
+		DeepLApiKey: {
+			Label: DeepL APIキー
+			Tooltip: DeepL API auth_keyを入力してください。クライアント側にのみ保存されます。
+		}
+
+		TargetLang: {
+			Label: 対象言語
+			Tooltip: DeepLの対象言語コード例：JA, EN-US, EN-GB, ZH
+		}
+
+		UseDeepL: {
+			Label: DeepLを使用
+			Tooltip: ツールチップとアイテム名のDeepL翻訳を有効化。APIキーが必要です。
+		}
+
+		CacheDeepL: {
+			Label: DeepLキャッシュ
+			Tooltip: 翻訳済み文字列をローカルキャッシュしてDeepL要求の重複を避けます。
+		}
+
+		ShowShiftIndicator: {
+			Label: Shiftインジケータ表示
+			Tooltip: "翻訳が有効な時に小さな\"[Shift-翻訳]\"マーカーを表示します。"
+		}
+
+		EnableNameReconstruction: {
+			Label: 名前再構成を有効化
+			Tooltip: "\"Legendary ... of ...\"のようなアイテム名を自然な日本語語順に再構成"
+		}
+
+		"SkipBracketContentInNames": {
+			Label: "名前の[括弧]をスキップ"
+			Tooltip: "アイテム名の角括弧内コンテンツを翻訳しません（例：[ModName]）。"
+		}
+
+		DeepLTimeoutMs: {
+			Label: DeepLタイムアウト(ms)
+			Tooltip: DeepLリクエスト毎のHTTPタイムアウト（ミリ秒）。
+		}
+
+		DeepLBatchIntervalMs: {
+			Label: DeepLバッチ間隔(ms)
+			Tooltip: バッチ送信前にテキストを蓄積する待機時間（ミリ秒）。
+		}
+
+		DeepLBatchMax: {
+			Label: DeepLバッチサイズ
+			Tooltip: バッチリクエスト毎の最大テキスト数。
+		}
+
+		DeepLEndpointPreference: {
+			Label: DeepLエンドポイント設定
+			Tooltip: 使用するエンドポイントを選択：auto, free, paid
+		}
+
+		DeepLRetryCount: {
+			Label: DeepL再試行回数
+			Tooltip: リクエスト失敗時の再試行回数。
+		}
+
+		DeepLRetryInitialDelayMs: {
+			Label: DeepL再試行初期遅延(ms)
+			Tooltip: 失敗したリクエストの再試行前の初期遅延（ミリ秒）。試行毎に倍増。
+		}
+
+		ProxyUrl: {
+			Label: プロキシURL
+			Tooltip: "オプションのHTTPプロキシURL（例：http://127.0.0.1:8080）。空の場合無効。"
+		}
+	}
+}
+
+Prefixes: {
+	Abusive: {
+		DisplayName: 虐待的な
+	}
+
+	Affable: {
+		DisplayName: 親しみやすい
+	}
+
+	Blessing: {
+		DisplayName: 祝福の
+	}
+
+	Brisk: {
+		DisplayName: 機敏な
+	}
+
+	Contract: {
+		DisplayName: 契約の
+	}
+
+	Devoted: {
+		DisplayName: 献身的な
+	}
+
+	Deviation: {
+		DisplayName: 逸脱した
+	}
+
+	Eager: {
+		DisplayName: 熱心な
+	}
+
+	Echo: {
+		DisplayName: 反響する
+	}
+
+	Electrified: {
+		DisplayName: 帯電した
+	}
+
+	Extended: {
+		DisplayName: 延びる
+	}
+
+	Fabled: {
+		DisplayName: 伝説の
+	}
+
+	Focused: {
+		DisplayName: 集中した
+	}
+
+	Focused_Whip: {
+		DisplayName: 集中する
+	}
+
+	Huge: {
+		DisplayName: 巨大な
+	}
+
+	Loyal: {
+		DisplayName: 忠実な
+	}
+
+	Mega: {
+		DisplayName: メガ
+	}
+
+	Oracle: {
+		DisplayName: 神託の
+	}
+
+	Overload: {
+		DisplayName: 過負荷の
+	}
+
+	Steady: {
+		DisplayName: 安定した
+	}
+
+	Vengeful: {
+		DisplayName: 復讐の
+	}
+}
+
+Projectiles: {
+	ElectricLaser: {
+		DisplayName: 電撃レーザー
+	}
+}
+
+"Keybinds.DeepL Status.DisplayName": DeepLステータス

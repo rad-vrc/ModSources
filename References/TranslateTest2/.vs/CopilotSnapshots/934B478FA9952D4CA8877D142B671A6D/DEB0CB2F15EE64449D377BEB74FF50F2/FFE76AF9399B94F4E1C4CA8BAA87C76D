@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace TranslateTest2.Prefixes
+{
+    public class Affable : ModPrefix
+    {
+        public static float MinionSlotMult = 0.8f;
+
+        public override PrefixCategory Category => PrefixCategory.Magic;
+
+        public override float RollChance(Item item) => 1f;
+
+        public override bool CanRoll(Item item) => item.shoot > ProjectileID.None && item.isMinionSummonItem();
+
+        public override void SetStats(
+            ref float damageMult,
+            ref float knockbackMult,
+            ref float useTimeMult,
+            ref float scaleMult,
+            ref float shootSpeedMult,
+            ref float manaMult,
+            ref int critBonus)
+        {
+        }
+
+        public override void ModifyValue(ref float valueMult) => valueMult *= 1.2f;
+
+        public override void Apply(Item item) => item.global().MinionSlotMult = MinionSlotMult;
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            // より直接的なローカリゼーション取得を試行
+            string tooltipText;
+            var key = $"Mods.TranslateTest2.Prefix{Name}Descr";
+            
+            try
+            {
+                tooltipText = Language.GetTextValue(key);
+                TranslateTest2.Instance?.Logger?.Debug($"Affable Direct Key: {key} -> \"{tooltipText}\"");
+                
+                // キーと値が同じ場合（ローカリゼーションが見つからない）、フォールバックを使用
+                if (string.IsNullOrEmpty(tooltipText) || tooltipText == key)
+                {
+                    tooltipText = AdditionalTooltip.Value;
+                    TranslateTest2.Instance?.Logger?.Debug($"Affable Using fallback: \"{tooltipText}\"");
+                }
+            }
+            catch (Exception ex)
+            {
+                tooltipText = AdditionalTooltip.Value;
+                TranslateTest2.Instance?.Logger?.Debug($"Affable Exception fallback: {ex.Message}");
+            }
+
+            var tl = new TooltipLine(Mod, "PrefixDescription", tooltipText)
+            {
+                IsModifier = true,
+                IsModifierBad = false
+            };
+
+            // プレースホルダーを実際の値に置換
+            float slotReduction = (1f - MinionSlotMult) * 100f;
+            
+            // Calculate actual slot reduction for this specific item
+            Projectile projectile = new Projectile();
+            projectile.SetDefaults(item.shoot);
+            float actualReduction = projectile.minionSlots * (1f - MinionSlotMult);
+            
+            tl.Text = tl.Text.Replace("{A}", $"{slotReduction:0}")
+                           .Replace("{B}", $"{actualReduction:0.1}");
+
+            TranslateTest2.Instance?.Logger?.Debug($"Affable Final tooltip: \"{tl.Text}\"");
+
+            yield return tl;
+        }
+
+        /// <summary>
+        /// 元のSummonerPrefix方式: ローカリゼーションからツールチップテキストを取得
+        /// </summary>
+        public LocalizedText AdditionalTooltip
+        {
+            get
+            {
+                var key = Mod.GetLocalizationKey($"Prefix{Name}Descr");
+                
+                // デバッグ情報を出力
+                try
+                {
+                    TranslateTest2.Instance?.Logger?.Debug($"Affable AdditionalTooltip - Key: {key}");
+                    var rawValue = Language.GetTextValue(key);
+                    TranslateTest2.Instance?.Logger?.Debug($"Affable Raw Value: \"{rawValue}\"");
+                }
+                catch { }
+                
+                // より安全なローカリゼーション取得
+                return Language.GetOrRegister(key, () => "-{A}% minion slot usage (-{B} slots)");
+            }
+        }
+
+        public override void SetStaticDefaults()
+        {
+            // ローカリゼーションテキストの初期化
+            var tooltip = AdditionalTooltip;
+            try
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Affable SetStaticDefaults - Tooltip: \"{tooltip.Value}\"");
+            }
+            catch { }
+        }
+    }
+}

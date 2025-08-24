@@ -105,4 +105,5 @@ When official/primary sources are insufficient, use fetch to locate secondary re
       <format>Use <answer> for final output and <thinking> for reasoning. Include citations/signatures if needed.</format>
     </output>
   </runtime>
+  <inherit from="/CLAUDE.md#global_policies"/>
 </agent>

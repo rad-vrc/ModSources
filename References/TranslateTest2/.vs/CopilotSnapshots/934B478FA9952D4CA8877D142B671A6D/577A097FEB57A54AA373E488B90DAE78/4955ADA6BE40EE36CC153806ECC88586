@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace TranslateTest2.Prefixes
+{
+    public class Loyal : ModPrefix
+    {
+        public static float TargetingRange = 2.5f;
+
+        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
+
+        public override float RollChance(Item item) => 0.8f;
+
+        public override bool CanRoll(Item item) => item.shoot > ProjectileID.None && item.isMinionSummonItem();
+
+        public override void SetStats(
+            ref float damageMult,
+            ref float knockbackMult,
+            ref float useTimeMult,
+            ref float scaleMult,
+            ref float shootSpeedMult,
+            ref float manaMult,
+            ref int critBonus)
+        {
+        }
+
+        public override void ModifyValue(ref float valueMult) => valueMult *= 1.3f;
+
+        public override void Apply(Item item) => item.global().loyal = true;
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            yield return new TooltipLine(Mod, "PrefixLoyalDescription", 
+                $"+{((TargetingRange - 1f) * 100):0}% 召喚物のターゲット範囲")
+            {
+                IsModifier = true,
+                IsModifierBad = false
+            };
+        }
+    }
+}

@@ -1,195 +1,291 @@
-# Claude Code tModLoader Agent Ecosystem Documentation
+（翻訳）Claude Code tModLoader エージェント・エコシステム ドキュメント
 
-## Overview
+概要（Overview）
 
-This document describes the comprehensive agent architecture for tModLoader mod development within the Claude Code environment. The system consists of 8 specialized agents that work together to provide complete mod development capabilities, from initial planning to final implementation and quality assurance.
+このドキュメントは、Claude Code 環境における tModLoader の MOD 開発向け 包括的エージェント・アーキテクチャを説明します。
+システムは 8 つの専門サブエージェントで構成され、計画から実装、品質保証までをカバーします。
 
-## Architecture Philosophy
+アーキテクチャの思想（Architecture Philosophy）
 
-The agent ecosystem follows these core principles:
+関心の分離: 各エージェントは特定かつ明確な責務を持つ
 
-- **Separation of Concerns**: Each agent has a specific, well-defined responsibility
-- **Evidence-Based Development**: API verification before coding, documentation before implementation
-- **Safety-First Approach**: Minimal changes, compilation verification, robust error handling
-- **Localization Parity**: Maintaining en-US ⇆ ja-JP synchronization throughout development
-- **Weak Reference Integration**: Safe cross-mod compatibility without hard dependencies
+証拠に基づく開発: 実装前に API 検証、実装前にドキュメント確認
 
-## Agent Hierarchy and Workflow
+セーフティファースト: 最小変更・コンパイル検証・堅牢なエラーハンドリング
 
-### **Orchestration Layer**
-- **tmodloader-orchestrator**: Master coordinator for complex multi-agent workflows
-- **task-planner**: Decomposes complex requests into structured subtasks
+ローカリゼーションの一貫性: en-US ⇆ ja-JP の同期を開発全体で維持
 
-### **Research and Verification Layer**  
-- **reference-agent**: Retrieves external documentation and community examples
-- **api-verifier**: Validates API existence and signatures before implementation
+弱参照による統合: ハード依存を避けた安全なクロス MOD 連携
 
-### **Implementation Layer**
-- **code-editor**: Implements code changes with safety-first approach
-- **code-refactorer**: Improves code quality without changing functionality
+エージェント階層とワークフロー（Agent Hierarchy and Workflow）
+オーケストレーション層
 
-### **Specialized Operations Layer**
-- **localization-sync**: Maintains translation parity between languages
-- **mod-integrator**: Handles safe cross-mod integration
+tmodloader-orchestrator: 複合ワークフローのマスター調整役
 
-### **Independent Development Layer**
-- **vibe-coding-coach**: Vision-based application development for non-technical users
+task-planner: 複雑要求を構造化したサブタスクへと分解
 
-## Detailed Agent Specifications
+リサーチ & 検証層
 
-### 1. tmodloader-orchestrator
-**Role**: Master coordinator and workflow manager
-**Key Capabilities**:
-- Analyzes complex requests requiring multiple specialized operations
-- Delegates tasks to appropriate sub-agents with proper context
-- Ensures quality assurance across all changes
-- Maintains oversight of entire development process
+reference-agent: 公式ドキュメントやコミュニティ実例の収集
 
-**Primary Use Cases**:
-- Complex features requiring API verification + implementation + localization
-- Mod porting from older versions with multiple breaking changes
-- Cross-mod integration projects with multiple dependencies
+api-verifier: 実装前に API の存在とシグネチャを検証
 
-### 2. task-planner
-**Role**: Strategic planning and task decomposition specialist
-**Key Capabilities**:
-- Breaks down broad/complex requests into actionable subtasks
-- Identifies dependencies and execution order
-- Maps resource requirements for each subtask
-- Provides structured plans without implementation details
+実装層
 
-**Primary Use Cases**:
-- Multi-component feature requests (magic systems, boss mechanics)
-- Large-scale mod porting projects
-- Complex integration requirements with unclear scope
+code-editor: 安全第一でコード変更を実施
 
-### 3. reference-agent  
-**Role**: Documentation and research specialist
-**Key Capabilities**:
-- Searches official tModLoader wiki for authoritative API documentation
-- Finds community examples and implementation patterns on GitHub
-- Retrieves .NET API documentation for standard library usage
-- Provides evidence-based findings with clear source attribution
+code-refactorer: 機能を変えずに品質を向上
 
-**Primary Use Cases**:
-- Unknown API signatures or usage patterns
-- Researching version migration changes (1.3 → 1.4)
-- Finding community examples for complex implementations
+専門オペレーション層
 
-### 4. api-verifier
-**Role**: API validation and verification specialist  
-**Key Capabilities**:
-- Confirms existence of classes, methods, fields, and properties
-- Validates method signatures and parameter types
-- Tests method calls with specific argument types
-- Provides exact API specifications before coding
+localization-sync: en-US と ja-JP の訳語同期を維持
 
-**Primary Use Cases**:
-- Pre-implementation API verification
-- Debugging "method not found" errors during porting
-- Ensuring correct overload usage for complex APIs
+mod-integrator: 安全なクロス MOD 連携を担当
 
-### 5. code-editor
-**Role**: Safe code implementation specialist
-**Key Capabilities**:
-- Locates target code using semantic search tools
-- Applies minimal, precise edits using context-aware commands
-- Verifies compilation success after every change
-- Follows project conventions and tModLoader best practices
+独立開発層
 
-**Primary Use Cases**:
-- Implementing new items, NPCs, or game mechanics
-- Fixing compilation errors with minimal changes
-- Adding new functionality to existing code structures
+vibe-coding-coach: 非エンジニア向けの“ビジョン主導”アプリ開発
 
-### 6. code-refactorer
-**Role**: Code quality improvement specialist
-**Key Capabilities**:
-- Improves code structure, readability, and maintainability
-- Eliminates code duplication and improves naming
-- Simplifies complex logic without changing functionality
-- Maintains exact behavioral compatibility
+各エージェントの詳細（Detailed Agent Specifications）
+1. tmodloader-orchestrator
 
-**Primary Use Cases**:
-- Post-implementation code cleanup
-- Improving legacy code maintainability
-- Addressing code review feedback for quality issues
+役割: マスターコーディネータ／ワークフロー管理
+主な能力:
 
-### 7. localization-sync
-**Role**: Translation synchronization specialist
-**Key Capabilities**:
-- Maintains perfect parity between en-US and ja-JP translations
-- Validates placeholder consistency across languages
-- Audits localization files for structural inconsistencies
-- Synchronizes new content across both language versions
+複数の専門作業を要する複雑要求を分析
 
-**Primary Use Cases**:
-- Adding new translatable content to mods
-- Fixing placeholder mismatches between languages
-- Routine localization quality audits
+適切なサブエージェントへ十分な文脈とともに委譲
 
-### 8. mod-integrator
-**Role**: Cross-mod compatibility specialist
-**Key Capabilities**:
-- Implements weak reference patterns for external mod integration
-- Creates robust error handling for mod absence scenarios
-- Uses reflection and Mod.Call APIs safely
-- Ensures graceful degradation when dependencies are missing
+すべての変更に対して品質保証を徹底
 
-**Primary Use Cases**:
-- Adding Calamity/Thorium mod compatibility features
-- Creating utility mods that enhance other popular mods
-- Implementing conditional content based on mod presence
+全体の進行を俯瞰・監督
+主なユースケース:
 
-### 9. vibe-coding-coach
-**Role**: Vision-based application development specialist
-**Key Capabilities**:
-- Translates user ideas and visual references into working applications
-- Handles all technical complexity behind the scenes
-- Focuses on user experience and aesthetic preferences
-- Creates complete applications through conversational development
+API 検証＋実装＋ローカリゼーションが絡む複合機能
 
-**Primary Use Cases**:
-- Non-technical users wanting to build applications
-- Projects driven by visual mockups or aesthetic goals
-- Rapid prototyping based on user vision rather than technical specs
+旧版からの移植（多数の非互換変更を含む）
 
-## Common Workflow Patterns
+多依存のクロス MOD 連携プロジェクト
 
-### Standard Feature Development
-1. **task-planner** → Break down feature requirements
-2. **reference-agent** → Research relevant APIs and examples  
-3. **api-verifier** → Verify all required APIs exist
-4. **code-editor** → Implement the feature safely
-5. **localization-sync** → Add translations for new content
-6. **code-refactorer** → Clean up and optimize final code
+2. task-planner
 
-### Cross-Mod Integration Project
-1. **task-planner** → Plan integration approach
-2. **reference-agent** → Research target mod's APIs
-3. **mod-integrator** → Implement weak reference integration
-4. **localization-sync** → Sync any new translatable content
-5. **api-verifier** → Verify integration points work correctly
+役割: 戦略的計画とタスク分解の専門家
+主な能力:
 
-### Legacy Mod Porting
-1. **task-planner** → Analyze porting requirements
-2. **reference-agent** → Research API changes between versions
-3. **api-verifier** → Verify replacement APIs exist
-4. **code-editor** → Apply necessary code updates
-5. **localization-sync** → Update localization file formats
-6. **code-refactorer** → Modernize code patterns
+広範・複雑な要求を実行可能なサブタスクへ分解
 
-### Vision-Driven Development
-1. **vibe-coding-coach** → Single-agent development cycle
-2. (Optional) **code-refactorer** → Post-development optimization
+依存関係と実行順序を明確化
 
-## Integration Guidelines
+各サブタスクの必要資源をマッピング
 
-- **Always verify before implementing**: Use api-verifier before code-editor
-- **Maintain localization parity**: Include localization-sync in any content-adding workflow  
-- **Plan complex requests**: Use task-planner for multi-component features
-- **Research before building**: Use reference-agent for unfamiliar APIs or patterns
-- **Refactor after implementing**: Use code-refactorer to improve quality post-implementation
-- **Integrate safely**: Use mod-integrator for any cross-mod functionality
+実装詳細に踏み込まない構造化プランを提示
+主なユースケース:
 
-This ecosystem provides comprehensive coverage of all tModLoader development needs while maintaining safety, quality, and best practices throughout the development process.
+複数コンポーネントからなる機能開発（魔法システム、ボス機構 など）
+
+大規模な MOD 移植
+
+範囲が曖昧な複合的連携要件の整理
+
+3. reference-agent
+
+役割: ドキュメント／リサーチ専門家
+主な能力:
+
+公式 tModLoader Wiki で権威ある API 情報を検索
+
+GitHub 上のコミュニティ実装例・パターンを調査
+
+.NET 標準ライブラリの API 参照を収集
+
+出典を明示した証拠ベースの所見を提供
+主なユースケース:
+
+不明な API シグネチャや使用パターンの把握
+
+1.3→1.4 などのバージョン移行に伴う API 変更の調査
+
+複雑実装のコミュニティ実例探索
+
+4. api-verifier
+
+役割: API 検証のスペシャリスト
+主な能力:
+
+クラス／メソッド／フィールド／プロパティの存在確認
+
+メソッドのシグネチャと引数型を検証
+
+具体的な引数で呼び出し検証を実施
+
+実装前に正確な API 仕様を提示
+主なユースケース:
+
+実装前の API 確認
+
+移植時の “メソッドが見つからない” エラーの原因切り分け
+
+多オーバーロード API の正しい使用確認
+
+5. code-editor
+
+役割: 安全なコード実装の専門家
+主な能力:
+
+セマンティック検索で対象コードを特定
+
+文脈に沿った最小・精密な編集を実施
+
+変更のたびにコンパイル成功を確認
+
+プロジェクトの規約と tModLoader の最良慣行に準拠
+主なユースケース:
+
+新規アイテム／NPC／ゲーム機構の実装
+
+最小修正でのコンパイルエラー解消
+
+既存構造に沿った機能追加
+
+6. code-refactorer
+
+役割: コード品質改善の専門家
+主な能力:
+
+構造・可読性・保守性を改善
+
+重複の排除・命名改善
+
+複雑ロジックの単純化（挙動は不変）
+
+既存機能と完全に互換性を維持
+主なユースケース:
+
+実装後のクリーンアップ
+
+レガシーコードの保守性向上
+
+レビュー指摘の是正
+
+7. localization-sync
+
+役割: 翻訳同期の専門家
+主な能力:
+
+en-US と ja-JP の完全なキー／内容パリティを維持
+
+プレースホルダ整合性（個数・順序・形式）を検証
+
+ローカリゼーションファイルの構造的不整合を監査
+
+新規コンテンツの双方向同期を実施
+主なユースケース:
+
+翻訳対象の新規追加時
+
+言語間のプレースホルダ不一致の修正
+
+定期的な翻訳品質監査
+
+8. mod-integrator
+
+役割: クロス MOD 互換の専門家
+主な能力:
+
+外部 MOD 連携に弱参照パターンを適用
+
+依存 MOD 不在時の堅牢なエラーハンドリング
+
+Reflection や Mod.Call を安全に活用
+
+依存欠如時に優雅に機能を縮退
+主なユースケース:
+
+Calamity／Thorium 等との互換機能追加
+
+人気 MOD を拡張するユーティリティ MOD
+
+MOD presence に応じた条件付きコンテンツ
+
+9. vibe-coding-coach
+
+役割: ビジョン主導のアプリ開発専門家
+主な能力:
+
+ユーザーの発想／ビジュアル参照を動くアプリに翻訳
+
+技術的複雑性は裏側で処理
+
+体験と美意識を重視した対話駆動の開発
+
+会話ベースで完成品に到達
+主なユースケース:
+
+非エンジニアのアプリ構想の具現化
+
+モックや美観重視のプロジェクト
+
+技術仕様より体験重視の迅速プロトタイピング
+
+代表的なワークフロー（Common Workflow Patterns）
+標準機能開発（Standard Feature Development）
+
+task-planner → 機能要件を分解
+
+reference-agent → 関連 API／実例を調査
+
+api-verifier → 必要 API を検証
+
+code-editor → 安全に実装
+
+localization-sync → 新規テキストを翻訳追加
+
+code-refactorer → 仕上げの品質改善
+
+クロス MOD 連携（Cross-Mod Integration Project）
+
+task-planner → 連携方針を立案
+
+reference-agent → 対象 MOD の API を調査
+
+mod-integrator → 弱参照による連携を実装
+
+localization-sync → 翻訳同期
+
+api-verifier → 連携ポイントを再検証
+
+レガシー MOD 移植（Legacy Mod Porting）
+
+task-planner → 移植要件の分析
+
+reference-agent → 版間 API 変更の調査
+
+api-verifier → 代替 API の検証
+
+code-editor → 必要変更の実装
+
+localization-sync → 形式／内容の更新
+
+code-refactorer → 近代的パターンへ改善
+
+ビジョン駆動開発（Vision-Driven Development）
+
+vibe-coding-coach → 単独サイクルで対話構築
+
+（任意）code-refactorer → 仕上げの最適化
+
+統合ガイドライン（Integration Guidelines）
+
+実装前に必ず検証: code-editor の前に api-verifier
+
+翻訳パリティを維持: コンテンツ追加には localization-sync を組み込む
+
+複雑要求は計画から: task-planner で分解と順序付け
+
+作る前に調べる: 不慣れな API／手法は reference-agent
+
+実装後に整える: 品質仕上げは code-refactorer
+
+安全に統合する: クロス MOD は mod-integrator を通す
+
+このエコシステムは、tModLoader における MOD 開発の全領域をカバーしつつ、安全性・品質・最良慣行を開発プロセス全体で維持します。

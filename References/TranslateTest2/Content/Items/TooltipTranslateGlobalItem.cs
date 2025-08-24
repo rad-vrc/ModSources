@@ -1,0 +1,436 @@
+using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.ModLoader;
+using TranslateTest2.Core;
+using System.Text.RegularExpressions;
+
+namespace TranslateTest2.Content.Items
+{
+    /// <summary>
+    /// 最適化版: 安全性とパフォーマンスを向上させたツールチップ翻訳処理
+    /// </summary>
+    public class TooltipTranslateGlobalItem : GlobalItem
+    {
+        // パフォーマンス最適化: HashSetを使用してO(1)の星文字判定
+        private static readonly HashSet<char> StarCharsSet = new HashSet<char> 
+        { 
+            '*', '＊', '★', '☆', '✦', '✧', '✪', '✩', '❋', '✱', '﹡', '∗' 
+        };
+
+        private static bool IsStarChar(char c) => StarCharsSet.Contains(c);
+
+        private static readonly System.Text.RegularExpressions.Regex StarTagRegex = new System.Text.RegularExpressions.Regex(
+            $@"^\[[^\]]*:[{System.Text.RegularExpressions.Regex.Escape(new string(StarCharsSet.ToArray()))}]\]$", 
+            System.Text.RegularExpressions.RegexOptions.Compiled);
+
+        // キャッシュによる最適化
+        private static readonly Dictionary<string, bool> StarTokenCache = new Dictionary<string, bool>();
+        private static readonly Dictionary<string, List<(string text, bool protect)>> SegmentCache = new Dictionary<string, List<(string text, bool protect)>>();
+        
+        // キャッシュサイズ制限（メモリリーク防止）
+        private const int MAX_CACHE_SIZE = 1000;
+        private static int _cacheCleanupCounter = 0;
+
+        // 安全なShift判定 - より効率的
+        private static bool IsShiftPressed()
+        {
+            try
+            {
+                var keyboardState = Keyboard.GetState();
+                return keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift);
+            }
+            catch
+            {
+                return false; // エラー時はデフォルトで false
+            }
+        }
+
+        // 最適化された保護セグメント分割（IndexOutOfRangeException対策強化版）
+        private static List<(string text, bool protect)> SplitProtectedSegments(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return new List<(string, bool)> { (input ?? string.Empty, false) };
+
+            // キャッシュチェック
+            if (SegmentCache.TryGetValue(input, out var cached))
+                return cached;
+
+            var list = new List<(string, bool)>();
+            int i = 0;
+            int safetyCounter = 0;
+            const int maxSegments = 1024; // より現実的な上限
+            const int maxIterations = 4096; // 無限ループ防止
+            int inputLength = input.Length;
+
+            while (i < inputLength && safetyCounter < maxIterations)
+            {
+                safetyCounter++;
+                
+                if (list.Count > maxSegments)
+                {
+                    list.Add((input.Substring(i), false));
+                    break;
+                }
+
+                try
+                {
+                    char c = input[i];
+                    
+                    if (c == '[')
+                    {
+                        int start = i;
+                        int j = input.IndexOf(']', i + 1);
+                        if (j >= 0 && j < inputLength)
+                        {
+                            list.Add((input.Substring(start, j - start + 1), true));
+                            i = j + 1;
+                            continue;
+                        }
+                    }
+                    else if (IsStarChar(c))
+                    {
+                        int start = i;
+                        int j = input.IndexOf(c, i + 1);
+                        if (j >= 0 && j < inputLength)
+                        {
+                            list.Add((input.Substring(start, j - start + 1), true));
+                            i = j + 1;
+                            continue;
+                        }
+                    }
+
+                    // 非保護の連続部分を効率的に収集
+                    int begin = i;
+                    while (i < inputLength && 
+                           i < input.Length && // 二重チェック
+                           input[i] != '[' && 
+                           !IsStarChar(input[i]))
+                    {
+                        i++;
+                    }
+                    
+                    if (i > begin)
+                    {
+                        list.Add((input.Substring(begin, i - begin), false));
+                    }
+                    else
+                    {
+                        // 1文字前進（デッドロック防止）
+                        if (i < inputLength)
+                        {
+                            list.Add((input[i].ToString(), false));
+                            i++;
+                        }
+                        else
+                        {
+                            break; // 安全のための脱出
+                        }
+                    }
+                }
+                catch (System.IndexOutOfRangeException)
+                {
+                    // 境界外アクセスの場合は安全に終了
+                    break;
+                }
+                catch (System.Exception ex)
+                {
+                    TranslateTest2.Instance?.Logger?.Debug($"Error in segment splitting: {ex.Message}");
+                    break;
+                }
+            }
+
+            // キャッシュに保存（サイズ制限付き）
+            if (SegmentCache.Count < MAX_CACHE_SIZE)
+            {
+                SegmentCache[input] = list;
+            }
+
+            return list;
+        }
+
+        // 最適化された辞書翻訳
+        private static string DictionaryProtectedTranslate(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            try
+            {
+                var segs = SplitProtectedSegments(input);
+                PromoteBetweenStarTokens(segs);
+
+                if (segs.Count == 1 && !segs[0].protect)
+                {
+                    return TooltipTranslator.TranslateLine(segs[0].text);
+                }
+
+                var sb = new System.Text.StringBuilder(input.Length + 32);
+                foreach (var (seg, protect) in segs)
+                {
+                    sb.Append(protect ? seg : TooltipTranslator.TranslateLine(seg));
+                }
+                return sb.ToString();
+            }
+            catch
+            {
+                return input;
+            }
+        }
+
+        private static void PromoteBetweenStarTokens(List<(string text, bool protect)> segs)
+        {
+            if (segs?.Count <= 2) return; // 最低3要素必要
+
+            for (int i = 0; i < segs.Count - 2; i++)
+            {
+                if (segs[i].protect && IsStarTokenSegment(segs[i].text))
+                {
+                    // 右側の星トークンを探す
+                    for (int j = i + 2; j < segs.Count; j++)
+                    {
+                        if (segs[j].protect && IsStarTokenSegment(segs[j].text))
+                        {
+                            // 中間要素を保護に昇格
+                            for (int k = i + 1; k < j; k++)
+                            {
+                                if (!segs[k].protect)
+                                    segs[k] = (segs[k].text, true);
+                            }
+                            i = j; // 次の検索開始位置
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static bool IsStarTokenSegment(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return false;
+
+            // キャッシュチェック
+            if (StarTokenCache.TryGetValue(s, out bool cachedResult))
+                return cachedResult;
+
+            bool result = false;
+
+            try
+            {
+                // 単一の星文字
+                if (s.Length == 1 && IsStarChar(s[0]))
+                {
+                    result = true;
+                }
+                // ブラケットタグの星判定
+                else if (s.Length >= 4 && s[0] == '[' && s[s.Length - 1] == ']')
+                {
+                    result = StarTagRegex.IsMatch(s);
+                }
+
+                // キャッシュに保存（サイズ制限付き）
+                if (StarTokenCache.Count < MAX_CACHE_SIZE)
+                {
+                    StarTokenCache[s] = result;
+                }
+            }
+            catch
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        private static string DeepLProtectedTranslate(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            try
+            {
+                var segs = SplitProtectedSegments(input);
+                PromoteBetweenStarTokens(segs);
+
+                if (segs.Count == 1 && !segs[0].protect)
+                {
+                    var text = segs[0].text;
+                    if (TextLangHelper.NeedsTranslation(text))
+                    {
+                        if (TranslationService.TryGetCached(text, out var cached))
+                            return cached;
+                        TranslationService.RequestIfMissing(text);
+                    }
+                    return text;
+                }
+
+                var sb = new System.Text.StringBuilder(input.Length + 32);
+                foreach (var (seg, protect) in segs)
+                {
+                    if (protect)
+                    {
+                        sb.Append(seg);
+                    }
+                    else if (TextLangHelper.NeedsTranslation(seg))
+                    {
+                        if (TranslationService.TryGetCached(seg, out var cached))
+                        {
+                            sb.Append(cached);
+                        }
+                        else
+                        {
+                            TranslationService.RequestIfMissing(seg);
+                            sb.Append(seg);
+                        }
+                    }
+                    else
+                    {
+                        sb.Append(seg);
+                    }
+                }
+                return sb.ToString();
+            }
+            catch
+            {
+                return input;
+            }
+        }
+
+        private static string HardProtectStarBlocks(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return input;
+
+            try
+            {
+                var segs = SplitProtectedSegments(input);
+                PromoteBetweenStarTokens(segs);
+                
+                if (segs.Count == 1)
+                    return input;
+
+                var sb = new System.Text.StringBuilder(input.Length + 16);
+                foreach (var (seg, _) in segs)
+                {
+                    sb.Append(seg);
+                }
+                return sb.ToString();
+            }
+            catch
+            {
+                return input;
+            }
+        }
+
+        private static bool HasProtectedStarBlock(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return false;
+
+            try
+            {
+                var segs = SplitProtectedSegments(input);
+                PromoteBetweenStarTokens(segs);
+                for (int i = 0; i < segs.Count; i++)
+                {
+                    var seg = segs[i];
+                    if (seg.protect && !IsStarTokenSegment(seg.text) && !string.IsNullOrWhiteSpace(seg.text))
+                        return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // パフォーマンス改善のためキャッシュをクリア
+        public static void ClearCaches()
+        {
+            StarTokenCache.Clear();
+            SegmentCache.Clear();
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (item?.active != true || tooltips?.Count == 0) return;
+
+            bool shift = IsShiftPressed();
+            if (!shift && !TranslationService.IsEnabled) return; // 早期リターン最適化
+
+            // 定期的なキャッシュクリア（メモリリーク防止）- より効率的な間隔
+            if (++_cacheCleanupCounter >= 7200) // 約2分に1回に延長
+            {
+                _cacheCleanupCounter = 0;
+                if (StarTokenCache.Count > MAX_CACHE_SIZE || SegmentCache.Count > MAX_CACHE_SIZE)
+                {
+                    // より保守的なクリア（半分だけクリアして有用なキャッシュを保持）
+                    if (StarTokenCache.Count > MAX_CACHE_SIZE)
+                    {
+                        var toRemove = StarTokenCache.Keys.Take(StarTokenCache.Count / 2).ToArray();
+                        foreach (var key in toRemove)
+                        {
+                            StarTokenCache.Remove(key);
+                        }
+                    }
+                    
+                    if (SegmentCache.Count > MAX_CACHE_SIZE)
+                    {
+                        var toRemove = SegmentCache.Keys.Take(SegmentCache.Count / 2).ToArray();
+                        foreach (var key in toRemove)
+                        {
+                            SegmentCache.Remove(key);
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                var line = tooltips[i];
+                if (line?.Text == null) continue;
+
+                try
+                {
+                    string text = line.Text;
+                    if (string.IsNullOrWhiteSpace(text)) continue;
+
+                    // 星囲みブロックの保護
+                    text = HardProtectStarBlocks(text);
+
+                    // アイテム名の日本語語順再構成
+                    if (line.Mod == "Terraria" && line.Name == "ItemName" && !HasProtectedStarBlock(text))
+                    {
+                        try
+                        {
+                            if (NameComposer.TryCompose(text, out var composed))
+                                text = composed;
+                        }
+                        catch { /* 継続 */ }
+                    }
+
+                    // 辞書翻訳（Shift押下時のみ、Terraira製のみ）
+                    if (shift && line.Mod == "Terraria")
+                    {
+                        text = DictionaryProtectedTranslate(text);
+                    }
+
+                    // DeepL翻訳（Shift押下時のみ）
+                    if (shift && TranslationService.IsEnabled && TextLangHelper.NeedsTranslation(text))
+                    {
+                        text = DeepLProtectedTranslate(text);
+                    }
+
+                    line.Text = text;
+                }
+                catch (System.Exception ex)
+                {
+                    TranslateTest2.Instance?.Logger?.Warn($"Tooltip error: {ex.GetType().Name}: {ex.Message}");
+                }
+            }
+        }
+    }
+}

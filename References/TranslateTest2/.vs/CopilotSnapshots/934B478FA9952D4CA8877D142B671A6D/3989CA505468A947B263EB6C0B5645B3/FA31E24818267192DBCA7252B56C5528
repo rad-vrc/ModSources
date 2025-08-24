@@ -1,0 +1,103 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: SummonerPrefix.Prefixes.Abusive
+// Assembly: SummonerPrefix, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8925F543-424F-4302-A9BE-42DFABB73BB2
+// Assembly location: D:\dorad\Documents\My Games\Terraria\tModLoader\ModReader\SummonerPrefix\SummonerPrefix.dll
+
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace TranslateTest2.Prefixes
+{
+    public class Abusive : ModPrefix
+    {
+        public static float TagCrit = 0.04f;
+
+        public override PrefixCategory Category => PrefixCategory.Melee;
+
+        public override float RollChance(Item item) => 0.6f;
+
+        public override bool CanRoll(Item item) => item.shoot > ProjectileID.None && ProjectileID.Sets.IsAWhip[item.shoot];
+
+        public override void SetStats(
+            ref float damageMult,
+            ref float knockbackMult,
+            ref float useTimeMult,
+            ref float scaleMult,
+            ref float shootSpeedMult,
+            ref float manaMult,
+            ref int critBonus)
+        {
+        }
+
+        public override void ModifyValue(ref float valueMult) => valueMult *= 1.5f;
+
+        public override void Apply(Item item)
+        {
+            item.global().CanGiveTag = true;
+            if (item.global().wTag == null)
+                item.global().wTag = new WhipTag("abusive", 0);
+            item.global().wTag.CritAdd += TagCrit;
+        }
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            // AdditionalTooltipシステムを使用してローカリゼーション対応
+            string tooltipText;
+            var key = $"Mods.TranslateTest2.Prefix{Name}Descr";
+            
+            try
+            {
+                tooltipText = Language.GetTextValue(key);
+                TranslateTest2.Instance?.Logger?.Debug($"Abusive Direct Key: {key} -> \"{tooltipText}\"");
+                
+                if (string.IsNullOrEmpty(tooltipText) || tooltipText == key)
+                {
+                    tooltipText = AdditionalTooltip.Value;
+                    TranslateTest2.Instance?.Logger?.Debug($"Abusive Using fallback: \"{tooltipText}\"");
+                }
+            }
+            catch (Exception ex)
+            {
+                tooltipText = AdditionalTooltip.Value;
+                TranslateTest2.Instance?.Logger?.Debug($"Abusive Exception fallback: {ex.Message}");
+            }
+
+            var tl = new TooltipLine(Mod, "PrefixDescription", tooltipText)
+            {
+                IsModifier = true,
+                IsModifierBad = false
+            };
+
+            // プレースホルダー置換
+            float chancePercent = DebuffChance * 100f;
+            string debuffName = "デバフ"; // 実際のデバフ名を表示したい場合は後で改善可能
+            
+            tl.Text = tl.Text.Replace("{A}", $"{chancePercent:0}")
+                           .Replace("{B}", debuffName);
+
+            yield return tl;
+        }
+
+        /// <summary>
+        /// 元のSummonerPrefix方式: ローカリゼーションからツールチップテキストを取得
+        /// </summary>
+        public LocalizedText AdditionalTooltip
+        {
+            get
+            {
+                var key = Mod.GetLocalizationKey($"Prefix{Name}Descr");
+                return Language.GetOrRegister(key, () => "{A}% chance to inflict {B} on hit");
+            }
+        }
+
+        public override void SetStaticDefaults()
+        {
+            _ = AdditionalTooltip;
+        }
+    }
+}

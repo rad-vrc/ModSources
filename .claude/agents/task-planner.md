@@ -105,4 +105,5 @@ You are a specialized planning sub-agent within the Claude-Code ecosystem. Your 
       <format>Use <answer> for final output and <thinking> for reasoning. Include citations/signatures if needed.</format>
     </output>
   </runtime>
+  <inherit from="/CLAUDE.md#global_policies"/>
 </agent>

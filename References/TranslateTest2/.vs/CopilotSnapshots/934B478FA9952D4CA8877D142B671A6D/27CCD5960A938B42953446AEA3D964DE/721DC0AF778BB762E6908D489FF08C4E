@@ -1,0 +1,159 @@
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.IO;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+
+namespace TranslateTest2
+{
+    public class SPGlobalProj : GlobalProjectile
+    {
+        public float MultedMinionSlot = 1f;
+        public float UpdateCounter;
+        public float MinionUpdateSpeed = 1f;
+        public bool deviation;
+        public bool echo;
+        public bool blessing;
+        public float LifeSteal;
+        public bool contract;
+        public float MinionCrit;
+        public bool electrified;
+        
+        public static bool EchoDoubleProj = true;
+
+        public override bool InstancePerEntity => true;
+
+        public override void SendExtraAI(
+            Projectile projectile,
+            BitWriter bitWriter,
+            BinaryWriter binaryWriter)
+        {
+            binaryWriter.Write(blessing);
+            binaryWriter.Write(MinionUpdateSpeed);
+            binaryWriter.Write(electrified);
+        }
+
+        public override void ReceiveExtraAI(
+            Projectile projectile,
+            BitReader bitReader,
+            BinaryReader binaryReader)
+        {
+            blessing = binaryReader.ReadBoolean();
+            MinionUpdateSpeed = binaryReader.ReadSingle();
+            electrified = binaryReader.ReadBoolean();
+        }
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            try
+            {
+                // 基本的な安全チェックを強化
+                if (projectile?.active != true || source == null)
+                    return;
+
+                if (source is EntitySource_ItemUse entitySourceItemUse && 
+                    entitySourceItemUse.Item?.IsAir == false &&
+                    (projectile.minion || projectile.sentry) && 
+                    entitySourceItemUse.Item.isMinionSummonItem())
+                {
+                    var globalItem = entitySourceItemUse.Item.global();
+                    var item = entitySourceItemUse.Item;
+                    
+                    // 基本効果の安全な適用（値の範囲制限を強化）
+                    if (globalItem != null && item?.IsAir == false)
+                    {
+                        // より厳格な値の検証と制限
+                        var slotMult = Math.Max(0.1f, Math.Min(globalItem.MinionSlotMult, 5f));
+                        var updateSpeed = Math.Max(0.1f, Math.Min(globalItem.MinionUpdateSpeed, 5f));
+                        var scaleMult = Math.Max(0.1f, Math.Min(globalItem.MinionScaleMult, 3f));
+                        var knockbackMult = Math.Max(0f, Math.Min(globalItem.MinionKnockbackMult, 5f));
+                        var lifeSteal = Math.Max(0f, Math.Min(globalItem.MinionLifeSteal, 1f));
+                        var critAdd = Math.Max(0f, Math.Min(globalItem.MinionCritAdd, 1f));
+
+                        projectile.minionSlots = Math.Max(0f, projectile.minionSlots * slotMult);
+                        MultedMinionSlot = projectile.minionSlots;
+                        MinionUpdateSpeed = updateSpeed;
+                        projectile.scale = Math.Max(0.1f, projectile.scale * scaleMult);
+                        projectile.knockBack = Math.Max(0f, projectile.knockBack * knockbackMult);
+                        LifeSteal = lifeSteal;
+                        MinionCrit = critAdd;
+                        
+                        // Prefix判定による効果設定（より安全に）
+                        try
+                        {
+                            int prefixType = item.prefix;
+                            
+                            deviation = prefixType == ModContent.PrefixType<Prefixes.Deviation>();
+                            echo = prefixType == ModContent.PrefixType<Prefixes.Echo>();
+                            blessing = prefixType == ModContent.PrefixType<Prefixes.Blessing>();
+                            contract = prefixType == ModContent.PrefixType<Prefixes.Contract>();
+                            electrified = globalItem.electrified;
+                        }
+                        catch (Exception ex)
+                        {
+                            TranslateTest2.Instance?.Logger?.Debug($"Error in prefix type checking: {ex.Message}");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error in SPGlobalProj.OnSpawn: {ex.Message}");
+                // エラー時は安全なデフォルト値を設定
+                MinionUpdateSpeed = 1f;
+                MultedMinionSlot = Math.Max(0f, projectile?.minionSlots ?? 0f);
+            }
+        }
+
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            try
+            {
+                // Electrified効果: 体力割合ダメージ
+                if (electrified && projectile.TryGetOwner(out Player electrifiedPlayer))
+                {
+                    int bonusDamage = (int)(electrifiedPlayer.statLifeMax * Prefixes.Electrified.DmgMultByPlayerMaxHealth);
+                    modifiers.FlatBonusDamage += bonusDamage;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                TranslateTest2.Instance?.Logger?.Debug($"Error in ModifyHitNPC: {ex.Message}");
+            }
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // Whipタグ処理
+            if (ProjectileID.Sets.IsAWhip[projectile.type] && projectile.TryGetOwner(out Player whipPlayer) && whipPlayer.HeldItem.global().wTag != null && whipPlayer.HeldItem.global().CanGiveTag)
+                target.AddTag(whipPlayer.HeldItem.global().wTag.Clone());
+                
+            // LifeSteal効果
+            if (LifeSteal > 0.0 && projectile.TryGetOwner(out Player lifeStealPlayer) && lifeStealPlayer.GetModPlayer<SPModPlayer>().HealMe((int)Math.Ceiling(lifeStealPlayer.statLifeMax2 * LifeSteal), 5))
+            {
+                for (float num = 0.0f; num <= 1.0; num += 0.005f)
+                {
+                    Dust dust = Dust.NewDustDirect(Vector2.Lerp(lifeStealPlayer.Center, target.Center, num), 1, 1, DustID.SomethingRed, 0.0f, 0.0f, 0, new Color(), 1f);
+                    dust.velocity = Vector2.Add(Vector2.Multiply(Utils.ToRotationVector2(Utils.NextFloat(Main.rand) * 6.28318548f), Utils.NextFloat(Main.rand, -1f, 1f)), Vector2.Multiply(Utils.SafeNormalize(Vector2.Subtract(lifeStealPlayer.Center, target.Center), Vector2.Zero), 3.6f));
+                    dust.scale = 0.8f;
+                    dust.position = Vector2.Lerp(lifeStealPlayer.Center, target.Center, num);
+                }
+            }
+        }
+
+        public override bool PreAI(Projectile projectile)
+        {
+            // Electrified効果: 定期的な電撃レーザー生成
+            if (electrified && Main.GameUpdateCount % 12U == 0U && projectile.TryGetOwner(out Player electrifiedPlayer))
+            {
+                int laserDamage = (int)(electrifiedPlayer.statLifeMax2 * Prefixes.Electrified.DmgMultByPlayerMaxHealth);
+                Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.ElectricLaser>(), laserDamage, 0.0f, electrifiedPlayer.whoAmI, electrifiedPlayer.Center.X, electrifiedPlayer.Center.Y, 0.0f);
+            }
+
+            return true;
+        }
+    }
+}

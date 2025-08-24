@@ -1,0 +1,62 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: SummonerPrefix.Prefixes.Focused
+// Assembly: SummonerPrefix, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8925F543-424F-4302-A9BE-42DFABB73BB2
+// Assembly location: D:\dorad\Documents\My Games\Terraria\tModLoader\ModReader\SummonerPrefix\SummonerPrefix.dll
+
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace TranslateTest2.Prefixes
+{
+    public class Focused : ModPrefix
+    {
+        public static float MinionSlotAndDmgMult = 1.4f;
+
+        public override PrefixCategory Category => PrefixCategory.AnyWeapon;
+
+        public override float RollChance(Item item) => 1f;
+
+        public override bool CanRoll(Item item) => item.shoot > ProjectileID.None && item.isMinionSummonItem();
+
+        public override void SetStats(
+            ref float damageMult,
+            ref float knockbackMult,
+            ref float useTimeMult,
+            ref float scaleMult,
+            ref float shootSpeedMult,
+            ref float manaMult,
+            ref int critBonus)
+        {
+            damageMult = MinionSlotAndDmgMult + 0.4f;
+        }
+
+        public override void ModifyValue(ref float valueMult) => valueMult *= 1.25f;
+
+        public override void Apply(Item item)
+        {
+            item.global().MinionSlotMult = MinionSlotAndDmgMult;
+        }
+
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
+        {
+            float damageIncrease = (MinionSlotAndDmgMult + 0.4f - 1f) * 100f;
+            
+            // Calculate actual slot increase for this specific item
+            Projectile projectile = new Projectile();
+            projectile.SetDefaults(item.shoot);
+            float actualSlotIncrease = projectile.minionSlots * (MinionSlotAndDmgMult - 1f);
+            
+            yield return new TooltipLine(Mod, "PrefixFocusedDescription", 
+                $"+{damageIncrease:0}% ダメージ, +{((MinionSlotAndDmgMult - 1f) * 100):0}% スロット使用量 (+{actualSlotIncrease:0.1f} スロット)")
+            {
+                IsModifier = true,
+                IsModifierBad = false
+            };
+        }
+    }
+}

@@ -95,4 +95,6 @@ Your verification must be complete and accurate before any coding begins. Includ
     <format>Use <answer> for final output and <thinking> for reasoning. Include citations/signatures if needed.</format>
   </output>
   </runtime>
+  <inherit from="/CLAUDE.md#global_policies"/>
+
 </agent>

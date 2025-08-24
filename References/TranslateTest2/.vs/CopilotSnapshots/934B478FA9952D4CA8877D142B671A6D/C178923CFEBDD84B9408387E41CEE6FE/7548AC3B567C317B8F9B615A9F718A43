@@ -1,0 +1,108 @@
+﻿using System;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace TranslateTest2.Core
+{
+    /// <summary>
+    /// ローカリゼーション経由でPrefix効果値を設定可能にするヘルパークラス
+    /// 元のSummonerPrefixの機能を復元
+    /// </summary>
+    public static class LocalizedValues
+    {
+        /// <summary>
+        /// ローカリゼーションから浮動小数点値を取得（デフォルト値付き）
+        /// </summary>
+        public static float GetFloat(string key, float defaultValue)
+        {
+            try
+            {
+                var localized = Language.GetTextValue(key);
+                if (string.IsNullOrEmpty(localized) || localized == key)
+                    return defaultValue;
+
+                if (float.TryParse(localized, out var result))
+                    return result;
+
+                return defaultValue;
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        /// ローカリゼーションから整数値を取得（デフォルト値付き）
+        /// </summary>
+        public static int GetInt(string key, int defaultValue)
+        {
+            try
+            {
+                var localized = Language.GetTextValue(key);
+                if (string.IsNullOrEmpty(localized) || localized == key)
+                    return defaultValue;
+
+                if (int.TryParse(localized, out var result))
+                    return result;
+
+                return defaultValue;
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+
+        /// <summary>
+        /// Prefix固有の効果値を取得
+        /// 例: "Mods.TranslateTest2.Prefixes.Affable.MinionSlotMult" -> 0.8
+        /// </summary>
+        public static float GetPrefixFloat(string prefixName, string parameterName, float defaultValue)
+        {
+            var key = $"Mods.TranslateTest2.Prefixes.{prefixName}.{parameterName}";
+            return GetFloat(key, defaultValue);
+        }
+
+        /// <summary>
+        /// Prefix固有の効果値を取得（整数版）
+        /// </summary>
+        public static int GetPrefixInt(string prefixName, string parameterName, int defaultValue)
+        {
+            var key = $"Mods.TranslateTest2.Prefixes.{prefixName}.{parameterName}";
+            return GetInt(key, defaultValue);
+        }
+
+        /// <summary>
+        /// MODのローカリゼーションキーが存在するかチェック
+        /// </summary>
+        public static bool HasKey(string key)
+        {
+            try
+            {
+                var localized = Language.GetTextValue(key);
+                return !string.IsNullOrEmpty(localized) && localized != key;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// デバッグ用: ローカリゼーション値の読み込み状況をログ出力
+        /// </summary>
+        public static void LogPrefixValue(string prefixName, string parameterName, float defaultValue, float actualValue)
+        {
+            try
+            {
+                if (Math.Abs(actualValue - defaultValue) > 0.001f)
+                {
+                    TranslateTest2.Instance?.Logger?.Info(
+                        $"Prefix {prefixName}.{parameterName}: {defaultValue} -> {actualValue} (from localization)");
+                }
+            }
+            catch { }
+        }
+    }
+}

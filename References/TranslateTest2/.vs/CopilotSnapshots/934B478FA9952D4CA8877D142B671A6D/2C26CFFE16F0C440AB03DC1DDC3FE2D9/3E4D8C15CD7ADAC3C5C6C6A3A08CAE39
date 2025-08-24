@@ -1,0 +1,6 @@
+﻿displayName = TranslateTest2 (SummonerPrefix + Translation)
+author = rad_vrc
+version = 1.0.0
+description = Complete integration of SummonerPrefix with advanced translation features
+homepage = https://github.com/rad_vrc/TranslateTest2
+side = Client

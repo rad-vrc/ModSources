@@ -141,4 +141,5 @@ Refactoring is successful when: (1) the code remains functionally identical, (2)
       <format>Use <answer> for final output and <thinking> for reasoning. Include citations/signatures if needed.</format>
     </output>
   </runtime>
+  <inherit from="/CLAUDE.md#global_policies"/>
 </agent>

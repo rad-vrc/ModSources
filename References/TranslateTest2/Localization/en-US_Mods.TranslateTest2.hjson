@@ -1,0 +1,605 @@
+Configs: {
+	ClientConfig: {
+		DisplayName: Client Settings
+		Headers.DeepL: DeepL Settings
+
+		DeepLApiKey: {
+			Label: DeepL API Key
+			Tooltip: Enter your DeepL API auth_key. Stored client-side only.
+		}
+
+		TargetLang: {
+			Label: Target Language
+			Tooltip: DeepL target language code, e.g. JA, EN-US, EN-GB, ZH.
+		}
+
+		UseDeepL: {
+			Label: Use DeepL
+			Tooltip: Enable DeepL translation for tooltips and item names. Requires API key.
+		}
+
+		CacheDeepL: {
+			Label: Cache DeepL
+			Tooltip: Cache translated strings locally to avoid repeated DeepL requests.
+		}
+
+		ShowShiftIndicator: {
+			Label: Show Shift Indicator
+			Tooltip: Show a small "[Shift-Translate]" marker when translation is active.
+		}
+
+		EnableNameReconstruction: {
+			Label: Enable Name Reconstruction
+			Tooltip: Reconstruct item names like 'Legendary ... of ...' into natural Japanese order
+		}
+
+		SkipBracketContentInNames: {
+			Label: Skip [brackets] in names
+			Tooltip: Do not translate content inside square brackets in item names (e.g., [ModName]).
+		}
+
+		DeepLTimeoutMs: {
+			Label: DeepL Timeout (ms)
+			Tooltip: HTTP timeout per DeepL request (milliseconds).
+		}
+
+		DeepLBatchIntervalMs: {
+			Label: DeepL Batch Interval (ms)
+			Tooltip: Wait time to accumulate texts before sending a batch (milliseconds).
+		}
+
+		DeepLBatchMax: {
+			Label: DeepL Batch Size
+			Tooltip: Maximum number of texts to send per batch request.
+		}
+
+		DeepLEndpointPreference: {
+			Label: DeepL Endpoint Preference
+			Tooltip: Choose which endpoint to use: auto, free, or paid.
+		}
+
+		DeepLRetryCount: {
+			Label: DeepL Retry Count
+			Tooltip: Number of retry attempts when a request fails.
+		}
+
+		DeepLRetryInitialDelayMs: {
+			Label: DeepL Retry Initial Delay (ms)
+			Tooltip: Initial delay before retrying failed requests (milliseconds). Doubles each attempt.
+		}
+
+		ProxyUrl: {
+			Label: Proxy Url
+			Tooltip: Optional HTTP proxy URL (e.g. http://127.0.0.1:8080). Leave empty to disable.
+		}
+
+		TranslationMode: {
+			Label: Translation Mode
+			Tooltip: ""
+		}
+	}
+
+	BiomeDisplayClientConfig: {
+		DisplayName: Biome Display Settings
+		Headers.BiomeDisplay: Biome Display
+
+		simpleDisplay: {
+			Label: Simple Display
+			Tooltip:
+				'''
+				Removes extra symbols from certain cycling info displays.
+				Specifically removes the '+' suffix from displays that cycle multiple values
+				and removes the '~' (approximate) marker from the spawn rate / cap display.
+				Affects: Biome, Combo, Spawn Rate / Cap displays.
+				'''
+		}
+	}
+
+	InventoryConfig: {
+		DisplayName: Inventory Config
+
+		Headers: {
+			MainFeatures: Main Features Header
+			ExtraFeatures: Extra Features Header
+		}
+
+		LeftMouse: {
+			Label: Left Mouse
+			Tooltip: ""
+		}
+
+		RightMouse: {
+			Label: Right Mouse
+			Tooltip: ""
+		}
+
+		SplittableGrabBags: {
+			Label: Splittable Grab Bags
+			Tooltip: ""
+		}
+
+		ThrowDragging: {
+			Label: Throw Dragging
+			Tooltip: ""
+		}
+
+		DebugMessages: {
+			Label: Debug Messages
+			Tooltip: ""
+		}
+	}
+
+	LeftMouseOptions: {
+		Tooltip: ""
+
+		Enabled: {
+			Label: Enabled
+			Tooltip: ""
+		}
+
+		ModifierOptions: {
+			Label: Modifier Options
+			Tooltip: ""
+		}
+	}
+
+	ModifierOptions: {
+		Tooltip: ""
+
+		AllowCtrl: {
+			Label: Allow Ctrl
+			Tooltip: ""
+		}
+
+		AllowShift: {
+			Label: Allow Shift
+			Tooltip: ""
+		}
+
+		AllowAlt: {
+			Label: Allow Alt
+			Tooltip: ""
+		}
+
+		AllowThrow: {
+			Label: Allow Throw
+			Tooltip: ""
+		}
+
+		RequireModifier: {
+			Label: Require Modifier
+			Tooltip: ""
+		}
+	}
+
+	RightMouseOptions: {
+		Tooltip: ""
+
+		Enabled: {
+			Label: Enabled
+			Tooltip: ""
+		}
+
+		ModifierOptions: {
+			Label: Modifier Options
+			Tooltip: ""
+		}
+	}
+
+	SplittableGrabBags: {
+		Tooltip: ""
+
+		Enabled: {
+			Label: Enabled
+			Tooltip: ""
+		}
+
+		ShowTooltip: {
+			Label: Show Tooltip
+			Tooltip: ""
+		}
+	}
+
+	ThrowDragging: {
+		Tooltip: ""
+
+		PlaySound: {
+			Label: Play Sound
+			Tooltip: ""
+		}
+
+		ThrowDelay: {
+			Label: Throw Delay
+			Tooltip: ""
+		}
+	}
+
+	AiPhoneConfig: {
+		DisplayName: Ai Phone Config
+
+		Headers: {
+			Master: Master Header
+			VanillaInfo: Vanilla Info Header
+			QoLCompendium: Qo L Compendium Header
+			Rendering: Rendering Header
+		}
+
+		EnableInfo: {
+			Label: Enable Info
+			Tooltip: ""
+		}
+
+		Watch: {
+			Label: Watch
+			Tooltip: ""
+		}
+
+		Depth: {
+			Label: Depth
+			Tooltip: ""
+		}
+
+		Compass: {
+			Label: Compass
+			Tooltip: ""
+		}
+
+		FishFinder: {
+			Label: Fish Finder
+			Tooltip: ""
+		}
+
+		Weather: {
+			Label: Weather
+			Tooltip: ""
+		}
+
+		Calendar: {
+			Label: Calendar
+			Tooltip: ""
+		}
+
+		OreFinder: {
+			Label: Ore Finder
+			Tooltip: ""
+		}
+
+		DreamCatcher: {
+			Label: Dream Catcher
+			Tooltip: ""
+		}
+
+		DangerSense: {
+			Label: Danger Sense
+			Tooltip: ""
+		}
+
+		DetectCreature: {
+			Label: Detect Creature
+			Tooltip: ""
+		}
+
+		FindTreasure: {
+			Label: Find Treasure
+			Tooltip: ""
+		}
+
+		Mosaic_All: {
+			Label: Mosaic_ All
+			Tooltip: ""
+		}
+
+		Mosaic_BattalionLog: {
+			Label: Mosaic: Battalion Log
+			Tooltip: ""
+		}
+
+		Mosaic_HarmInducer: {
+			Label: Mosaic: Harm Inducer
+			Tooltip: ""
+		}
+
+		Mosaic_HeadCounter: {
+			Label: Mosaic: Head Counter
+			Tooltip: ""
+		}
+
+		Mosaic_Kettlebell: {
+			Label: Mosaic: Kettlebell
+			Tooltip: ""
+		}
+
+		Mosaic_LuckyDie: {
+			Label: Mosaic: Lucky Die
+			Tooltip: ""
+		}
+
+		Mosaic_MetallicClover: {
+			Label: Mosaic: Metallic Clover
+			Tooltip: ""
+		}
+
+		Mosaic_PlateCracker: {
+			Label: Mosaic: Plate Cracker
+			Tooltip: ""
+		}
+
+		Mosaic_Regenerator: {
+			Label: Mosaic: Regenerator
+			Tooltip: ""
+		}
+
+		Mosaic_ReinforcedPanel: {
+			Label: Mosaic: Reinforced Panel
+			Tooltip: ""
+		}
+
+		Mosaic_Replenisher: {
+			Label: Mosaic: Replenisher
+			Tooltip: ""
+		}
+
+		Mosaic_TrackingDevice: {
+			Label: Mosaic: Tracking Device
+			Tooltip: ""
+		}
+
+		Mosaic_WingTimer: {
+			Label: Mosaic: Wing Timer
+			Tooltip: ""
+		}
+
+		UnhideInfo: {
+			Label: Unhide Info
+			Tooltip: ""
+		}
+	}
+
+	TranslatorMode: {
+		Tooltip: ""
+		Auto.Label: Auto
+		DeepL.Label: Deep L
+		Dict.Label: Dict
+		Off.Label: Off
+	}
+}
+
+AiPhoneConfig: {
+	DisplayName: AI Phone
+
+	Headers: {
+		Master: Master Switch
+		VanillaInfo: Vanilla Info (Shellphone)
+		QoLCompendium: QoLCompendium (MosaicMirror-like)
+	}
+
+	EnableInfo: {
+		Label: Enable All Info
+		Tooltip: Toggle all info-acc effects provided by AI Phone
+	}
+
+	Watch.Label: Watch (Time)
+	Depth.Label: Depth Meter
+	Compass.Label: Compass
+	FishFinder.Label: Fish Finder
+	Weather.Label: Weather Radio
+	Calendar.Label: Calendar
+	OreFinder.Label: Metal Detector
+	DreamCatcher.Label: Dream Catcher
+	DangerSense.Label: Danger Sense
+	DetectCreature.Label: Creature Detector
+	FindTreasure.Label: Treasure Finder
+	Mosaic_All.Label: Enable all Mosaic info flags
+}
+
+Prefixes: {
+	Abusive.DisplayName: Abusive
+	Affable.DisplayName: Affable
+	Blessing.DisplayName: Blesseing
+	Brisk.DisplayName: Brisk
+	Contract.DisplayName: Contract
+	Devoted.DisplayName: Devoted
+	Deviation.DisplayName: Deviation
+	Eager.DisplayName: Eager
+	Echo.DisplayName: Echo
+	Electrified.DisplayName: Electrified
+	Extended.DisplayName: Extended
+	Fabled.DisplayName: Fabled
+	Focused.DisplayName: Focused
+	Focused_Whip.DisplayName: Focused
+	Huge.DisplayName: Huge
+	Loyal.DisplayName: Loyal
+	Mega.DisplayName: Mega
+	Oracle.DisplayName: Oracle
+	Overload.DisplayName: Overload
+	Steady.DisplayName: Steady
+	Vengeful.DisplayName: Vengeful
+}
+
+"Keybinds.AI Phone: Hold Radial Wheel.DisplayName": AI Phone: Hold Radial Wheel
+PrefixVengefulDescr: Apply additional tag to the target, increasing the damage of minions by {A}% of item damage({B})
+PrefixExtendedDescr: +{V}% Whip Range
+PrefixAffableDescr: -{A}%({B}) Minion Slots using
+PrefixMegaDescr:
+	'''
+	+100% Minion Slot using
+	+100% Minion Size
+	+100% Minion Knockback
+	'''
+PrefixBriskDescr: +{}% Minion Attack Speed
+PrefixDeviationDescr: The projectile of the summoning object is even more inaccurate
+PrefixSteadyDescr: -{}% Minion Attack Speed
+PrefixHugeDescr: +{}% Minion Size
+PrefixEchoDescr: Minions has a chance to shoot double projectiles
+PrefixBlessingDescr: Minions will provide players nearby some bonus
+PrefixContractDescr:
+	'''
+	Minions heal you for {A}% max HP per hit
+	-{B} armor per minion
+	'''
+PrefixDevotedDescr:
+	'''
+	Tag hitted enemies
+	+{A}% Damage to enemies that has tag
+	otherwise -{B}% Damage
+	'''
+PrefixOverloadDescr: +100% Minion Attack Speed
+PrefixAbusiveDescr: +{}% Minion Crit Chance
+PrefixEagerDescr: +{}% Minion Attack Speed
+PrefixFocusedDescr: +{A}%({B}) Minion Slots using
+PrefixLoyalDescr:
+	'''
+	+{A}%({B}) Minion Slots using
+	+{C}% Minion Crit Chance
+	'''
+PrefixFabledDescr:
+	'''
+	-{A}%({B}) Minion Slots using
+	+{C}% Minion Crit Chance
+	+{D}% Minion Knockback
+	'''
+PrefixOracleDescr:
+	'''
+	Apply additional tag to the target, 
+	increasing the damage of minions by {A}% of item damage({B}),
+	gain {C}% minion crit chance
+	+{D}% Whip Range
+	'''
+Projectiles.ElectricLaser.DisplayName: Electric Laser
+PrefixElectrifiedDescr: Continuously generate lightning chains to connect you and minions, with lightning damage based on your maximum health
+PrefixFocused_WhipDescr: When helding, +{A}%Summon Damage, but -{B} Minion Slot
+
+Biomes: {
+	Neutral: None
+
+	Vanilla: {
+		Space: Space
+		Underworld: Underworld
+		Underground: Underground
+		Solar: Solar Pillar
+		Vortex: Vortex Pillar
+		Nebula: Nebula Pillar
+		Stardust: Stardust Pillar
+		Meteor: Meteor
+		Dungeon: Dungeon
+		Temple: Jungle Temple
+		Aether: Aether
+		Spider: Spider Cave
+		Corruption: Corruption
+		Crimson: Crimson
+		Shroom: Mushroom
+		Jungle: Jungle
+		Hallow: Hallow
+		Ocean: Ocean
+		Snow: Snow
+		Desert: Desert
+		Beehive: Beehive
+		Granite: Granite Cave
+		Marble: Marble Cave
+		Graveyard: Graveyard
+		Forest: Forest
+		Town: Town
+	}
+
+	Thorium.Depths: Aquatic Depths
+
+	Calamity: {
+		AbyssLayer1: Sulphurous Sea
+		AbyssLayer2: Abyssal Depths
+		AbyssLayer3: Abyssal Depths Layer 2
+		AbyssLayer4: The Void
+		AshenStalagmiteSubworld: Ashen Stalagmite
+		AstralInfection: Astral Infection
+		Brimstone: Brimstone Crags
+		SulphurousSea: Sulphurous Sea
+		SunkenSea: Sunken Sea
+	}
+
+	Redemption: {
+		LabBiome: Abandoned Lab
+		SlayerShipBiome: Slayer's Ship
+		SoullessBiome: Soulless Caverns
+		WastelandCorruptBiome: Wasteland (Corrupt)
+		WastelandCrimsonBiome: Wasteland (Crimson)
+		WastelandPurityBiome: Wasteland
+	}
+
+	Aequus.Crevice: Demon Siege
+	Confection.SugarBiome: Sweetened Caverns
+
+	FFF: {
+		BloomingGarden: Blooming Garden
+		BlueMushroomBiome: Blue Mushroom Caverns
+		CandyCane: Candy Cane Fields
+		CanopyBiome: Tree Canopy
+		DeepFarmBiome: Deep Farm
+		DustBiome: Dust Caverns
+		FadeBiome: Faded Biome
+		FlowerFieldBiome: Flower Fields
+		FrozenBiome: Frigid Expanses
+		LushCaveBiome: Lush Caverns
+		PurpleBiome: Purple Biome
+		ShallowCaveBiome: Shallow Caverns
+		TechBiome: Tech Biome
+	}
+
+	Avalon: {
+		Contagion: Contagion
+		Desert: Desert (Avalon)
+		Tropics: Tropics
+	}
+
+	Spirit.SpiritBiome: Spirit
+	StarsAbove.SeaOfStars: Sea of Stars
+	Depths.DepthsBiome: The Depths
+
+	Spooky: {
+		SpiderCave: Spider Cave
+		SpookyBiome: Spooky Forest
+		SpookyHell: Rotten Underworld
+	}
+
+	Verdant.VerdantBiome: Verdant
+	Valhalla.GlacialDepths: Glacial Depths
+	Remnants.RemnantsBiome: Remnants
+
+	RiseOfAges: {
+		BiomeCaves: Cave Dwelling
+		BiomeCavesFloodedWater: Cave Dwelling (Flooded)
+		BiomeCavesFloodedLava: Cave Dwelling (Lava-filled)
+		BiomeDarkRealm: Dark Realm
+		BiomeIndustrialEra: Industrial Era
+	}
+}
+
+InfoDisplays.BiomeInfoDisplay.DisplayName: Nearby Biomes
+GrabBagTooltip: Shift + Right Click to split
+
+Items: {
+	AiPhone: {
+		DisplayName: aiPhone
+		Tooltip: ""
+		ModeFormat: AI Phone ({0})
+		NoDeathPosition: No recent death position.
+
+		Modes: {
+			Dummy: Dummy
+			Spawn: Spawn
+			Bed: Bed
+			Ocean: Ocean
+			Hell: Underworld
+			Death: Last Death
+			Random: Random
+		}
+	}
+}
+
+UI: {
+	AiPhoneRadial: {
+		Hint: {
+			ReleaseToCast: Release to cast
+			ReleaseToSelect: Release to select
+			RelativeOps: "[REL] Q/E: rotate, Wheel: rotate"
+		}
+	}
+}

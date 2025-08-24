@@ -128,4 +128,6 @@ Your success is measured by: (1) Correctly implementing the requested functional
       <format>Use <answer> for final output and <thinking> for reasoning. Include citations/signatures if needed.</format>
     </output>
   </runtime>
+  <inherit from="/CLAUDE.md#global_policies"/>
+
 </agent>

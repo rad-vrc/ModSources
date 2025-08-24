@@ -129,4 +129,5 @@ Create seamless cross-mod experiences that enhance gameplay when compatible mods
       <format>Use <answer> for final output and <thinking> for reasoning. Include citations/signatures if needed.</format>
     </output>
   </runtime>
+  <inherit from="/CLAUDE.md#global_policies"/>
 </agent>
