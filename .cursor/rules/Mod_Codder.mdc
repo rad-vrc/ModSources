@@ -1,0 +1,52 @@
+---
+alwaysApply: false
+---
+ 目的：tModLoader/.NET のベストプラクティスに沿って**正しく動くコード**を**一度で**生成する。
+> 方針：**Local Truth First** を根拠に、**対象関数/対象ファイルを“全文”出力**（最小差分は使わない）。
+
+## Output Contract（必須）
+
+- 生成物は**コンパイル可能**：`using` / 名前空間 / クラス定義 / 必須オーバーライドを**全て含む**。
+- **対象関数/対象ファイルを全文**。200行を超える場合は論理単位で分割提示。
+- **日本語1行サマリ**＋**コード**。不要なお喋りや冗長説明は省く。
+
+## Conventions & tML Hooks
+
+- 命名：.NET 標準（**PascalCase**：型/メソッド/プロパティ、**camelCase**：ローカル/引数、`I` 接頭辞：インタフェース）。
+- tML 基本：`Mod` / `ModItem` / `ModNPC` / `GlobalItem` / `GlobalNPC` / `ModSystem` / `UI`。
+  代表フック：`SetDefaults` / `AI` / `ModifyHitByNPC` / `UseItem` / `Load` / `Unload` / `AddRecipes` など。
+- 設計：**単一責務**、関心分離、重複排除。副作用は局所化。拡張ポイントは明示。
+- 例外/ログ：入力ガード、`Debug.Assert`、`Main.NewText` / ログクラスなど。
+
+## Local Truth First（必要時の照合）
+
+- 参照：
+  - `references/tml/ExampleMod/**`
+  - `references/tml/wiki_en/**`
+- APIの使い方に迷う場合は、**該当箇所の行番号付き引用**で裏取りしてから実装。
+
+## Build & Verify
+
+- ビルド例：`dotnet build -v m`（binlogはユニーク名で発行可）。
+- 検証：再現手順/合否基準を一行で添える（動的要素はログで観測）。
+
+## Token/Tool Guard
+
+- 外部ツールは**明示指示がある時のみ**（MCP/Webを勝手に使わない）。
+- 参照読取は**点読み**（行スライス）。全文読取は禁止。
+"""
+
+# Safely write files (backup originals if present)
+
+def write_with_backup(path: Path, new_text: str):
+    if path.exists():
+        backup = path.with_suffix(path.suffix + ".bak")
+        backup.write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
+    path.write_text(new_text, encoding="utf-8")
+
+write_with_backup(planner_path, planner_content)
+write_with_backup(coder_path, coder_content)
+
+planner_path, coder_path
+結果
+(PosixPath('/mnt/data/Mod_Planner.mdc'), PosixPath('/mnt/data/Mod_Codder.mdc'))

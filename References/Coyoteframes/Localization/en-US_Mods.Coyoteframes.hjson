@@ -1,0 +1,35 @@
+Welcome:
+	'''
+	Greetings from Project Furi development team!
+	Thank you for using our modification, and we are glad to receive all your feedback and awards!
+
+	At the moment, we need additional hands to create a global modification of ProtogenesisMod.
+	If you have the skills of a programmer, artist, musician, screenwriter, if you are
+	an ideological person - we will be glad to welcome you to our small team.
+
+	You can contact us via Steam feedback or add someone as a friend from the developers.
+	We will be glad to receive your support!
+
+	If you don't want to see this message anymore, disable it in the mod's config
+	'''
+
+Configs: {
+	CoyoteConfig: {
+		WelcomeMessageToggle: {
+			Tooltip: If this setting is enabled, then when you enter the world, you will receive a thanks message and a request for help
+			Label: Welcome Message Toggle
+		}
+
+		Headers: {
+			Messages: Messages
+			Frames: Frames Header
+		}
+
+		DisplayName: Coyote frames config
+
+		CoyoteTimeFramesDefault: {
+			Label: Coyote frames to use
+			Tooltip: Don't recommended to use more than 9 frames if you want to play fair.
+		}
+	}
+}

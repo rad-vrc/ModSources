@@ -1,0 +1,34 @@
+# ExampleMod – Items 学習 (1-of-10) 基礎・共通パターン
+
+- ExampleItem
+  - 研究数・価値・レシピ・OnResearchedで関連アイテムをResearchItemへ。研究UI活用。
+- ExampleTooltipsItem
+  - RegisterItemAnimation + ItemID.Sets.AnimatesAsSoul/ItemNoGravity。
+  - ModifyTooltips: 追加/色変更/Hide、DiscoColor 名称演出。
+- ExampleInstancedItem
+  - インスタンス状態(colors[])をClone/Save/Load。OnCreatedで初期化、UseAnimationで回転。
+- ExampleOnBuyItem
+  - OnCreatedがBuyItemCreationContextのときに処理。50%でKillMe(ローカライズMessage)。
+- ExampleDataItem
+  - インベントリ内カウントダウン→回復→HealEffect→TurnToAir。レシピ作成時に createItem.ModItem のフィールドに値注入。
+- ExampleResourcePickup
+  - Pickup系: Sets.ItemsThatShouldNotBeInInventory/IsAPickup/ItemSpawnDecaySpeed。OnPickupでModPlayerのリソース回復＋Sound再生、false返却でインベントリ非収納。
+  - GrabRangeで磁石効果拡張。
+- ExampleSignItem
+  - DefaultToPlaceableTile で設置アイテム化。
+- ExampleStackableDurabilityItem
+  - スタック共有耐久(0..1)。Save/Load/NetSend/NetReceive。OnStackで加重平均、PostDrawInInventoryでバー描画、Tooltipsに%表示。
+- ExampleQuestFish
+  - DefaultToQuestFish/IsQuestFish/IsAnglerQuestAvailable/AnglerQuestChat。WeaponRacks可能。
+- ExampleResearchPresent
+  - ResearchUnlockCount=ItemLoader.ItemCountに基づく。CreativeUI.SacrificeItem MonoMod hookで再演出、OnResearchedでアクセ学習（全/ランダム）。
+- ActiveSoundShowcase
+  - HoldItemでスタイル表示、Shootでai0渡し、ActiveSoundShowcaseProjectileに委譲。
+- CameraModifierShowcase
+  - UseItemでExampleCameraModifierをCameraModifiersへ追加。
+- CustomItemSets(+System/Player)
+  - ReinitializeDuringResizeArraysでNamed Set登録・統合、SetStaticDefaultsで追加入力、OnHitAnythingで利用例。
+- HoldStyleShowcase / UseStyleShowcase
+  - AltFunctionUseで切替、NetStateChangedで同期、NetSend/Receiveで現在値送受。
+- ShimmerShowcase
+  - AddDecraftCondition/DisableDecraft/AddCustomShimmerResult でデクラフト制御。

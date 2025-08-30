@@ -1,0 +1,60 @@
+---
+alwaysApply: false
+---
+# Mod Planner — tModLoader / .NET  (updated {timestamp})
+
+> 目的：抽象的な要望を確実に具体化し、tModLoader/.NETのベストプラクティスに沿った**実装可能な計画**へ落とし込む。
+> 方針：**Local Truth First**（ExampleMod / wiki_en）を優先。Webは許可があるまで使わない。出力は**日本語の要約→根拠→手順**の順。
+
+## Gate 0 — 情報の明確化（不足なら**質問して停止**）
+
+- Terraria / tModLoader の**バージョン**、ターゲットプラットフォーム（Client/Server/双方）、依存MOD/外部ライブラリ。
+- ユーザー要件（目的 / 完了条件 / 非機能：性能・互換・メモリ・入力デバイス）。
+- 対象領域（Items / NPC / Projectiles / UI / WorldGen / Networking / Config / Music 等）と禁止事項。
+- 既存コードの制約（フォルダ構成・命名・例外方針・ログ方針・ビルド方法）。
+
+## Plan Protocol（段階進行）
+
+1) **要件再定義（1行）**：成果物の一言要約 + Done条件（検証可能な形）。
+2) **アーキテクチャ設計**：
+   - コンポーネント分割：`Mod` / `ModItem` / `ModNPC` / `GlobalItem` / `GlobalNPC` / `UI` / `System` / `Config`。
+   - 主要クラスの責務・公開API・依存（DI/イベント/Observer/Factory/Template メソッド等）。
+   - tMLの標準フック選定（例：`SetDefaults` / `AI` / `ModifyHit` / `UseItem` / `Load/Unload`）。
+   - **SOLID/DRY**：単一責務、結合低減、拡張に開く設計。
+3) **タスク分解**：
+   - WBS化（1タスク≦90分目安）。依存関係と優先度。必要資産（アセット/ID/定数）。
+   - 各タスクの**入出力**・完成定義・レビュー観点。
+4) **検証計画**：
+   - 手動ステップ（再現手順/期待結果）、ログ追加ポイント、軽量テスト（例：`Debug.Assert` / guard）。
+   - ビルド/実行コマンド例：`dotnet build -v m`、tML内ビルド、ユニーク名binlog推奨。
+
+## Local Truth First（根拠の示し方）
+
+- 参照優先：
+  - `references/tml/ExampleMod/**`
+  - `references/tml/wiki_en/**`
+- 回答時は**必ず**「`<path>:Lx-Ly`」形式で根拠を最小引用（ヒット一覧 → 行スライス）。
+- 見つからないときは**相談**（コミット/タグ or 許可があれば tml-mcp で検索）。
+
+## Optional — Sequential Thinking MCP（利用可能なら）
+
+- `sequential_thinking` を **totalThoughts=4** で使用：
+  1. **Requirements**（不足質問→一行要件）→ `nextThoughtNeeded=true`
+  2. **Design & Interfaces**（代替案と利害得失）
+  3. **Tasks & Ordering**（依存/見積/優先度）
+  4. **Validation Plan**（手動手順/ログ/簡易テスト）→ **私の承認待ちで停止**
+- 使えない場合は本ルールの「Plan Protocol」に沿って**同じ成果物**を返す。
+
+## Deliverables（出力契約）
+
+- **PRD要約（<=6行）**
+- **設計図（テキスト）**：主要クラス/フック/イベントフロー
+- **タスク一覧**：表形式可（ID/説明/依存/完了定義）
+- **検証計画**：再現→期待→合否基準（失敗時の観測点も）
+- 文章は日本語。コード断片は必要最小限。
+
+## Token/Tool Guard
+
+- 外部ツール呼び出しは**≤4回/ターン**。越える場合は理由を述べて承認を得る。
+- ログ/ドキュメントの読取は**ヒット一覧→スライス**の順（全文禁止）。
+"""

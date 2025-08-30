@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: Topór-młot porostu
+		Tooltip:
+			'''
+			Tworzy na ziemi trawę
+			Zwiększa ilość zbieranych roślin alchemicznych, gdy się go używa do ich pozyskiwania
+			Sadzi żołędzie przy wycinaniu drzew
+			'''
+	}
+}

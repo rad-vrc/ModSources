@@ -1,0 +1,47 @@
+[h1]介绍[/h1]
+这是一个你订阅后可能难以察觉的模组，因为你会觉得这一切本就应该这样。
+
+模组有7项功能，下面可能需要花费一点时间去了解：
+
+[h3]1. 修复输入法删除时的bug[/h3]
+修复前：按下删除键同时删除拼音和已输入文字。
+
+[img]https://www.helloimg.com/i/2025/02/18/67b41003e296c.gif[/img]
+
+修复后：
+
+[img]https://www.helloimg.com/i/2025/02/18/67b41003a506d.gif[/img]
+
+[h3]2. 输入光标可左右移动[/h3]
+
+[img]https://www.helloimg.com/i/2025/02/18/67b41003c21ce.gif[/img]
+
+[h3]3. 鼠标滚轮翻动聊天记录[/h3]
+原版：只能用上下键翻动。
+
+[img]https://www.helloimg.com/i/2025/02/18/67b4100519a11.gif[/img]
+
+[h3]4. 上下键翻页[/h3]
+需要翻动很久前的聊天记录时很有用。
+
+[img]https://www.helloimg.com/i/2025/02/18/67b41003f0bdd.gif[/img]
+
+[h3]5. Ctrl + Backspace组合键[/h3]
+以单词为单位删除
+
+[img]https://www.helloimg.com/i/2025/02/21/67b7593cdf611.gif[/img]
+
+[h3]6. 自定义名字格式和颜色[/h3]
+
+[img]https://www.helloimg.com/i/2025/02/21/67b876cb35dd0.png[/img]
+
+[h3]7. 支持多行文本发送和粘贴[/h3]
+
+按下Ctrl + Enter换行
+
+[h1]更新日志[/h1]
+[h3]v1.7 (2025/2/21)[/h3]
+1. 支持多行文本
+
+
+[img]https://www.helloimg.com/i/2025/02/16/67b15389c0770.gif[/img]

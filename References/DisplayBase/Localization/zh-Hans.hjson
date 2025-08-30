@@ -1,0 +1,43 @@
+Mods: {
+	DisplayBase: {
+		Configs: {
+			DisplayBaseConfig: {
+				DisplayName: 配置
+
+				UseBrightness: {
+					Label: 高亮展示
+					Tooltip: 使展示的物品更加明亮。
+				}
+
+				UseOutline: {
+					Label: 物品描边
+					Tooltip: 为展示的物品添加轮廓线。
+				}
+
+				UseGlitter: {
+					Label: 闪烁效果
+					Tooltip: 让展示的物品具有闪烁效果。
+				}
+
+				LightIntensity: {
+					Label: 光线强度
+					Tooltip: 设置物品放置时发出光线的强度。
+				}
+			}
+		}
+
+		Items: {
+			DisplayBaseItem: {
+				DisplayName: 展示基座
+				Tooltip: 右键点击以将物品放置于展示基座上
+			}
+
+			DisplayBaseItemGranite: {
+				DisplayName: "{$Mods.DisplayBase.Items.DisplayBaseItem.DisplayName}"
+				Tooltip: "{$Mods.DisplayBase.Items.DisplayBaseItem.Tooltip}"
+			}
+		}
+
+		Tiles.DisplayBaseTile.MapEntry: 展示基座
+	}
+}

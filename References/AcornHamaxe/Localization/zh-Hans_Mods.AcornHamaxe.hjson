@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: 重生斧锤
+		Tooltip:
+			'''
+			让泥土上长出草
+			用它收集时可增加炼金植物收集速度
+			砍树时种橡子
+			'''
+	}
+}

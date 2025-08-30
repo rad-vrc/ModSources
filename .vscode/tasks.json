@@ -2,106 +2,149 @@
 	"$schema": "https://json.schemastore.org/tasks.json",
 	"version": "2.0.0",
 	"tasks": [
-		{
-			"label": "Build TranslateTest2 (dotnet build)",
-			"type": "shell",
-			"command": "dotnet",
-			"args": [
-				"build",
-				"TranslateTest2/TranslateTest2.csproj",
-				"-v",
-				"m"
-			],
-			"group": "build",
-			"problemMatcher": [
-				"$msbuild"
-			]
+	  {
+		"label": "Build RadQoL (.NET binlog unique)",
+		"type": "shell",
+		"command": "powershell",
+		"args": [
+		  "-NoProfile",
+		  "-Command",
+		  "$ts=Get-Date -Format yyyyMMdd-HHmmss; $env:DOTNET_CLI_UI_LANGUAGE='en'; dotnet build 'RadQoL/RadQoL.csproj' -v m /bl:\"${workspaceFolder}/artifacts/logs/build-$ts.binlog\""
+		],
+		"options": {
+		  "env": {
+			"DOTNET_CLI_UI_LANGUAGE": "en"
+		  }
 		},
-		{
-			"label": "Build TranslateTest2 (tModLoader)",
-			"type": "shell",
-			"command": "dotnet",
-			"args": [
-				"D:/SteamLibrary/steamapps/common/tModLoader/tModLoader.dll",
-				"-server",
-				"-build",
-				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/",
-				"-eac",
-				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/bin/Debug/net8.0/TranslateTest2.dll"
-			],
-			"options": {
-				"cwd": "D:/SteamLibrary/steamapps/common/tModLoader"
-			},
-			"group": "build",
-			"problemMatcher": []
+		"group": {
+		  "kind": "build",
+		  "isDefault": false
 		},
-		{
-			"label": "Build TranslateTest2 (tModLoader exe)",
-			"type": "shell",
-			"command": "D:/SteamLibrary/steamapps/common/tModLoader/tModLoader.exe",
-			"args": [
-				"-server",
-				"-build",
-				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/",
-				"-eac",
-				"d:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/TranslateTest2/bin/Debug/net8.0/TranslateTest2.dll"
-			],
-			"options": {
-				"cwd": "D:/SteamLibrary/steamapps/common/tModLoader"
-			},
-			"group": "build",
-			"problemMatcher": []
-		},
-		{
-			"label": "HJSON Audit (quick)",
-			"type": "shell",
-			"command": "powershell",
-			"args": [
-				"-NoProfile",
-				"-ExecutionPolicy",
-				"Bypass",
-				"-File",
-				"${workspaceFolder}/scripts/check-hjson.ps1"
-			],
-			"problemMatcher": []
-		},
-		{
-			"label": "Build + HJSON Audit",
-			"type": "shell",
-			"command": "echo",
-			"args": [
-				"Build + Audit complete"
-			],
-			"dependsOn": [
-				"Build TranslateTest2 (dotnet build)",
-				"HJSON Audit (quick)"
-			],
-			"dependsOrder": "sequence",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"problemMatcher": []
-		},
-		{
-			"label": "Build + HJSON Audit",
-			"type": "shell",
-			"command": "echo",
-			"args": [
-				"Build + Audit complete"
-			],
-			"isBackground": false,
-			"problemMatcher": [],
-			"group": "build"
-		},
-		{
-			"label": "Build + HJSON Audit (combo)",
-			"type": "shell",
-			"command": "echo",
-			"args": [
-				"Build + Audit complete"
-			],
-			"group": "build"
+		"problemMatcher": [
+		  "$msCompile"
+		],
+		"presentation": {
+		  "reveal": "always",
+		  "panel": "dedicated",
+		  "clear": true,
+		  "showReuseMessage": false
 		}
+	  },
+
+	  {
+		"label": "Build RadQoL (fast, no binlog)",
+		"type": "shell",
+		"command": "dotnet",
+		"args": [
+		  "build",
+		  "RadQoL/RadQoL.csproj",
+		  "-v",
+		  "m"
+		],
+		"options": {
+		  "env": {
+			"DOTNET_CLI_UI_LANGUAGE": "en"
+		  }
+		},
+		"group": "build",
+		"problemMatcher": [
+		  "$msCompile"
+		],
+		"presentation": {
+		  "reveal": "always",
+		  "panel": "shared"
+		}
+	  },
+
+	  {
+		"label": "Build RadQoL (tModLoader)",
+		"type": "shell",
+		"command": "powershell",
+		"args": [
+		  "-NoProfile",
+		  "-ExecutionPolicy",
+		  "Bypass",
+		  "-Command",
+		  "$env:DOTNET_CLI_UI_LANGUAGE='en'; & '${workspaceFolder}/scripts/build-tml.ps1' -Server"
+		],
+		"options": {
+		  "cwd": "D:/SteamLibrary/steamapps/common/tModLoader",
+		  "env": {
+			"DOTNET_CLI_UI_LANGUAGE": "en"
+		  }
+		},
+		"group": "build",
+		"problemMatcher": [
+		  "$msCompile",
+		  {
+			"owner": "csharp",
+			"fileLocation": ["autoDetect", "${workspaceFolder}"],
+			"pattern": {
+			  "regexp": "^(.*?\\.cs)\\((\\d+),(\\d+)\\):\\s*(error|warning)\\s*(CS\\d+):\\s*(.*)$",
+			  "file": 1,
+			  "line": 2,
+			  "column": 3,
+			  "severity": 4,
+			  "code": 5,
+			  "message": 6
+			}
+		  }
+		],
+		"presentation": {
+		  "reveal": "always",
+		  "panel": "dedicated",
+		  "clear": true
+		}
+	  },
+
+	  {
+		"label": "HJSON Audit (quick)",
+		"type": "shell",
+		"command": "powershell",
+		"args": [
+		  "-NoProfile",
+		  "-ExecutionPolicy",
+		  "Bypass",
+		  "-File",
+		  "${workspaceFolder}/scripts/check-hjson.ps1"
+		],
+		"group": "build",
+		"problemMatcher": [],
+		"presentation": {
+		  "reveal": "always",
+		  "panel": "shared"
+		}
+	  },
+
+	  {
+		"label": "Build + HJSON Audit (.NET)",
+		"type": "shell",
+		"command": "echo",
+		"args": [ "Build + Audit complete" ],
+		"dependsOn": [
+		  "Build RadQoL (.NET binlog unique)",
+		  "HJSON Audit (quick)"
+		],
+		"dependsOrder": "sequence",
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"problemMatcher": []
+	  },
+
+	  {
+		"label": "Build + HJSON Audit (tModLoader)",
+		"type": "shell",
+		"command": "echo",
+		"args": [ "Build(tML) + Audit complete" ],
+		"dependsOn": [
+		  "Build RadQoL (tModLoader)",
+		  "HJSON Audit (quick)"
+		],
+		"dependsOrder": "sequence",
+		"group": "build",
+		"problemMatcher": []
+	  }
 	]
-}
+  }

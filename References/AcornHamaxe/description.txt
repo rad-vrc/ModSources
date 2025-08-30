@@ -1,0 +1,7 @@
+Adds a Hamaxe of Regrowth, craftable with the Axe of Regrowth and a gold/platinum hammer.
+
+Keeps all the functions of the axe (placing grass and plant collection), just adds the hammer!!
+We love saving inventory space <3
+
+Sprite was originally made by pseudo.faux on Discord, edited by me
+

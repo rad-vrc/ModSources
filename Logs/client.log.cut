@@ -1,0 +1,80 @@
+[13:32:18.127] [.NET TP Worker/ERROR] [tML]: RadQoLの読み込み中にエラーが発生しました。 v1.0.0
+このModとその依存関係にあるModは自動的に無効化されました。
+Terraria.ModLoader.Exceptions.MultipleException: Multiple errors occurred.
+ ---> Terraria.ModLoader.Exceptions.MissingResourceException: Expected resource not found:
+    Content/NPCs/TownPets/AkyoArikui_1_Head
+Closest guess: (Is there a spelling or folder placement error?)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:T][c/ffff00:_1_H]e[c/00ff00:t/AkyoArikuiTownP][c/ffff00:ad]
+Content/NPCs/TownPets/AkyoArikui [c/ffff00:ownP]e                 [c/ffff00:et]
+
+   --- End of inner exception stack trace ---
+   at Terraria.ModLoader.Core.LoaderUtils.RethrowAggregatedExceptions(IReadOnlyCollection`1 exceptions) in tModLoader\Terraria\ModLoader\Core\LoaderUtils.cs:line 146
+   at Terraria.ModLoader.Mod.TransferAllAssets() in tModLoader\Terraria\ModLoader\Mod.Internals.cs:line 96
+   at Terraria.ModLoader.ModContent.<>c.<Load>b__45_2(Mod mod) in tModLoader\Terraria\ModLoader\ModContent.cs:line 343
+   at Terraria.ModLoader.ModContent.LoadModContent(CancellationToken token, Action`1 loadAction) in tModLoader\Terraria\ModLoader\ModContent.cs:line 444
+   at Terraria.ModLoader.ModContent.Load(CancellationToken token) in tModLoader\Terraria\ModLoader\ModContent.cs:line 340
+   at Terraria.ModLoader.ModLoader.Load(CancellationToken token) in tModLoader\Terraria\ModLoader\ModLoader.cs:line 134
+ ---> (Inner Exception #1) Terraria.ModLoader.Exceptions.MissingResourceException: Expected resource not found:
+    Content/NPCs/TownPets/AkyoArikui_Head
+Closest guess: (Is there a spelling or folder placement error?)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:Tow][c/ffff00:_H]e[c/00ff00:t/AkyoArikuiTownP][c/ffff00:ad]
+Content/NPCs/TownPets/AkyoArikui   [c/ffff00:nP]e                 [c/ffff00:et]
+<---
+
+ ---> (Inner Exception #2) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownPet]
+Content/NPCs/TownPets/AkyoArikui
+<---
+
+ ---> (Inner Exception #3) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui_1
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownP][c/ffff00:_1]
+Content/NPCs/TownPets/AkyoArikui                       [c/ffff00:et]
+<---
+
+ ---> (Inner Exception #4) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui_2
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownP][c/ffff00:_2]
+Content/NPCs/TownPets/AkyoArikui                       [c/ffff00:et]
+<---
+
+ ---> (Inner Exception #5) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui_3
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownP][c/ffff00:_3]
+Content/NPCs/TownPets/AkyoArikui                       [c/ffff00:et]
+<---
+
+ ---> (Inner Exception #6) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui_4
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownP][c/ffff00:_4]
+Content/NPCs/TownPets/AkyoArikui                       [c/ffff00:et]
+<---
+
+ ---> (Inner Exception #7) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui_5
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownP][c/ffff00:_5]
+Content/NPCs/TownPets/AkyoArikui                       [c/ffff00:et]
+<---
+
+ ---> (Inner Exception #8) Terraria.ModLoader.Exceptions.MissingResourceException: 予期されたリソースが見つかりませんでした:
+    Content/NPCs/TownPets/AkyoArikui_6
+最も近い候補: (スペルミスやフォルダ配置のエラーがあるか確認してください)
+    Content/NPCs/TownPets/AkyoArikuiTownPet/AkyoArikuiTownPet
+Content/NPCs/TownPets/AkyoArikui[c/00ff00:TownPet/AkyoArikuiTownP][c/ffff00:_6]
+Content/NPCs/TownPets/AkyoArikui                       [c/ffff00:et]
+<---

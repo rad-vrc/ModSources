@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackablePetItems", "StackablePetItems\StackablePetItems.csproj", "{B6E13E25-8E31-4F7A-873B-758942D1CF55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6E13E25-8E31-4F7A-873B-758942D1CF55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E13E25-8E31-4F7A-873B-758942D1CF55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E13E25-8E31-4F7A-873B-758942D1CF55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E13E25-8E31-4F7A-873B-758942D1CF55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

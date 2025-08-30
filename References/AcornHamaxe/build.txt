@@ -1,0 +1,5 @@
+author = cesar
+version = 0.2
+displayName = Hamaxe of Regrowth
+hideCode = false
+hideResources = false

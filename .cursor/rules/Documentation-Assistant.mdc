@@ -1,0 +1,89 @@
+---
+alwaysApply: false
+---
+# Documentation Assistant Guidelines
+
+- When generating documentation, first **extract information from code**: utilize code comments, function/variable names, and existing docstrings to gather accurate details:contentReference[oaicite:28]{index=28}.
+- **Analyze the context**: review relevant files (e.g. README.md, architecture notes) to ensure consistency and capture the big picture:contentReference[oaicite:29]{index=29}.
+- **Generate clear markdown** documentation: include an overview of the component or module’s purpose, usage examples, and any important details (such as assumptions, limitations). Use proper headings, bullet lists, and code snippets as needed for readability.
+- For **function docstrings**: describe the function’s behavior, parameters, return values, and exceptions in a concise manner. Follow the project's style (e.g., Google style, NumPy style) if specified.
+- Ensure the tone is **informative and professional**, avoiding overly verbose language. Prioritize clarity and completeness so that a new team member can understand the code from the documentation.
+
+## Project-specific conventions (this repo)
+
+- Use Markdown headings `##` and `###`; avoid `#` for top-level in long docs.
+- Use backticks for file/dir/class/function names. Wrap URLs as code or markdown links.
+- Show only relevant code in fenced blocks. Keep examples minimal yet runnable in concept.
+
+## Writing guides from zero to implementation
+
+- Start with audience/scope and quick glossary (用語). Define categories if applicable.
+- Present a shared architecture overview first, then dive into each variant.
+- Provide a minimal working example early (最小例). Include only the required flags/fields.
+- Use a “differences” section to avoid repetition (e.g., variant B is A + delta).
+- Add a “common pitfalls” section focused on first-run failures and gotchas.
+- End with a concise onboarding checklist that can be followed step-by-step.
+
+## Terraria/tModLoader docs (if applicable)
+
+- State target tModLoader version (e.g., 1.4) and note migration considerations if any.
+- Reference ExampleMod and local `References/` paths where readers can cross-check code.
+- For localization, include key patterns (e.g., `Mods.ModName.*`) and name sourcing patterns (e.g., `Language.FindAll`).
+- For assets, mention naming and loading patterns when relevant (e.g., `NpcName.png`, `ModContent.Request<Texture2D>(...)`).
+
+## Template structure for feature guides
+
+- Overview (目的・対象)
+- Glossary (用語) / Categories
+- Common architecture (共通設計)
+- Minimal example (最小実装スニペット)
+- Variants by difference (差分)
+- Pitfalls (落とし穴)
+- Checklist (導入チェックリスト)
+- References/Links (参照・実例)
+
+## Quality checklist for generated docs
+
+- Terminology consistent with code and project style.
+- Examples compile conceptually and avoid unnecessary boilerplate.
+- Assumptions/limitations explicitly noted near the top.
+- Links and paths verified to exist in the repo or upstream docs.
+- Section order supports scanning first, then deep reading.
+
+## Examples (good vs bad)
+
+### 良い例（Overview セクション）
+
+- 目的・対象を 1–2 文で明記
+- 前提条件・依存関係を箇条書き
+- 実施手順を短い箇条書き（章立てへリンク）
+
+### 悪い例（Overview セクション）
+
+- 長い前置きや背景説明で可読性が低い
+- 手順が本文に散在しスキャンできない
+- 用語定義やスコープが曖昧
+
+### 良い例（最小実装スニペット）
+
+- 必須要素のみを示し、詳細は後続章に委譲
+- 実体名・フラグ名は実コードに一致
+- 不要なボイラープレートを含めない
+
+### 悪い例（最小実装スニペット）
+
+- 余計な最適化や派生ケースを含めて本質が埋もれる
+- 設定値や API 名が実コードと不一致
+
+## Reference/link validation steps
+
+- 参照パスは実在確認（同一レポ内のパスは相対で表記）。
+- 参照先が ExampleMod／`References/` の場合、対応するファイルの有無とセクションを確認。
+- 不在の場合は代替参照（上位フォルダや wiki）を提示し、リンク切れを残さない。
+- URL は可能なら説明付きの Markdown リンクにし、裸の URL を避ける。
+
+## Splitting large documents
+
+- 複数の独立トピックが混在する場合は章ごとに分割を検討。
+- セクションが 8 以上、またはスクロール量が大きく目次だけでは追えない場合は分割。
+- 分割時は共通の「Overview／用語／参照」の章構成を揃え、相互リンクを付与。

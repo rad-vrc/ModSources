@@ -1,0 +1,72 @@
+Mods: {
+	PetRenamer: {
+		Keybinds: {
+			RenamePet.DisplayName: 宠物重命名
+			Unbound: <unbound>
+		}
+
+		Configs: {
+			Config: {
+				DisplayName: 模组配置
+
+				EnableChatAutofill: {
+					Label: 自动输入宠物改名指令
+					Tooltip: 是否在选中宠物物品时在聊天框中自动输入改名指令
+				}
+
+				ShowPetNameInSelectScreen: {
+					Label: 在人物选择界面显示宠物名称
+					Tooltip: 是否在人物选择页面显示宠物名称
+				}
+			}
+		}
+
+		Commands: {
+			PRCommand: {
+				Description: 设置或重设光标所选宠物的名称。 {0} = {1} -> 移除名称
+				NicknameReset: 宠物名称“{0}”已重置
+				NamedNew: 宠物{0}已命名为“{1}”
+				NamedSame: 宠物已经叫“{0}”了
+				Renamed: 宠物{0}已从“{1}”重命名为“{2}”
+				NoItem: 没有要命名的宠物！请用光标选中宠物召唤物
+				InvalidItem: "{0}不是宠物！"
+			}
+		}
+
+		Buffs.PetBuff.Name: 名称: {0}
+
+		Items: {
+			PetItems: {
+				PetName: 宠物名称：{0}
+				PetOwner: 主人：{0}
+				PetRename: 宠物改名：请按“{0}”来为你的宠物命名
+			}
+		}
+
+		UI: {
+			RenamePetUI: {
+				Title: 宠物重命名
+				SlotMouseover: 请将宠物召唤物放在这里
+				SlotMouseoverSlow:
+					'''
+					1. 在这里放置宠物召唤物
+					2. 在文本框中输入名称
+					2.（可选）按“清除”删除文本
+					2.（可选）按“随机”生成随机名称
+					3. 按“应用”修改宠物名称
+					3.（可选）取出宠物召唤物
+					4. 按“X”关闭窗口。 如果物品还在该界面中则会将其退回物品栏
+					注意：如果在关闭窗口前退出游戏，下次游玩时也会返还物品
+					'''
+				SlotMouseoverVerySlowEasterEgg: 圣诞老人是假的
+				Input: 在此输入名称
+				ApplyButton: 应用
+				RandomButton: 随机
+				ClearButton: 清除
+				CloseButton: 关闭
+			}
+		}
+
+		PlayerSelectScreenUI.PetNameInSelectScreen: "{0} & {1}"
+	}
+}

@@ -35,7 +35,14 @@
       "Bash(git commit:*)",
       "Bash(grep:*)",
       "Bash(dotnet build:*)",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "mcp__serena__onboarding",
+      "mcp__serena__write_memory",
+      "mcp__tml-mcp__searchSymbols",
+      "Bash(git restore:*)",
+      "WebSearch",
+      "WebFetch(domain:steamcommunity.com)",
+      "Read(/D:\\dorad\\Documents\\My Games\\Terraria\\tModLoader/**)"
     ],
     "deny": [],
     "ask": []

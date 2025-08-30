@@ -1,0 +1,63 @@
+# ~/.codex/config.toml
+# NOTE: CodexはClaude/Cursorの`mcpServers`ではなく、`mcp_servers`（アンダースコア）を使います。
+
+[mcp_servers.desktop-commander]
+command = "cmd"
+args = ["/c", "npx", "-y", "@wonderwhy-er/desktop-commander"]
+
+[mcp_servers.sequential-thinking]
+command = "cmd"
+args = ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[mcp_servers.serena]
+command = "uvx"
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "ide-assistant"]
+
+[mcp_servers.context7]
+command = "cmd"
+args = ["/c", "npx", "-y", "@upstash/context7-mcp@latest"]
+
+[mcp_servers.loc-ref]
+command = "node"
+args = ["d:/dorad/Documents/My Games/Terraria/tModLoader/ExternalLocalizer/mcp/loc-ref-mcp/src/server.improved.js"]
+
+[mcp_servers.fetch]
+command = "py"
+args = ["-3", "-m", "mcp_server_fetch"]
+
+[mcp_servers.openmemory]
+command = "npx"
+args = ["-y", "openmemory"]
+
+[mcp_servers.openmemory.env]
+OPENMEMORY_API_KEY = "om-simvv4sekedxqe8r985fub7rzuw85mf2"
+CLIENT_NAME = "claude"  # 必要なら "codex" に変更
+
+[mcp_servers.github]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-github"]
+
+[mcp_servers.n8n-mcp]
+command = "cmd"
+args = ["/c", "npx", "-y", "--prefer-online", "n8n-mcp@2.8.1"]
+
+[mcp_servers.n8n-mcp.env]
+MCP_MODE = "stdio"
+LOG_LEVEL = "error"
+DISABLE_CONSOLE_OUTPUT = "true"
+N8N_API_URL = "http://localhost:5678"
+N8N_API_KEY = "<eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmODUxYjdmNy1iOTIwLTRiOWMtOGViYy04MjJmOTQyZDNjYjEiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwiaWF0IjoxNzU1NjE4MDgxfQ.axvUJ6hXUpKIwGBxrL_VhKWS42O-tjk4h4G9d7xhJJg>"
+
+[mcp_servers.tml-mcp]
+# WindowsパスはTOMLのsingle-quoted stringにするとバックスラッシュのエスケープを気にしなくてOK
+command = 'C:\Program Files\nodejs\node.exe'
+args = ['D:\dev\tml-mcp\mcp-server\dist\server.js']
+
+[mcp_servers.tml-mcp.env]
+TML_SYMBOLS_JSON = 'D:\dev\tml-mcp\data\merged-symbols.json'
+TML_WIKI_DIR = 'D:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/References/tModLoader.wiki'
+TML_TERRARIA_DIR = 'D:/dorad/Documents/My Games/Terraria/tModLoader/ModSources/References/Terraria/Terraria'
+REF_TEXT_PATH_JA = 'D:\dev\tml-mcp\data\ALL_TEXT_ja.txt'
+REF_TEXT_PATH_EN = 'D:\dev\tml-mcp\data\ALL_TEXT_en.txt'
+REF_CHUNK_SIZE = "1500"
+REF_CHUNK_OVERLAP = "200"

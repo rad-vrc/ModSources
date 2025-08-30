@@ -1,0 +1,5 @@
+author = Guida
+version = 1.2
+displayName = Stackable Pet, Mount, Vanity and Hook Items(宠物坐骑时装抓钩可堆叠)
+hideCode = false
+hideResources = false

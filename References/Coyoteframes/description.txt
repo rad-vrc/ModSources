@@ -1,0 +1,6 @@
+EN:
+Mod that allows player to use Coyote frames that are presented in many other games.
+There may occur some bugs. Please report to the developers on Steam.
+RU:
+Мод, который позволяет игроку использовать кадры койота, которые есть в большинстве других игр.
+Могут быть баги. Пожалуйста сообщите о них разработчикам на странице в Steam.

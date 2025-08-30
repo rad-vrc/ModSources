@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: Hache-marteau de repousse
+		Tooltip:
+			'''
+			Fait pousser de l'herbe sur la terre
+			Augmente la collecte de plantes d'alchimie s'il est utilisé pour la récolte
+			Plante des glands lors de l’abattage des arbres
+			'''
+	}
+}

@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: Hammeraxt des Nachwachsens
+		Tooltip:
+			'''
+			Erschafft Gras auf Dreck
+			Erhöht die Alchemiepflanzensammlung, wenn du es zum Sammeln nutzt
+			Pflanzt Eicheln, wenn du Bäume fällst
+			'''
+	}
+}

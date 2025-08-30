@@ -1,0 +1,43 @@
+Mods: {
+	DisplayBase: {
+		Configs: {
+			DisplayBaseConfig: {
+				DisplayName: Display Config
+
+				UseBrightness: {
+					Label: Draw Brightly
+					Tooltip: Draw items on the base brighter.
+				}
+
+				UseOutline: {
+					Label: Item Outline
+					Tooltip: Allow drawing outlines of displayed items.
+				}
+
+				UseGlitter: {
+					Label: Glitter Effect
+					Tooltip: Allow glittering effects of displayed items.
+				}
+
+				LightIntensity: {
+					Label: Light Strength
+					Tooltip: Intensity of light emitted when the item is placed.
+				}
+			}
+		}
+
+		Items: {
+			DisplayBaseItem: {
+				DisplayName: Display Base
+				Tooltip: Right click to place item on display base
+			}
+
+			DisplayBaseItemGranite: {
+				DisplayName: "{$Mods.DisplayBase.Items.DisplayBaseItem.DisplayName}"
+				Tooltip: "{$Mods.DisplayBase.Items.DisplayBaseItem.Tooltip}"
+			}
+		}
+
+		Tiles.DisplayBaseTile.MapEntry: Display Base
+	}
+}

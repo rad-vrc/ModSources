@@ -1,0 +1,6 @@
+author = Veik
+version = 1.7
+displayName = BetterChatBox 更好的聊天栏
+hideCode = false
+hideResources = false
+side = Client

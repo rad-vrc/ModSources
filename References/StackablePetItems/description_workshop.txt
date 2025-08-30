@@ -1,0 +1,23 @@
+受够了背包被各种各样的宠物/坐骑/时装/抓钩填满？这个mod让它们全部可堆叠！
+
+这个mod应该能极大优化东方小伙伴/灾厄虚荣等宠物时装mod的游戏体验，对需要大量刷boss的mod体验也有一定优化
+
+这些物品无法获得词缀，所以它们本就应该可堆叠
+
+更新1.1：一些工具现在也可以堆叠，例如钓竿，魔镜，生命木魔棒等
+
+不用担心词缀问题，mod会对物品能否获得词缀进行检测，所以如果你安装了其他给这些物品增加词缀的mod，这些物品就不再可堆叠
+
+更新1.2：现在可以一键装备了！单个物品右键为装备，多个物品堆叠右键为拿取一个！
+
+“Tired of your inventory being filled with all sorts of pets, mounts, vanity items, and grapple hooks? This mod makes them all stackable!
+
+This mod should greatly improve the gameplay experience for pet-and-vanity-item–heavy mods like Touhou Pets and Calamity Vanity, and it also offers optimizations for mods that require extensive boss killing.”
+
+These items cannot receive prefixes, so they should inherently be stackable.
+
+Update 1.1: Some tools can now be stacked, such as fishing rods, magic mirrors, living wood wands, etc
+
+Don't worry about prefixes, mods will detect whether items can obtain prefixes, so if you install other mods that add prefixes to these items, they will no longer be stackable
+
+Update 1.2: Now you can equip them with one click! Right-click single items to equip, multiple stacked items to take one!

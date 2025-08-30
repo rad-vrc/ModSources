@@ -1,0 +1,7 @@
+author = DRKV and Exterminator
+version = 1.8.1
+displayName = Shop Expander
+homepage = https://github.com/ExterminatorX99/ShopExpander
+hideCode = false
+hideResources = false
+includeSource = true

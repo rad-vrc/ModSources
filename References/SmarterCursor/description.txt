@@ -1,0 +1,8 @@
+Smarter Cursor is a fairly simple mod that tweaks the way smart cursor works with platforms, allowing it to better reflect your intentions when building. No more constantly making stairs when you just want to make a flat bridge, as this mod fixes that issue entirely (while still allowing you to build stairs when you want to). It also improves smart cursor with walls and adds new functionality when placing tiles. The full list of changes are as follows:
+
+1. Widens the area that will place flat platforms for bridging with smart cursor
+2. Allows smart cursor to replace cuttable tiles such as grass and vines when placing platforms
+3. Allows smart cursor to bridge past non-solid tiles that are one block wide when placing platforms, such as trees and ropes
+4. Changes smart cursor to not build beyond platforms when placing walls, instead treating them as solid tiles.
+5. Sets the "To Cursor" setting in the options menu to be the default behavoir for placing solid tiles
+6. Replaces the "Disabled" setting with a new "Fill" behavoir, where smart cursor will attempt to fill in corners near the cursor with solid tiles

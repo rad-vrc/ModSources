@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: Ascia-martello della ricrescita
+		Tooltip:
+			'''
+			Crea erba sulla terra
+			Aumenta la raccolta di piante alchemiche quando si usa per raccogliere
+			Pianta ghiande quando si abbattono gli alberi
+			'''
+	}
+}

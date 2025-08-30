@@ -1,0 +1,13 @@
+===========================================
+[h1]-Description-[/h1]
+===========================================
+Add a Display Base that items can be displayed.
+Some effects can be toggled from config.
+A normal Display Base can be crafted from 6 Smooth Marble Blocks on a Heavy Work Bench.
+
+===========================================
+[h1]-Credits-[/h1]
+===========================================
+Cavalier: Chinese localization
+
+===========================================

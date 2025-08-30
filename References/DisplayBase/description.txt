@@ -1,0 +1,37 @@
+===========================================
+[c/ffd815:-Description-]
+===========================================
+Add a Display Base that items can be displayed.
+Some effects can be toggled from config.
+A normal Display Base can be crafted from 6 Smooth Marble Blocks on a Heavy Work Bench.
+
+===========================================
+[c/fe2ef7:-Credits-]
+===========================================
+Cavalier: Chinese localization
+
+===========================================
+[c/ffd815:-Changelogs-]
+===========================================
+v0.8
+-Ported to latest 1.4.4
+--------------------------------
+v0.7
+-Added a Granite variant
+--------------------------------
+v0.6
+-Ported to 1.4.4
+-Fixed Display Base duplicating when smashed tiles under Base with a hammer.
+--------------------------------
+v0.5
+-Fixed drawing when gravity is reversed
+--------------------------------
+v0.4
+-Multiplayer Compatibility
+--------------------------------
+v0.3
+-Added lighting visual configurations
+--------------------------------
+v0.2
+-Solved view Matrix issue
+===========================================

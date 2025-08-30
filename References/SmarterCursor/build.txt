@@ -1,0 +1,6 @@
+author = Quandratic
+version = 1.3.3
+displayName = Smarter Cursor
+hideCode = false
+hideResources = false
+side = Client

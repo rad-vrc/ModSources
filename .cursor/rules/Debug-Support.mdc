@@ -1,0 +1,91 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Debugging Support Protocol — tModLoader / .NET (v2, updated 2025-08-28 09:50:56)
+
+> 目的：**再現 → 原因特定 → 修正 → 再発防止**を最短で達成。  
+> 方針：**Minimal Log Intake**（必要箇所だけ読む）＋ **Local Truth First**（ExampleMod / wiki_en）。  
+> 出力契約：**日本語1行の結論＋必要最小限の根拠と手順**。修正は**対象関数/対象ファイルを“全文”出力**（最小差分は禁止）。
+
+---
+
+## Gate 0 — 必須情報（不足なら**質問して停止**）
+- 環境：OS / .NET SDK / tModLoader / Terraria の **バージョン**、Client/Server/双方、依存MOD。  
+- 現象：**再現手順（番号付き）** / 期待 / 実際 / 発生頻度（Always・Sometimes）。  
+- 直近変更：コミット or 変更ファイル一覧（関係が濃い順）。  
+- ログの**ファイル名**のみ（中身はまだ貼らない）：build / client / server / binlog。  
+- ビルド経路：`dotnet build` or tML内ビルド（IDE含む）。
+
+> 充足しない場合は、**何が不足か**を1行で示し、**次の質問**を出して停止。
+
+---
+
+## Log Intake — 必要最小限だけ読む
+- **全文禁止**。まず以下 **どれか1つ** を要求：  
+  1) **Error Table（推奨）**：各ログの**上位3件**だけ（`file`,`line`,`code/keyword`,`message`）。  
+     - Build系キーワード：`MSB\d+` / `CS\d+` / `NU\d+` / `NETSDK\d+` / `: error`  
+     - Runtime系キーワード：`Exception` / `Unhandled` / `fatal` / `stack trace`  
+  2) **Triage Slice**：命中行の**前後N=20行**のみ（最大 **3箇所**）。  
+  3) **Minimal Repro**：作れそうなら最小再現コード/手順を優先。  
+- **ログ予算**：1ターン合計 **≤ 400行**。不足時は**不足理由**を述べ、追加で **N行だけ**を再依頼。  
+- もし全文が貼られたら：**要約（Error Table化）→必要箇所のみ再スライス**。
+
+---
+
+## Evidence（根拠集めの順序）
+1) **csproj/props抜粋**：`TargetFramework` / `PackageReference` / 参照の相性。  
+2) **関係の濃いコード断片**：該当クラス/関数の**前後20行**だけ。  
+3) **Local Truth First**：下記の**該当行のみ**を参照し、必要最小限を引用：  
+   - `references/tml/ExampleMod/**`  
+   - `references/tml/wiki_en/**`  
+   > 見つからない場合は、コミット/タグの確認 or **tml-mcp**でのピンポイント検索の許可を求める。
+
+---
+
+## Root-Cause Hypotheses（最大3つ、優先度付き）
+各仮説は **原因 / 根拠（ログ or 行番号） / 検証実験** の3点セット。  
+**tModLoader特有の観点**（例）：
+- フック/オーバーライドの順序や戻り値不整合（`SetDefaults` / `AI` / `UseItem` / `ModifyHit...` / `Load/Unload`）。  
+- `GlobalItem` / `GlobalNPC` による横断的副作用、`ModSystem` のイベント順序。  
+- クライアント/サーバ差（DedicatedServer不可のAPIを呼んでいないか）。  
+- **ビルド/ログの占有**：「`Log file is already in use`」は**他プロセス**（tML実行中/IDEビルド）や**同名binlog**競合が第1候補。  
+  - 対策案：tML/IDEの停止、**ユニーク名binlog**（例：`/bl:build-{yyyyMMdd-HHmmss}.binlog`）、出力先の変更。  
+- TargetFramework不一致、参照DLLのバージョン揺れ、AnyCPU/プラットフォームミスマッチ。
+
+---
+
+## Fix Plan（最小変更で直す）
+- **ChangeSet**：`{file, region/function, operation, risk}` を列挙。  
+- **副作用/ロールバック**を1行で。  
+- **出力契約**：修正は**対象関数 or 対象ファイルを“全文”再出力**（200行超は論理単位で分割）。
+
+---
+
+## Verify（検証のしかた）
+- コマンド例：
+  - Build：`dotnet build -v m /bl:build-{timestamp}.binlog`（毎回ユニーク名）  
+  - 実行：tML（Client/Server）で**再現手順**を踏む（番号付き）  
+- **合否基準**：期待と実際を1行で。新規エラーが出たら**Root-Cause**へ戻る。
+
+---
+
+## Prevent（再発防止の提案）
+- 入力検証、例外、`Debug.Assert`、ログ粒度の調整。  
+- ビルド運用：binlogは**毎回ユニーク名**、ログは**英語**固定（診断容易化）。  
+- 最小テスト/チェックリストの提案（フック戻り値・ネットワーク境界のガード等）。
+
+---
+
+## Optional — Sequential Thinking MCP（必要時のみ）
+- 利用可能かつ合意があれば `totalThoughts=3`：**仮説 → 検証計画 → Fix**。各ステップで**承認待ち**。  
+- 不要/不可なら使用しない（このルール単体で完結させる）。
+
+---
+
+## Token / Tool Guard
+- ツール呼び出し **≤ 4回/ターン**、合計 **≤ 8**。超える前に**理由を述べ承認を得る**。  
+- 参照・ログの読取は**ヒット一覧 → スライス**の段階解像度。**全文読取は禁止**。  
+- 出力は**見出し付き**で `Findings / Hypotheses / Fix / Validation / Follow-ups` の順。

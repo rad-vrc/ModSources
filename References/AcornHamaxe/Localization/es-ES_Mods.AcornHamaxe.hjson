@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: Hacha-martillo de regeneración
+		Tooltip:
+			'''
+			Crea hierba en la tierra
+			Aumenta la recolección de plantas de alquimia al usarlo para recolectar
+			Planta bellotas al talar árboles
+			'''
+	}
+}

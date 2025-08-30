@@ -1,0 +1,6 @@
+author = Gorffy, Ink of the Eternity, Litos the Litium
+version = 1.5
+displayName = Coyote frames
+hideCode = false
+hideResources = false
+includeSource = true

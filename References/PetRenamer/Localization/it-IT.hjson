@@ -1,0 +1,72 @@
+Mods: {
+	PetRenamer: {
+		Keybinds: {
+			RenamePet.DisplayName: Rinomina mascotte
+			Unbound: <non assegnato>
+		}
+
+		Configs: {
+			Config: {
+				DisplayName: Configurazione
+
+				EnableChatAutofill: {
+					Label: Abilita l'autocompilazione della chat
+					Tooltip: Se la chat deve compilare automaticamente il comando quando viene selezionato una mascotte
+				}
+
+				ShowPetNameInSelectScreen: {
+					Label: Mostra nome mascotte nella schermata principale
+					Tooltip: Se il nome della mascotte dovrebbe apparire nella schermata di selezione del giocatore
+				}
+			}
+		}
+
+		Commands: {
+			PRCommand: {
+				Description: Imposta un nome o rinomina la mascotte con il mouse. {0} = {1} -> rimuovi nome
+				NicknameReset: Reset '{0}' soprannome
+				NamedNew: Nome della mascotte evocata da {0} '{1}'
+				NamedSame: La mascotte è già chiamata '{0}'
+				Renamed: Rinomina la mascotte evocata da {0} da '{1}' a '{2}'
+				NoItem: Nessun oggetto da rinominare! Tieni un oggetto d'evocazione per mascotte nel tuo cursore
+				InvalidItem: "{0} non è un oggetto valido!"
+			}
+		}
+
+		Buffs.PetBuff.Name: Nome: {0}
+
+		Items: {
+			PetItems: {
+				PetName: Nome mascotte: {0}
+				PetOwner: Proprietario: {0}
+				PetRename: Rinominatore mascotte: Premi '{0}' per dare un nome alla tua mascotte
+			}
+		}
+
+		UI: {
+			RenamePetUI: {
+				Title: Rinomina mascotte
+				SlotMouseover: Piazza un oggetto d'evocazione per mascotte qui
+				SlotMouseoverSlow:
+					'''
+					1. Piazza un oggetto d'evocazione per mascotte qui
+					2. Digita un nome nella casella di testo
+					2. (opzionale) Premi 'Cancella' per cancellare il testo
+					2. (opzionale) Premi 'Casuale' per un nome casuale
+					3. Premi 'Applica' per impostare il testo dalla casella di testo come nome per la mascotte
+					3. (opzionale) Togli l'oggetto
+					4. Premi 'X' per chiudere. L'oggetto ti sarà restituito se ancora presente nella UI
+					Nota: Se lasci aperta la UI con l'oggetto e chiudi il gioco, l'oggetto apparirà di nuovo la prossima volta che giocherai.
+					'''
+				SlotMouseoverVerySlowEasterEgg: Babbo Natale non esiste
+				Input: Inserire qui il nome
+				ApplyButton: Applica
+				RandomButton: Casuale
+				ClearButton: Cancella
+				CloseButton: Chiudi
+			}
+		}
+
+		PlayerSelectScreenUI.PetNameInSelectScreen: "{0} & {1}"
+	}
+}

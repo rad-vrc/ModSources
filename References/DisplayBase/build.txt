@@ -1,0 +1,3 @@
+author = Cleyera
+version = 0.9
+displayName = Item Display Base

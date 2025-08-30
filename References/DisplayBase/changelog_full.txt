@@ -1,0 +1,28 @@
+===========================================
+-Changelogs-
+===========================================
+v0.9
+-Added Chinese localization
+--------------------------------
+v0.8
+-Ported to latest 1.4.4
+--------------------------------
+v0.7
+-Added a Granite variant
+--------------------------------
+v0.6
+-Ported to 1.4.4
+-Fixed Display Base duplicating when smashed tiles under Base with a hammer.
+--------------------------------
+v0.5
+-Fixed drawing when gravity is reversed
+--------------------------------
+v0.4
+-Multiplayer Compatibility
+--------------------------------
+v0.3
+-Added lighting visual configurations
+--------------------------------
+v0.2
+-Solved view Matrix issue
+===========================================

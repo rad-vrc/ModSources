@@ -1,0 +1,11 @@
+Items: {
+	RegrowthHamaxe: {
+		DisplayName: Machado-martelo do Renascimento
+		Tooltip:
+			'''
+			Cria grama na terra
+			Aumenta a coleta de plantas alquímicas ao ser usado para colhê-las
+			Planta Bolotas ao cortar árvores
+			'''
+	}
+}

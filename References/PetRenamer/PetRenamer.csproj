@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A5F2F79-A9F6-4992-AF41-006CA21C3BE3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PetRenamer</RootNamespace>
+    <AssemblyName>PetRenamer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FNA" />
+    <Reference Include="log4net" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="ReLogic" />
+    <Reference Include="System.Collections" />
+    <Reference Include="System.Linq">
+      <HintPath>..\..\..\..\Downloads\dnSpy-net-win64\bin\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>C:\Program Files\dotnet\shared\Microsoft.NETCore.App\8.0.19\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading" />
+    <Reference Include="TerrariaHooks" />
+    <Reference Include="tModLoader">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\tModLoader\tModLoader.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="PetRenamer.cs" />
+    <Compile Include="PRBuff.cs" />
+    <Compile Include="PRCommand.cs" />
+    <Compile Include="PRItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PRPlayer.cs" />
+    <Compile Include="PRUISystem.cs" />
+    <Compile Include="UI\MouseoverUI\MouseoverUI.cs" />
+    <Compile Include="UI\RenamePetUI\RenamePetUI.cs" />
+    <Compile Include="UI\RenamePetUI\UIBetterTextBox.cs" />
+    <Compile Include="UI\RenamePetUI\UIQuitButton.cs" />
+    <Compile Include="UI\RenamePetUI\VanillaItemSlotWrapper.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

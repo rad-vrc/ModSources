@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- フォルダ内の全ソースを読み込む -->
+    <Compile Include="**\*.cs" />
+  </ItemGroup>
+
+</Project>
