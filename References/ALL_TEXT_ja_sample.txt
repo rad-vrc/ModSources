@@ -1,0 +1,100 @@
+[TRANSLATED] ﻿Public Member Functions |
+[TRANSLATED] Protected Member Functions |
+[TRANSLATED] Properties |
+全メンバーのリスト
+ModItemクラスリファレンス
+
+このクラスは、各アイテムのすべてのプロパティとフックを配置する場所として機能します。
+[TRANSLATED] To use it, simply create a new class deriving from this one. Implementations will be registered automatically. The Basic Item Guideteaches the basics of making a modded item.
+[TRANSLATED] More...
+
+[TRANSLATED] Inherits ModType< Item, ModItem >, and ILocalizedModType.
+
+[TRANSLATED] Inherited by ModLoaderModItem.
+
+パブリックメンバー関数
+
+virtual void AddRecipes ()
+[TRANSLATED] Override this method to add Recipes to the game.
+[TRANSLATED] Do note that this will be called for every instance of the overriding ModItem class that is added to the game.
+[TRANSLATED] The Basic Recipes Guideteaches how to add new recipes to the game and how to manipulate existing recipes.
+[TRANSLATED] To create a recipe resulting in this item, use CreateRecipe(int).
+[TRANSLATED] To create a recipe using this item as an ingredient, use Recipe.Create(int, int) and then pass in this or Type into Recipe.AddIngredient(ModItem, int) or Recipe.AddIngredient(int, int)
+ 
+
+virtual bool AllowPrefix (int pre)
+[TRANSLATED] Force a re-roll of a prefix by returning false.
+ 
+virtual bool AltFunctionUse (Player player)
+[TRANSLATED] Allows you to make this item usable by right-clicking. When this item is used by right-clicking, Player.altFunctionUse will be set to 2. Check the value of altFunctionUse in UseItem(Player) to apply right-click specific logic. For auto-reusing through right clicking, see also ItemID.Sets.ItemsThatAllowRepeatedRightClick. Returns false by default. Called on the local client only.  More...
+ 
+virtual void AnglerQuestChat (ref string description, ref string catchLocation)
+[TRANSLATED] Allows you to set what the Angler says when he requests for this item. The description parameter is his dialogue, and catchLocation should be set to "\n(Caught at [location])". Called on the local client only.  More...
+ 
+virtual void ArmorArmGlowMask (Player drawPlayer, float shadow, ref int glowMask, ref Color color)
+[TRANSLATED] Allows you to modify which glow mask and in what color is drawn on the player's arms. Note that this is only called for body armor. Also note that this hook is only ever called through this item's associated equipment texture. Called on local and remote clients.  More...
+ 
+virtual void ArmorSetShadows (Player player)
+[TRANSLATED] Allows you to determine special visual effects this vanity set has on the player without having to code them yourself. Note that this hook is only ever called through this item's associated equipment texture. Use the player.armorEffectDraw bools to activate the desired effects. Called on local, server, and remote clients.  More...
+ 
+
+virtual void AutoDefaults ()
+[TRANSLATED] Automatically sets certain defaults. Override this if you do not want the properties to be set for you.
+ 
+
+virtual void AutoStaticDefaults ()
+[TRANSLATED] Automatically sets certain static defaults. Override this if you do not want the properties to be set for you.
+ 
+
+virtual bool CanAccessoryBeEquippedWith (Item equippedItem, Item incomingItem, Player player)
+[TRANSLATED] Allows you to prevent similar accessories from being equipped multiple times. For example, vanilla Wings. Return false to have the currently equipped item swapped with the incoming item - ie both can't be equipped at same time. This method exists because manually checking Player.armor in CanEquipAccessory(Player, int, bool) will not correctly account for modded accessory slots.
+ 
+virtual ? bool CanAutoReuseItem (Player player)
+[TRANSLATED] Allows you to modify the autoswing (auto-reuse) behavior of this item without having to mess with Item.autoReuse. Useful to create effects like the Feral Claws which makes melee weapons and whips auto-reusable. Return true to enable autoswing (if not already enabled through autoReuse), return false to prevent autoswing. Returns null by default, which applies vanilla behavior. Called on local, server, and remote clients.  More...
+ 
+virtual ? bool CanBeChosenAsAmmo (Item weapon, Player player)
+[TRANSLATED] Whether or not this ammo item is valid for the given weapon. If this, or CanChooseAmmo on the weapon, returns false, then the ammo will not be valid for this weapon. By default, returns null and allows Item.useAmmo and Item.ammo to decide. Return true to make the ammo valid regardless of these fields, and return false to make it invalid. If false is returned, the CanConsumeAmmo, CanBeConsumedAsAmmo, OnConsumeAmmo, and OnConsumedAsAmmo hooks are never called. Called on local and remote clients.  More...
+ 
+virtual bool CanBeConsumedAsAmmo (Item weapon, Player player)
+[TRANSLATED] Whether or not this ammo item will be consumed by the given weapon. By default, returns true; return false to prevent ammo consumption. If false is returned, the OnConsumeAmmo and OnConsumedAsAmmo hooks are never called. Called on local, server, and remote clients.  More...
+ 
+virtual ? bool CanCatchNPC (NPC target, Player player)
+[TRANSLATED] Allows you to determine whether this item can catch the given NPC. Return true or false to say the given NPC can or cannot be caught, respectively, regardless of vanilla rules. Returns null by default, which allows vanilla's NPC catching rules to decide the target's fate. If this returns false, CombinedHooks.OnCatchNPC is never called. NOTE: this does not classify the given item as an NPC-catching tool, which is necessary for catching NPCs in the first place. To do that, you will need to use ItemID.Sets.CatchingTool. Called on the local client only.  More...
+ 
+virtual ? bool CanChooseAmmo (Item ammo, Player player)
+[TRANSLATED] Whether or not the given ammo item is valid for this weapon. If this, or CanBeChosenAsAmmo on the ammo, returns false, then the ammo will not be valid for this weapon. By default, returns null and allows Item.useAmmo and Item.ammo to decide. Return true to make the ammo valid regardless of these fields, and return false to make it invalid. If false is returned, the CanConsumeAmmo, CanBeConsumedAsAmmo, OnConsumeAmmo, and OnConsumedAsAmmo hooks are never called. Called on local and remote clients.  More...
+ 
+virtual bool CanConsumeAmmo (Item ammo, Player player)
+[TRANSLATED] Whether or not the given ammo item will be consumed by this weapon. By default, returns true; return false to prevent ammo consumption. If false is returned, the OnConsumeAmmo and OnConsumedAsAmmo hooks are never called. Called on local, server, and remote clients.  More...
+ 
+virtual ? bool CanConsumeBait (Player player)
+[TRANSLATED] Choose if this item will be consumed or not when used as bait. return null for vanilla behavior. Called on the local client only.  More...
+ 
+virtual bool CanEquipAccessory (Player player, int slot, bool modded)
+[TRANSLATED] Allows you to disallow the player from equipping this accessory. Return false to disallow equipping this accessory. Do not use this to check for mutually exclusive accessories being equipped, that check is only possible via CanAccessoryBeEquippedWith(Item, Item, Player) Returns true by default.  More...
+ 
+virtual ? bool CanHitNPC (Player player, NPC target)
+[TRANSLATED] Allows you to determine whether this melee weapon can hit the given NPC when swung. Return true to allow hitting the target, return false to block this weapon from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default. Called on the client hitting the target.  More...
+ 
+virtual bool CanHitPvp (Player player, Player target)
+[TRANSLATED] Allows you to determine whether this melee weapon can hit the given opponent player when swung. Return false to block this weapon from hitting the target. Returns true by default. Called on the client hitting the target.  More...
+ 
+virtual ? bool CanMeleeAttackCollideWithNPC (Rectangle meleeAttackHitbox, Player player, NPC target)
+[TRANSLATED] Allows you to determine whether a melee weapon can collide with the given NPC when swung. Use CanHitNPC(Player, NPC) instead for Flymeal-type effects. Called on the client hitting the target.  More...
+ 
+virtual bool CanPickup (Player player)
+[TRANSLATED] Allows you to determine whether or not the item can be picked up Called on local, server, and remote clients.  More...
+ 
+
+virtual bool CanReforge ()
+[TRANSLATED] This hook gets called when the player clicks on the reforge button and can afford the reforge. Returns whether the reforge will take place. If false is returned by this or any GlobalItem, the item will not be reforged, the cost to reforge will not be paid, and PreReforge and PostReforge hooks will not be called. Reforging preserves modded data on the item. Called on the local client only.
+ 
+
+virtual bool CanResearch ()
+[TRANSLATED] Allows you to prevent an item from being researched by returning false. True is the default behavior. Called on the local client only.
+ 
+virtual bool CanRightClick ()
+[TRANSLATED] Returns whether or not this item does something when it is right-clicked in the inventory. Returns false by default. Called on the local client only.  More...
+ 
+virtual bool CanShoot (Player player)
+[TRANSLATED] Allows you to prevent this item from shooting a projectile on use. Returns true by default. Called on local, server, and remote clients.  More...
